@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        width: 100vw;
+        padding: 0px;
+        margin: 0px;
+      }
+      .origin {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      .head {
+        height: 50px;
+        background-color: brown;
+      }
+      .main {
+      }
+      .heroslider {
+        display: flex;
+        flex-direction: row;
+        overflow: scroll;
+        /* width: 50vw; */
+        gap: 10px;
+      }
+      .herotext {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 30vw;
+      }
+      .herobutton {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+      }
+      .heropress {
+        background-color: blueviolet;
+        padding: 10px;
+      }
+      .heroimg {
+        max-width: 100%;
+      }
+      .herogalery {
+        flex-direction: column;
+      }
+      .footer {
+        height: 300px;
+        background-color: yellow;
+      }
+      .top {
+        height: 715px;
+        display: flex;
+      }
+      .container {
+        width: 180px;
+        height: 310px;
+        aspect-ratio: 4 / 3;
+        background-color: bisque;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .box1 {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        padding: 20px 0px 20px 20px;
+      }
+      .info {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        background-color: #f3f3f3;
+        gap: 20px;
+        padding: 10px 30px 10px 30px;
+      }
+      .infoSec {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        align-items: center;
+      }
+      .infoTxt {
+        width: 20vw;
+        font-size: small;
+      }
+      .infoImg {
+        max-width: 100%;
+        aspect-ratio: 4 / 3;
+      }
+      .Titel {
+        padding-left: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        font-size: large;
+      }
+      .top4main {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px 0px 20px 0px;
+      }
+      .ContainerTop4 {
+        width: 23vw;
+        background-color: orangered;
+      }
+      .top4img {
+        aspect-ratio: 3 / 4;
+        width: 100%;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="origin">
+      <div class="head"></div>
+      <div class="main">
+        <!-- Main Container Start -->
+        <section id="hero">
+          <!-- Box 01 Hero -->
+          <div class="box1">
+            <div class="herotext">
+              <!-- Links -->
+              <div>Der Frühling beginnt jetzt!</div>
+              <div>Warmer days, brighter blooms, lusher foliage.</div>
+              <div class="herobutton">
+                <div class="heropress">Button 1</div>
+                <div class="heropress">Button 2</div>
+              </div>
+            </div>
+            <div class="heroslider">
+              <!-- Rechts -->
+              <!-- Container 1 -->
+              <div class="container">
+                <div class="herogalery">
+                  <img
+                    class="heroimg"
+                    src="PFLANZEN/the-sill_10IN_White_Orchid_Duo_Gold_Jan_Pot_Eucalyptus_PI.webp"
+                    alt="Weisse Orchideenpflanze in einem Topf"
+                  />
+                </div>
+                <div class="heroimgtitle">Weisse Orchidee</div>
+                <div class="heroimgsub">Blablablabla</div>
+                <div class="heroimgsub2">200.-</div>
+              </div>
+              <!-- Container 1 Ende -->
+              <!-- Container 2 -->
+              <div class="container">
+                <div class="herogalery">
+                  <img
+                    class="heroimg"
+                    src="PFLANZEN/The-Sill_Big-and-Bright_Large_Mexia-cream_Variant.webp"
+                    alt="Grosse Mexia Cremefarbig"
+                  />
+                </div>
+                <div class="heroimgtitle">Grosse Mexia</div>
+                <div class="heroimgsub">Blablablabla</div>
+                <div class="heroimgsub2">200.-</div>
+              </div>
+              <!-- Container 2 Ende -->
+              <!-- Container 3 -->
+              <div class="container">
+                <div class="herogalery">
+                  <img
+                    class="heroimg"
+                    src="PFLANZEN/the-sill_Extra-Large-Dracaena-Marginata-Braid_Extra-Large_SolidGoods_Mustard_Saucer_Variant.webp"
+                    alt="Grosse Dracaena"
+                  />
+                </div>
+                <div class="heroimgtitle">Grosse Dracaena</div>
+                <div class="heroimgsub">Blablablabla</div>
+                <div class="heroimgsub2">200.-</div>
+              </div>
+              <!-- Container 3 Ende -->
+              <!-- Container 4 -->
+              <div class="container">
+                <div class="herogalery">
+                  <img
+                    class="heroimg"
+                    src="PFLANZEN/the-sill_Large-Bird-of-Paradise_Large_Pallas_Cream_planter_with_stand-Dark_Bamboo_variant.webp"
+                    alt="Paradiesvogel Gross"
+                  />
+                </div>
+                <div class="heroimgtitle">Paradiesvogel</div>
+                <div class="heroimgsub">Blablablabla</div>
+                <div class="heroimgsub2">200.-</div>
+              </div>
+              <!-- Container 4 Ende -->
+            </div>
+          </div>
+        </section>
+        <!-- Box 01 Hero Ende-->
+        <section id="info">
+          <!-- INFO START -->
+          <div class="info">
+            <div class="infoSec">
+              <div class="infoImg">
+                <img src="ICONS/box.svg" alt="BoxIcon" />
+              </div>
+              <div class="infoTxt">
+                Expert Guidance <br />
+                Success starts with choosing the right plants. We'll make sure
+                you do.
+              </div>
+            </div>
+            <div class="infoSec">
+              <div class="infoImg">
+                <img src="ICONS/happy.svg" alt="SmileyIcon" />
+              </div>
+              <div class="infoTxt">
+                Expert Guidance <br />
+                Success starts with choosing the right plants. We'll make sure
+                you do.
+              </div>
+            </div>
+            <div class="infoSec">
+              <div class="infoImg">
+                <img src="ICONS/protec.svg" alt="SchildIcon" />
+              </div>
+              <div class="infoTxt">
+                Expert Guidance <br />
+                Success starts with choosing the right plants. We'll make sure
+                you do.
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- INFO END -->
+        <section id="top4">
+          <!-- TOP4 START -->
+          <span class="Titel">Our Most Popular Plants</span>
+          <div class="top4main">
+            <div class="ContainerTop4">
+              <img
+                class="top4img"
+                src="PFLANZEN/the-sill_Medium-Fairy-Castle-Cactus_Medium_Hyde_Cream_Variant.webp"
+                alt="Pflanze 1"
+              />
+              <div>Fairy Castle Kaktus</div>
+              <div>blabla</div>
+              <div>200.-</div>
+            </div>
+            <div class="ContainerTop4">
+              <div>
+                <img
+                  class="top4img"
+                  src="PFLANZEN/the-sill_Medium-Fiddle-Leaf-Fig_Medium_Isabella_Black_Variant_ee195761-0eb7-4cf2-b14f-778f6bb11a1e.webp"
+                  alt="Pflanze 2"
+                />
+              </div>
+              <div>Fiddle Leaf</div>
+              <div>blabla</div>
+              <div>200.-</div>
+            </div>
+            <div class="ContainerTop4">
+              <div>
+                <img
+                  class="top4img"
+                  src="PFLANZEN/the-sill_Medium-Ghost-Cactus_Medium_Isabella_Lavender_Variant.webp"
+                  alt="Pflanze 3"
+                />
+              </div>
+              <div>Medium Ghost Kaktus</div>
+              <div>blabla</div>
+              <div>200.-</div>
+            </div>
+            <div class="ContainerTop4">
+              <div>
+                <img
+                  class="top4img"
+                  src="PFLANZEN/the-sill_Medium-Hoya-Pubilcalyx_Medium_Isabella_Sage_Variant.webp"
+                  alt="Pflanze 4"
+                />
+              </div>
+              <div>Hoya Pubilcalyx</div>
+              <div>blabla</div>
+              <div>200.-</div>
+            </div>
+          </div>
+        </section> <!-- Top4 End -->
+        <section> <!-- HELP Start -->
+            <div>
+                <div>
+                    <span>Frag einen Pflanzenkenner</span><br>
+                    <span>Hilfe nötig?</span><br>
+                    <span>Your confidence is our priority. Unsure what plants will work with your  light? New to gardening outdoors and need some advice? Reach out, we're  here to help.</span>
+                </div>
+                <div>
+                    <div>
+                        <img src="ICONS/Chat.svg" alt="Symbol für eine schriftliche Unterhaltung">
+                        <span>Chat</span><br>
+                        <span>Schreib direkt mit einem Pflanzen Experte</span>
+                    </div>
+                    <div>
+                        <img src="ICONS/call.svg" alt="Telefon Icon. Form von einem Hörer">
+                        <span>Anruf</span><br>
+                        <span>Redet mit einem Pflanzen Experte</span>
+                    </div>
+                    <div>
+                        <img src="ICONS/mail.svg" alt="Email Symbol Form von einem Couvert">
+                        <span>EMail</span><br>
+                        <span>Sende uns eine Nachricht</span>
+                    </div>
+                    <div>
+                        <img src="ICONS/QA.svg" alt="FAQ Symbol">
+                        <span>FAQ</span><br>
+                        <span>Schau nach ob unsere Tipps dir weiterhelfen</span>
+                    </div>
+                </div>
+            </div>
+        </section> <!-- HELP End -->
+        <section id="Workshop"> <!-- WORKSHOP START -->
+            <span>Workshop & Pflege</span>
+            <div>
+                <div>
+                    <img src="STOCK/imageA.webp" alt="Workshop Umtopfen von Pflanzen">
+                    <span>Olive Tree</span><br>
+                    <span>Olive Tree</span><br>
+                    <span>Olive Tree</span>
+                </div>
+                <div>
+                    <img src="STOCK/imageB.webp" alt="Various Green Plants">
+                    <span>Olive Tree</span><br>
+                    <span>Olive Tree</span><br>
+                    <span>Olive Tree</span>
+                </div>
+                <div>
+                    <img src="STOCK/imageC.webp" alt="Image of a Lush Garden">
+                    <span>Olive Tree</span><br>
+                    <span>Olive Tree</span><br>
+                    <span>Olive Tree</span>
+                </div>
+            </div>
+            <div> <!-- Right Side -->
+                <img src="STOCK/editorial-block_holiday_zz_blush_grant.jpg" alt="">
+                <div>
+                    <div>
+                        <span>Olive Tree</span><br>
+                        <span>The go-to tree for elevated interiors</span><br>
+                        <span>Weiterlesen --></span>
+                    </div>
+                    <div>
+                        <span>Olive Tree</span><br>
+                        <span>The go-to tree for elevated interiors</span><br>
+                        <span>Weiterlesen --></span>
+                    </div>
+                    <div>
+                        <span>Olive Tree</span><br>
+                        <span>The go-to tree for elevated interiors</span><br>
+                        <span>Weiterlesen --></span>
+                    </div>
+                </div>
+            </div>
+        </section> <!-- WORKSHOP END -->
+        <section>
+            <div>
+                <span></span>
+                <div>
+                    <div>
+                        <span>“I have ordered several times and each time I get the healthiest,  prettiest plants very quickly. I have been extremely satisfied with The  Sill.”</span> <br>
+                        <br>
+                        <span>Melanie , Zürich</span>
+                    </div>
+                    <img src="STOCK/ef39a8080d02cec2356332a55cacd3db03e24312-1500x1233.webp" alt="">
+                </div>
+            </div>
+        </section>
+        <section id="FAQ"> <!-- FAQ -->
+            <div>
+                <span>Antwort auf Übliche Fragen</span>
+                <div>
+                    Lieferung
+                </div>
+            </div>
+        </section>
+      </div> <!-- Main Container End -->
+      
+      <div class="footer">3</div>
+    </div>
+  </body>
+</html>
