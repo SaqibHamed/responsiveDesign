@@ -9,17 +9,21 @@
         padding: 0px;
         margin: 0px;
       }
+
       .origin {
         width: 100%;
         display: flex;
         flex-direction: column;
       }
+
       .head {
         height: 50px;
         background-color: brown;
       }
+
       .main {
       }
+
       .heroslider {
         display: flex;
         flex-direction: row;
@@ -27,35 +31,43 @@
         /* width: 50vw; */
         gap: 10px;
       }
+
       .herotext {
         display: flex;
         flex-direction: column;
         justify-content: center;
         width: 30vw;
       }
+
       .herobutton {
         display: flex;
         flex-direction: row;
         gap: 10px;
       }
+
       .heropress {
         background-color: blueviolet;
         padding: 10px;
       }
+
       .heroimg {
         max-width: 100%;
       }
+
       .herogalery {
         flex-direction: column;
       }
+
       .footer {
         height: 300px;
         background-color: yellow;
       }
+
       .top {
         height: 715px;
         display: flex;
       }
+
       .container {
         width: 180px;
         height: 310px;
@@ -65,12 +77,14 @@
         flex-direction: column;
         justify-content: center;
       }
+
       .box1 {
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
         padding: 20px 0px 20px 20px;
       }
+
       .info {
         display: flex;
         flex-direction: row;
@@ -79,26 +93,31 @@
         gap: 20px;
         padding: 10px 30px 10px 30px;
       }
+
       .infoSec {
         display: flex;
         flex-direction: row;
         gap: 20px;
         align-items: center;
       }
+
       .infoTxt {
         width: 20vw;
         font-size: small;
       }
+
       .infoImg {
         max-width: 100%;
         aspect-ratio: 4 / 3;
       }
+
       .Titel {
         padding-left: 20px;
         padding-top: 20px;
         padding-bottom: 20px;
         font-size: large;
       }
+
       .top4main {
         display: flex;
         flex-direction: row;
@@ -106,17 +125,245 @@
         gap: 20px;
         padding: 20px 0px 20px 0px;
       }
+
       .ContainerTop4 {
         width: 23vw;
         background-color: orangered;
       }
+
       .top4img {
         aspect-ratio: 3 / 4;
         width: 100%;
       }
+      .helpstart {
+        display: flex;
+        flex-direction: row;
+      }
+      .helpmain {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+      .helpcontainer {
+        display: flex;
+        flex-direction: row;
+        background-color: #ff4e4e;
+        width: 50vw;
+        margin: 30px;
+        padding: 30px;
+      }
+      .helpimg {
+        width: 50px;
+        align-self: center;
+      }
+      .WSIClust {
+        display: flex;
+        flex-direction: row;
+      }
+      .WSICell {
+        width: 1/3fr;
+        padding: 15px;
+      }
+      .WSIImage {
+        width: 100%;
+        aspect-ratio: 3 / 4;
+        object-fit: cover;
+      }
+      .WSWMain {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+      }
+      .WSWImg {
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        width: 500px;
+        height: auto;
+      }
+      .WSW-TEXT {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .WSWToppic {
+        width: auto;
+        padding: 20px 10px;
+      }
+      .FB-Cluster {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 2fr 2fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+      }
+      .FB-Text {
+        background-color: #d14444;
+        z-index: 10;
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 2;
+        grid-row-end: 3;
+      }
+      .FB-Img {
+        grid-column-start: 1;
+        grid-column-end: 5;
+        grid-row-start: 1;
+        grid-row-end: 4;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .FAQ-Start {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 30px 0;
+      }
+
+      .FAQ-Title {
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        align-items: center;
+        border-bottom: 1px solid rgb(42, 42, 42);
+        gap: 15px;
+        cursor: pointer;
+      }
+      .FAQ-Center {
+        padding: 15px 0;
+        width: 100%;
+      }
+
+      .FAQ-Main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 80%;
+        max-width: 750px;
+        height: fit-content;
+      }
+      
+.FAQ-Collapsed {
+  display: none;
+  padding-top: 10px;
+}
+      .FAQ-Collapsed.open {
+  display: block;
+}
+
+      /* --------------- MOBILE VERSION --------------- */
+
+      @media (max-width: 800px) {
+        .box1 {
+          flex-direction: column;
+        }
+
+        .herotext {
+          padding-bottom: 30px;
+          align-self: center;
+        }
+
+        .heroslider {
+          padding: 30px;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .ContainerTop4{
+            width: unset;
+        }
+
+        .info {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .infoSec {
+          justify-content: center;
+        }
+
+        .top4main {
+          padding: 30px;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+        .helpstart {
+          display: flex;
+          flex-direction: column;
+        }
+        .helpmain {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+        }
+        .helpcontainer {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+        .WSIClust {
+          display: flex;
+          flex-direction: row;
+        }
+        .WSICell {
+          width: 1/3fr;
+          padding: 15px;
+        }
+        .WSIImage {
+          width: 100%;
+          aspect-ratio: 3 / 4;
+          object-fit: cover;
+        }
+        .WSWMain {
+          width: 100%;
+          padding: 50px 0px;
+          display: flex;
+          flex-direction: column-reverse;
+          justify-content: left;
+        }
+        .WSWImg {
+          aspect-ratio: 4 / 3;
+          object-fit: cover;
+          align-self: center;
+          width: calc(100vw - 30px);
+          height: fit-content;
+        }
+        .WSW-TEXT {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+        .WSWToppic {
+          width: auto;
+          padding: 20px 10px;
+        }
+        .FB-Cluster {
+          display: flex;
+          flex-direction: column-reverse;
+          align-items: center;
+        }
+        .FB-Text {
+          background-color: #d14444;
+          padding: 30px 0;
+          width: 80%;
+          transform: unset;
+          z-index: unset;
+        }
+        .FB-Img {
+          aspect-ratio: 4 / 3;
+          object-fit: cover;
+          width: 80%;
+          height: fit-content;
+        }
+      }
     </style>
     <title>Document</title>
   </head>
+
   <body>
     <div class="origin">
       <div class="head"></div>
@@ -283,105 +530,287 @@
               <div>200.-</div>
             </div>
           </div>
-        </section> <!-- Top4 End -->
-        <section> <!-- HELP Start -->
-            <div>
-                <div>
-                    <span>Frag einen Pflanzenkenner</span><br>
-                    <span>Hilfe nötig?</span><br>
-                    <span>Your confidence is our priority. Unsure what plants will work with your  light? New to gardening outdoors and need some advice? Reach out, we're  here to help.</span>
-                </div>
-                <div>
-                    <div>
-                        <img src="ICONS/Chat.svg" alt="Symbol für eine schriftliche Unterhaltung">
-                        <span>Chat</span><br>
-                        <span>Schreib direkt mit einem Pflanzen Experte</span>
-                    </div>
-                    <div>
-                        <img src="ICONS/call.svg" alt="Telefon Icon. Form von einem Hörer">
-                        <span>Anruf</span><br>
-                        <span>Redet mit einem Pflanzen Experte</span>
-                    </div>
-                    <div>
-                        <img src="ICONS/mail.svg" alt="Email Symbol Form von einem Couvert">
-                        <span>EMail</span><br>
-                        <span>Sende uns eine Nachricht</span>
-                    </div>
-                    <div>
-                        <img src="ICONS/QA.svg" alt="FAQ Symbol">
-                        <span>FAQ</span><br>
-                        <span>Schau nach ob unsere Tipps dir weiterhelfen</span>
-                    </div>
-                </div>
-            </div>
-        </section> <!-- HELP End -->
-        <section id="Workshop"> <!-- WORKSHOP START -->
-            <span>Workshop & Pflege</span>
-            <div>
-                <div>
-                    <img src="STOCK/imageA.webp" alt="Workshop Umtopfen von Pflanzen">
-                    <span>Olive Tree</span><br>
-                    <span>Olive Tree</span><br>
-                    <span>Olive Tree</span>
-                </div>
-                <div>
-                    <img src="STOCK/imageB.webp" alt="Various Green Plants">
-                    <span>Olive Tree</span><br>
-                    <span>Olive Tree</span><br>
-                    <span>Olive Tree</span>
-                </div>
-                <div>
-                    <img src="STOCK/imageC.webp" alt="Image of a Lush Garden">
-                    <span>Olive Tree</span><br>
-                    <span>Olive Tree</span><br>
-                    <span>Olive Tree</span>
-                </div>
-            </div>
-            <div> <!-- Right Side -->
-                <img src="STOCK/editorial-block_holiday_zz_blush_grant.jpg" alt="">
-                <div>
-                    <div>
-                        <span>Olive Tree</span><br>
-                        <span>The go-to tree for elevated interiors</span><br>
-                        <span>Weiterlesen --></span>
-                    </div>
-                    <div>
-                        <span>Olive Tree</span><br>
-                        <span>The go-to tree for elevated interiors</span><br>
-                        <span>Weiterlesen --></span>
-                    </div>
-                    <div>
-                        <span>Olive Tree</span><br>
-                        <span>The go-to tree for elevated interiors</span><br>
-                        <span>Weiterlesen --></span>
-                    </div>
-                </div>
-            </div>
-        </section> <!-- WORKSHOP END -->
+        </section>
+        <!-- Top4 End -->
         <section>
+          <!-- HELP Start -->
+          <div class="helpstart">
             <div>
-                <span></span>
-                <div>
-                    <div>
-                        <span>“I have ordered several times and each time I get the healthiest,  prettiest plants very quickly. I have been extremely satisfied with The  Sill.”</span> <br>
-                        <br>
-                        <span>Melanie , Zürich</span>
-                    </div>
-                    <img src="STOCK/ef39a8080d02cec2356332a55cacd3db03e24312-1500x1233.webp" alt="">
-                </div>
+              <span>Frag einen Pflanzenkenner</span><br />
+              <span>Hilfe nötig?</span><br />
+              <span
+                >Your confidence is our priority. Unsure what plants will work
+                with your light? New to gardening outdoors and need some advice?
+                Reach out, we're here to help.</span
+              >
             </div>
-        </section>
-        <section id="FAQ"> <!-- FAQ -->
-            <div>
-                <span>Antwort auf Übliche Fragen</span>
-                <div>
-                    Lieferung
+            <div class="helpmain">
+              <div class="helpcontainer">
+                <div class="helpimg">
+                  <img
+                    src="ICONS/Chat.svg"
+                    alt="Symbol für eine schriftliche Unterhaltung"
+                  />
                 </div>
+                <div>
+                  <span>Chat</span><br />
+                  <span>Schreib direkt mit einem Pflanzen Experte</span>
+                </div>
+              </div>
+
+              <div class="helpcontainer">
+                <div class="helpimg">
+                  <img
+                    src="ICONS/call.svg"
+                    alt="Telefon Icon. Form von einem Hörer"
+                  />
+                </div>
+                <div>
+                  <span>Anruf</span><br />
+                  <span>Redet mit einem Pflanzen Experte</span>
+                </div>
+              </div>
+
+              <div class="helpcontainer">
+                <div class="helpimg">
+                  <img
+                    src="ICONS/mail.svg"
+                    alt="Email Symbol Form von einem Couvert"
+                  />
+                </div>
+                <div>
+                  <span>EMail</span><br />
+                  <span>Sende uns eine Nachricht</span>
+                </div>
+              </div>
+
+              <div class="helpcontainer">
+                <div class="helpimg">
+                  <img src="ICONS/QA.svg" alt="FAQ Symbol" />
+                </div>
+                <div>
+                  <span>FAQ</span><br />
+                  <span>Schau nach ob unsere Tipps dir weiterhelfen</span>
+                </div>
+              </div>
             </div>
+          </div>
         </section>
-      </div> <!-- Main Container End -->
-      
-      <div class="footer">3</div>
+        <!-- HELP End -->
+        <section id="Workshop">
+          <!-- WORKSHOP START -->
+          <span>Workshop & Pflege</span>
+          <div class="WSIClust">
+            <div class="WSICell">
+              <img
+                class="WSIImage"
+                src="STOCK/imageA.webp"
+                alt="Workshop Umtopfen von Pflanzen"
+              />
+              <span>Olive Tree</span><br />
+              <span>Olive Tree</span><br />
+              <span>Olive Tree</span>
+            </div>
+            <div class="WSICell">
+              <img
+                class="WSIImage"
+                src="STOCK/imageB.webp"
+                alt="Various Green Plants"
+              />
+              <span>Olive Tree</span><br />
+              <span>Olive Tree</span><br />
+              <span>Olive Tree</span>
+            </div>
+            <div class="WSICell">
+              <img
+                class="WSIImage"
+                src="STOCK/imageC.webp"
+                alt="Image of a Lush Garden"
+              />
+              <span>Olive Tree</span><br />
+              <span>Olive Tree</span><br />
+              <span>Olive Tree</span>
+            </div>
+          </div>
+          <div class="WSWMain">
+            <!-- Bottom Side -->
+            <img
+              class="WSWImg"
+              src="STOCK/editorial-block_holiday_zz_blush_grant.jpg"
+              alt=""
+            />
+            <div class="WSW-TEXT">
+              <div class="WSWToppic">
+                <span>Olive Tree</span><br />
+                <span>The go-to tree for elevated interiors</span><br />
+                <span>Weiterlesen --></span>
+              </div>
+              <div class="WSWToppic">
+                <span>Olive Tree</span><br />
+                <span>The go-to tree for elevated interiors</span><br />
+                <span>Weiterlesen --></span>
+              </div>
+              <div class="WSWToppic">
+                <span>Olive Tree</span><br />
+                <span>The go-to tree for elevated interiors</span><br />
+                <span>Weiterlesen --></span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- WORKSHOP END -->
+        <section>
+          <div>
+            <span>Titel</span>
+            <div class="FB-Cluster">
+              <div class="FB-Text">
+                <span>
+                  “I have ordered several times and each time I get the
+                  healthiest, prettiest plants very quickly. I have been
+                  extremely satisfied with The Sill.”
+                </span>
+                <br />
+                <br />
+                <span>Melanie , Zürich</span>
+              </div>
+              <div class="FB-Img">
+                <img
+                  style="width: 100%"
+                  src="STOCK/ef39a8080d02cec2356332a55cacd3db03e24312-1500x1233.webp"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="FAQ">
+          <div class="FAQ-Start">
+            <!-- FAQ -->
+            <span>Antwort auf übliche Fragen</span>
+            <div class="FAQ-Main">
+              <div class="FAQ-Center">
+                <div class="FAQ-Title">
+                  <img src="ICONS/Chat.svg" alt="" />
+                  <span>Lieferung & Gebühren</span>
+                </div>
+                <div class="FAQ-Collapsed">
+                  <span>
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+                    sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
+                    ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+                    nonumy eirmod tempor invidunt ut labore et dolore magna
+                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+                    sea takimata sanctus est Lorem ipsum dolor sit amet.
+                  </span>
+                </div>
+              </div>
+              <div class="FAQ-Center">
+                <div class="FAQ-Title">
+                  <img src="ICONS/Chat.svg" alt="" />
+                  <span>Zahlungsmöglichkeiten</span>
+                </div>
+                <div class="FAQ-Collapsed">
+                  <span>
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+                    sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
+                    ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+                    nonumy eirmod tempor invidunt ut labore et dolore magna
+                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+                    sea takimata sanctus est Lorem ipsum dolor sit amet.
+                  </span>
+                </div>
+              </div>
+              <div class="FAQ-Center">
+                <div class="FAQ-Title">
+                  <img src="ICONS/Chat.svg" alt="" />
+                  <span>Rückgabe</span>
+                </div>
+                <div class="FAQ-Collapsed">
+                  <span>
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+                    sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
+                    ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+                    nonumy eirmod tempor invidunt ut labore et dolore magna
+                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+                    sea takimata sanctus est Lorem ipsum dolor sit amet.
+                  </span>
+                </div>
+              </div>
+              <div class="FAQ-Center">
+                <div class="FAQ-Title">
+                  <img src="ICONS/Chat.svg" alt="" />
+                  <span>Pflege</span>
+                </div>
+                <div class="FAQ-Collapsed">
+                  <span>
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+                    sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
+                    ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+                    nonumy eirmod tempor invidunt ut labore et dolore magna
+                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+                    sea takimata sanctus est Lorem ipsum dolor sit amet.
+                  </span>
+                </div>
+              </div>
+
+              <div class="FAQ-Center">
+                <div class="FAQ-Title">
+                  <img src="ICONS/Chat.svg" alt="" />
+                  <span>Zubehör</span>
+                </div>
+                <div class="FAQ-Collapsed">
+                  <span>
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+                    sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
+                    ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+                    nonumy eirmod tempor invidunt ut labore et dolore magna
+                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+                    sea takimata sanctus est Lorem ipsum dolor sit amet.
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- FAQ END -->
+      </div>
+      <!-- Main Container End -->
+      <div class="footer">
+        <!-- Footer START -->
+        <section></section>
+      </div>
+      <!-- Footer END -->
     </div>
+
+    <script>
+      const faqTitles = document.querySelectorAll(".FAQ-Title");
+
+      faqTitles.forEach((title) => {
+        title.addEventListener("click", () => {
+          const content = title.nextElementSibling;
+          content.classList.toggle("open");
+        });
+      });
+    </script>
   </body>
 </html>
