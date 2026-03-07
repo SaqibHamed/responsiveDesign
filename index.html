@@ -4,7 +4,64 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
+      :root {
+        background-color: black;
+        font-family: Arial, Helvetica, sans-serif;
+
+        --fontFamily: Roboto;
+        --font-H1: 2.5rem;
+        --font-H2: 2rem;
+        --font-Ask: 1.5rem;
+        --pricetext-Main: 20px;
+        --pricetext-Sub: 15px;
+        --pricetext-Price: 17px;
+      }
+
+      /* --------------- DEBUG --------------- */
+
+      /* * {
+  border: 1px solid red;
+} */
+      *{
+        box-sizing: border-box;
+      }
+
+      /* --------------- FONT SETUP --------------- */
+      .überschrift {
+        font-size: var(--font-H1);
+      }
+
+      .mobile-mittig {
+        align-items: unset;
+        justify-content: unset;
+        display: unset;
+        flex-direction: unset;
+      }
+
+      .subtext {
+        font-size: var(--font-H2);
+      }
+      .pro-name {
+        font-size: var(--pricetext-Main);
+        font-weight: 800;
+      }
+      .pro-sub {
+        font-size: var(--pricetext-Sub);
+      }
+      .pro-price {
+        font-size: var(--pricetext-Price);
+      }
+      .fontInfo {
+        font-size: var(--pricetext-Price);
+      }
+      .FONT-Frage {
+        font-size: var(--font-Ask);
+      }
+
+      /* --------------- Main SETUP --------------- */
+
       body {
+        background-color: white;
         width: 100vw;
         padding: 0px;
         margin: 0px;
@@ -21,7 +78,12 @@
         background-color: brown;
       }
 
-      .main {
+      #hero {
+        background-image: url(STOCK/BG-flower.jpg);
+        background-repeat: repeat;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
       }
 
       .heroslider {
@@ -36,7 +98,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        width: 30vw;
+        width: 55vw;
       }
 
       .herobutton {
@@ -115,7 +177,6 @@
         padding-left: 20px;
         padding-top: 20px;
         padding-bottom: 20px;
-        font-size: large;
       }
 
       .top4main {
@@ -136,22 +197,35 @@
         width: 100%;
       }
       .helpstart {
+        padding: 30px;
         display: flex;
-        flex-direction: row;
-      }
-      .helpmain {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
+        justify-content: space-between;
         align-items: center;
+        gap: 30px;
+      }
+
+      .help-title {
+        flex: 0 0 35%;
+        text-align: left;
+      }
+
+      .helpmain {
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
       }
       .helpcontainer {
         display: flex;
         flex-direction: row;
         background-color: #ff4e4e;
-        width: 50vw;
-        margin: 30px;
-        padding: 30px;
+        height: 100px;
+        width: 200px;
+        padding: 10px;
+        gap: 15px;
+        align-items: center;
       }
       .helpimg {
         width: 50px;
@@ -160,13 +234,15 @@
       .WSIClust {
         display: flex;
         flex-direction: row;
+        justify-content: space-between;
       }
       .WSICell {
-        width: 1/3fr;
+        width: 30%;
         padding: 15px;
       }
       .WSIImage {
         width: 100%;
+        height: auto;
         aspect-ratio: 3 / 4;
         object-fit: cover;
       }
@@ -186,10 +262,14 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        padding: 30px 0;
       }
       .WSWToppic {
         width: auto;
         padding: 20px 10px;
+        border: #d14444 solid 1px;
+        border-left: 0px;
+        border-right: 0px;
       }
       .FB-Cluster {
         width: 100%;
@@ -245,20 +325,34 @@
         max-width: 750px;
         height: fit-content;
       }
-      
-.FAQ-Collapsed {
-  display: none;
-  padding-top: 10px;
-}
+
+      .FAQ-Collapsed {
+        display: none;
+        padding-top: 10px;
+      }
       .FAQ-Collapsed.open {
-  display: block;
-}
+        display: block;
+      }
 
       /* --------------- MOBILE VERSION --------------- */
 
       @media (max-width: 800px) {
+        .mobile-mittig {
+          align-items: center;
+          justify-content: center;
+          display: flex;
+          flex-direction: column;
+        }
+        .herotext{
+            padding: 50px 0px;
+            gap: 20px;
+            width: 80%;
+        }
+
         .box1 {
           flex-direction: column;
+          width: 100%;
+          padding: 0;
         }
 
         .herotext {
@@ -267,28 +361,74 @@
         }
 
         .heroslider {
-          padding: 30px;
+          /* padding: 30px; */
           display: grid;
           grid-template-columns: 1fr 1fr;
+          width: 80%;
+          align-self: center;
+          gap: 20px;
+        }
+        .container {
+          width: 100%;
+          height: unset;
+          gap: 20px;
         }
 
-        .ContainerTop4{
-            width: unset;
-        }
-
-        .info {
-          flex-direction: column;
-          align-items: center;
-        }
-
-        .infoSec {
+        #top4 {
+          display: flex;
+          flex-wrap: wrap;
           justify-content: center;
         }
 
+        .ContainerTop4 {
+          width: unset;
+        }
+
+        .info {
+          position: relative;
+          height: 90px;
+          overflow: hidden;
+        }
+
+        .infoSec {
+          position: absolute;
+          display: flex;
+          justify-content: center;
+          inset: 0;
+          opacity: 0;
+          animation: infoLoop 30s infinite steps(1);
+        }
+
+        .infoSec:nth-child(1) {
+          animation-delay: 0s;
+        }
+        .infoSec:nth-child(2) {
+          animation-delay: 10s;
+        }
+        .infoSec:nth-child(3) {
+          animation-delay: 20s;
+        }
+
+        @keyframes infoLoop {
+          0% {
+            opacity: 1;
+          }
+          33.33% {
+            opacity: 1;
+          }
+          33.34% {
+            opacity: 0;
+          }
+          100% {
+            opacity: 0;
+          }
+        }
+
         .top4main {
-          padding: 30px;
+          width: 80%;
           display: grid;
           grid-template-columns: 1fr 1fr;
+          padding: 0% auto;
         }
         .helpstart {
           display: flex;
@@ -304,6 +444,11 @@
           flex-direction: column;
           align-items: center;
           text-align: center;
+          justify-content: center;
+          width: 50%;
+          height: auto;
+          padding: 20px;
+          /* margin: 30px; */
         }
         .WSIClust {
           display: flex;
@@ -320,7 +465,7 @@
         }
         .WSWMain {
           width: 100%;
-          padding: 50px 0px;
+          padding-bottom:50px;
           display: flex;
           flex-direction: column-reverse;
           justify-content: left;
@@ -329,13 +474,15 @@
           aspect-ratio: 4 / 3;
           object-fit: cover;
           align-self: center;
-          width: calc(100vw - 30px);
+          width: 80%;
           height: fit-content;
         }
         .WSW-TEXT {
           display: flex;
           flex-direction: column;
           justify-content: center;
+          align-self: center;
+          width: 80%;
         }
         .WSWToppic {
           width: auto;
@@ -374,8 +521,10 @@
           <div class="box1">
             <div class="herotext">
               <!-- Links -->
-              <div>Der Frühling beginnt jetzt!</div>
-              <div>Warmer days, brighter blooms, lusher foliage.</div>
+              <div class="überschrift">Der Frühling beginnt jetzt!</div>
+              <div class="pro-name">
+                Warmer days, brighter blooms, lusher foliage.
+              </div>
               <div class="herobutton">
                 <div class="heropress">Button 1</div>
                 <div class="heropress">Button 2</div>
@@ -392,9 +541,9 @@
                     alt="Weisse Orchideenpflanze in einem Topf"
                   />
                 </div>
-                <div class="heroimgtitle">Weisse Orchidee</div>
-                <div class="heroimgsub">Blablablabla</div>
-                <div class="heroimgsub2">200.-</div>
+                <div class="heroimgtitle pro-name">Weisse Orchidee</div>
+                <div class="heroimgsub pro-sub">Blablablabla</div>
+                <div class="heroimgsub2 pro-price">200.-</div>
               </div>
               <!-- Container 1 Ende -->
               <!-- Container 2 -->
@@ -406,9 +555,9 @@
                     alt="Grosse Mexia Cremefarbig"
                   />
                 </div>
-                <div class="heroimgtitle">Grosse Mexia</div>
-                <div class="heroimgsub">Blablablabla</div>
-                <div class="heroimgsub2">200.-</div>
+                <div class="heroimgtitle pro-name">Grosse Mexia</div>
+                <div class="heroimgsub pro-sub">Blablablabla</div>
+                <div class="heroimgsub2 pro-price">200.-</div>
               </div>
               <!-- Container 2 Ende -->
               <!-- Container 3 -->
@@ -420,9 +569,9 @@
                     alt="Grosse Dracaena"
                   />
                 </div>
-                <div class="heroimgtitle">Grosse Dracaena</div>
-                <div class="heroimgsub">Blablablabla</div>
-                <div class="heroimgsub2">200.-</div>
+                <div class="heroimgtitle pro-name">Grosse Dracaena</div>
+                <div class="heroimgsub pro-sub">Blablablabla</div>
+                <div class="heroimgsub2 pro-price">200.-</div>
               </div>
               <!-- Container 3 Ende -->
               <!-- Container 4 -->
@@ -434,9 +583,9 @@
                     alt="Paradiesvogel Gross"
                   />
                 </div>
-                <div class="heroimgtitle">Paradiesvogel</div>
-                <div class="heroimgsub">Blablablabla</div>
-                <div class="heroimgsub2">200.-</div>
+                <div class="heroimgtitle pro-name">Paradiesvogel</div>
+                <div class="heroimgsub pro-sub">Blablablabla</div>
+                <div class="heroimgsub2 pro-price">200.-</div>
               </div>
               <!-- Container 4 Ende -->
             </div>
@@ -450,7 +599,7 @@
               <div class="infoImg">
                 <img src="ICONS/box.svg" alt="BoxIcon" />
               </div>
-              <div class="infoTxt">
+              <div class="infoTxt fontInfo">
                 Expert Guidance <br />
                 Success starts with choosing the right plants. We'll make sure
                 you do.
@@ -460,7 +609,7 @@
               <div class="infoImg">
                 <img src="ICONS/happy.svg" alt="SmileyIcon" />
               </div>
-              <div class="infoTxt">
+              <div class="infoTxt fontInfo">
                 Expert Guidance <br />
                 Success starts with choosing the right plants. We'll make sure
                 you do.
@@ -470,7 +619,7 @@
               <div class="infoImg">
                 <img src="ICONS/protec.svg" alt="SchildIcon" />
               </div>
-              <div class="infoTxt">
+              <div class="infoTxt fontInfo">
                 Expert Guidance <br />
                 Success starts with choosing the right plants. We'll make sure
                 you do.
@@ -481,7 +630,7 @@
         <!-- INFO END -->
         <section id="top4">
           <!-- TOP4 START -->
-          <span class="Titel">Our Most Popular Plants</span>
+          <span class="Titel überschrift">Our Most Popular Plants</span>
           <div class="top4main">
             <div class="ContainerTop4">
               <img
@@ -489,9 +638,9 @@
                 src="PFLANZEN/the-sill_Medium-Fairy-Castle-Cactus_Medium_Hyde_Cream_Variant.webp"
                 alt="Pflanze 1"
               />
-              <div>Fairy Castle Kaktus</div>
-              <div>blabla</div>
-              <div>200.-</div>
+              <div class="pro-name">Fairy Castle Kaktus</div>
+              <div class="pro-sub">blabla</div>
+              <div class="pro-price">200.-</div>
             </div>
             <div class="ContainerTop4">
               <div>
@@ -501,9 +650,9 @@
                   alt="Pflanze 2"
                 />
               </div>
-              <div>Fiddle Leaf</div>
-              <div>blabla</div>
-              <div>200.-</div>
+              <div class="pro-name">Fiddle Leaf</div>
+              <div class="pro-sub">blabla</div>
+              <div class="pro-price">200.-</div>
             </div>
             <div class="ContainerTop4">
               <div>
@@ -513,9 +662,9 @@
                   alt="Pflanze 3"
                 />
               </div>
-              <div>Medium Ghost Kaktus</div>
-              <div>blabla</div>
-              <div>200.-</div>
+              <div class="pro-name">Medium Ghost Kaktus</div>
+              <div class="pro-sub">blabla</div>
+              <div class="pro-price">200.-</div>
             </div>
             <div class="ContainerTop4">
               <div>
@@ -525,9 +674,9 @@
                   alt="Pflanze 4"
                 />
               </div>
-              <div>Hoya Pubilcalyx</div>
-              <div>blabla</div>
-              <div>200.-</div>
+              <div class="pro-name">Hoya Pubilcalyx</div>
+              <div class="pro-sub">blabla</div>
+              <div class="pro-price">200.-</div>
             </div>
           </div>
         </section>
@@ -535,9 +684,9 @@
         <section>
           <!-- HELP Start -->
           <div class="helpstart">
-            <div>
-              <span>Frag einen Pflanzenkenner</span><br />
-              <span>Hilfe nötig?</span><br />
+            <div class="help-title">
+              <span class="überschrift mobile-mittig">Frag einen Pflanzenkenner</span><br />
+              <span class="subtext  mobile-mittig">Hilfe nötig?</span><br />
               <span
                 >Your confidence is our priority. Unsure what plants will work
                 with your light? New to gardening outdoors and need some advice?
@@ -553,7 +702,7 @@
                   />
                 </div>
                 <div>
-                  <span>Chat</span><br />
+                  <span class="FONT-Frage">Chat</span><br />
                   <span>Schreib direkt mit einem Pflanzen Experte</span>
                 </div>
               </div>
@@ -566,7 +715,7 @@
                   />
                 </div>
                 <div>
-                  <span>Anruf</span><br />
+                  <span class="FONT-Frage">Anruf</span><br />
                   <span>Redet mit einem Pflanzen Experte</span>
                 </div>
               </div>
@@ -579,18 +728,8 @@
                   />
                 </div>
                 <div>
-                  <span>EMail</span><br />
+                  <span class="FONT-Frage">Email</span><br />
                   <span>Sende uns eine Nachricht</span>
-                </div>
-              </div>
-
-              <div class="helpcontainer">
-                <div class="helpimg">
-                  <img src="ICONS/QA.svg" alt="FAQ Symbol" />
-                </div>
-                <div>
-                  <span>FAQ</span><br />
-                  <span>Schau nach ob unsere Tipps dir weiterhelfen</span>
                 </div>
               </div>
             </div>
@@ -599,38 +738,30 @@
         <!-- HELP End -->
         <section id="Workshop">
           <!-- WORKSHOP START -->
-          <span>Workshop & Pflege</span>
+          <span class="überschrift  mobile-mittig">Workshop & Pflege</span>
           <div class="WSIClust">
+
             <div class="WSICell">
-              <img
-                class="WSIImage"
-                src="STOCK/imageA.webp"
-                alt="Workshop Umtopfen von Pflanzen"
-              />
-              <span>Olive Tree</span><br />
-              <span>Olive Tree</span><br />
-              <span>Olive Tree</span>
+              <img class="WSIImage"src="STOCK/imageA.webp"alt="Workshop Umtopfen von Pflanzen"/>
+              <span class="pro-name">Olive Tree</span><br />
+              <span class="pro-sub">Olive Tree</span><br />
+              <span class="pro-price">Olive Tree</span>
             </div>
+
             <div class="WSICell">
-              <img
-                class="WSIImage"
-                src="STOCK/imageB.webp"
-                alt="Various Green Plants"
-              />
-              <span>Olive Tree</span><br />
-              <span>Olive Tree</span><br />
-              <span>Olive Tree</span>
+              <img class="WSIImage"src="STOCK/imageB.webp"alt="Various Green Plants"/>
+              <span class="pro-name">Olive Tree</span><br />
+              <span class="pro-sub">Olive Tree</span><br />
+              <span class="pro-price">Kostenlos</span>
             </div>
+
             <div class="WSICell">
-              <img
-                class="WSIImage"
-                src="STOCK/imageC.webp"
-                alt="Image of a Lush Garden"
-              />
-              <span>Olive Tree</span><br />
-              <span>Olive Tree</span><br />
-              <span>Olive Tree</span>
+              <img class="WSIImage"src="STOCK/imageC.webp"alt="Image of a Lush Garden"/>
+              <span class="pro-name">Frühlings Umtopfen</span><br />
+              <span class="pro-sub">Olive Tree</span><br />
+              <span class="pro-price">CHF 15</span>
             </div>
+
           </div>
           <div class="WSWMain">
             <!-- Bottom Side -->
@@ -661,7 +792,7 @@
         <!-- WORKSHOP END -->
         <section>
           <div>
-            <span>Titel</span>
+            <span class="überschrift  mobile-mittig">Was sagen unsere Kunden</span>
             <div class="FB-Cluster">
               <div class="FB-Text">
                 <span>
@@ -686,7 +817,7 @@
         <section id="FAQ">
           <div class="FAQ-Start">
             <!-- FAQ -->
-            <span>Antwort auf übliche Fragen</span>
+            <span class="überschrift">Antwort auf übliche Fragen</span>
             <div class="FAQ-Main">
               <div class="FAQ-Center">
                 <div class="FAQ-Title">
