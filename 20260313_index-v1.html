@@ -1,0 +1,953 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      :root {
+        background-color: black;
+        font-family: Arial, Helvetica, sans-serif;
+
+        --fontFamily: Roboto;
+        --font-H1: 2.5rem;
+        --font-H2: 2rem;
+        --font-Ask: 1.5rem;
+        --pricetext-Main: 20px;
+        --pricetext-Sub: 15px;
+        --pricetext-Price: 17px;
+      }
+
+      /* --------------- DEBUG --------------- */
+
+      /* * {
+  border: 1px solid red;
+} */
+      *{
+        box-sizing: border-box;
+      }
+
+      /* --------------- FONT SETUP --------------- */
+      .überschrift {
+        font-size: var(--font-H1);
+      }
+
+      .mobile-mittig {
+        align-items: unset;
+        justify-content: unset;
+        display: unset;
+        flex-direction: unset;
+      }
+
+      .subtext {
+        font-size: var(--font-H2);
+      }
+      .pro-name {
+        font-size: var(--pricetext-Main);
+        font-weight: 800;
+      }
+      .pro-sub {
+        font-size: var(--pricetext-Sub);
+      }
+      .pro-price {
+        font-size: var(--pricetext-Price);
+      }
+      .fontInfo {
+        font-size: var(--pricetext-Price);
+      }
+      .FONT-Frage {
+        font-size: var(--font-Ask);
+      }
+
+      /* --------------- Main SETUP --------------- */
+
+      body {
+        background-color: white;
+        width: 100vw;
+        padding: 0px;
+        margin: 0px;
+      }
+
+      .origin {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .head {
+        height: 50px;
+        background-color: brown;
+      }
+
+      #hero {
+        background-image: url(STOCK/BG-flower.jpg);
+        background-repeat: repeat;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+
+      .heroslider {
+        display: flex;
+        flex-direction: row;
+        overflow: scroll;
+        /* width: 50vw; */
+        gap: 10px;
+      }
+
+      .herotext {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 55vw;
+      }
+
+      .herobutton {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+      }
+
+      .heropress {
+        background-color: blueviolet;
+        padding: 10px;
+      }
+
+      .heroimg {
+        max-width: 100%;
+      }
+
+      .herogalery {
+        flex-direction: column;
+      }
+
+      .footer {
+        height: 300px;
+        background-color: yellow;
+      }
+
+      .top {
+        height: 715px;
+        display: flex;
+      }
+
+      .container {
+        width: 180px;
+        height: 310px;
+        aspect-ratio: 4 / 3;
+        background-color: bisque;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .box1 {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        padding: 20px 0px 20px 20px;
+      }
+
+      .info {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        background-color: #f3f3f3;
+        gap: 20px;
+        padding: 10px 30px 10px 30px;
+      }
+
+      .infoSec {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        align-items: center;
+      }
+
+      .infoTxt {
+        width: 20vw;
+        font-size: small;
+      }
+
+      .infoImg {
+        max-width: 100%;
+        aspect-ratio: 4 / 3;
+      }
+
+      .Titel {
+        padding-left: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+      }
+
+      .top4main {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px 0px 20px 0px;
+      }
+
+      .ContainerTop4 {
+        width: 23vw;
+        background-color: orangered;
+      }
+
+      .top4img {
+        aspect-ratio: 3 / 4;
+        width: 100%;
+      }
+      .helpstart {
+        padding: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 30px;
+      }
+
+      .help-title {
+        flex: 0 0 35%;
+        text-align: left;
+      }
+
+      .helpmain {
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .helpcontainer {
+        display: flex;
+        flex-direction: row;
+        background-color: #ff4e4e;
+        height: 100px;
+        width: 200px;
+        padding: 10px;
+        gap: 15px;
+        align-items: center;
+      }
+      .helpimg {
+        width: 50px;
+        align-self: center;
+      }
+      .WSIClust {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      .WSICell {
+        width: 30%;
+        padding: 15px;
+      }
+      .WSIImage {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 3 / 4;
+        object-fit: cover;
+      }
+      .WSWMain {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+      }
+      .WSWImg {
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        width: 500px;
+        height: auto;
+      }
+      .WSW-TEXT {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 30px 0;
+      }
+      .WSWToppic {
+        width: auto;
+        padding: 20px 10px;
+        border: #d14444 solid 1px;
+        border-left: 0px;
+        border-right: 0px;
+      }
+      .FB-Cluster {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 2fr 2fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+      }
+      .FB-Text {
+        background-color: #d14444;
+        z-index: 10;
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 2;
+        grid-row-end: 3;
+      }
+      .FB-Img {
+        grid-column-start: 1;
+        grid-column-end: 5;
+        grid-row-start: 1;
+        grid-row-end: 4;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      .FB-BG{
+        width: 100%;
+        aspect-ratio: 3 / 1;
+        object-fit: cover;
+      }
+      
+
+      .FAQ-Start {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 30px 0;
+      }
+
+      .FAQ-Title {
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        align-items: center;
+        border-bottom: 1px solid rgb(42, 42, 42);
+        gap: 15px;
+        cursor: pointer;
+      }
+      .FAQ-Center {
+        padding: 15px 0;
+        width: 100%;
+      }
+
+      .FAQ-Main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 80%;
+        max-width: 750px;
+        height: fit-content;
+      }
+
+      .FAQ-Collapsed {
+        display: none;
+        padding-top: 10px;
+      }
+      .FAQ-Collapsed.open {
+        display: block;
+      }
+
+      /* --------------- MOBILE VERSION --------------- */
+
+      @media (max-width: 800px) {
+        .mobile-mittig {
+          align-items: center;
+          justify-content: center;
+          display: flex;
+          flex-direction: column;
+        }
+        .herotext{
+            padding: 50px 0px;
+            gap: 20px;
+            width: 80%;
+        }
+
+        .box1 {
+          flex-direction: column;
+          width: 100%;
+          padding: 0;
+        }
+
+        .herotext {
+          padding-bottom: 30px;
+          align-self: center;
+        }
+
+        .heroslider {
+          /* padding: 30px; */
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          width: 80%;
+          align-self: center;
+          gap: 20px;
+        }
+        .container {
+          width: 100%;
+          height: unset;
+          gap: 20px;
+        }
+
+        #top4 {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .ContainerTop4 {
+          width: unset;
+        }
+
+        .info {
+          position: relative;
+          height: 90px;
+          overflow: hidden;
+        }
+
+        .infoSec {
+          position: absolute;
+          display: flex;
+          justify-content: center;
+          inset: 0;
+          opacity: 0;
+          animation: infoLoop 30s infinite steps(1);
+        }
+
+        .infoSec:nth-child(1) {
+          animation-delay: 0s;
+        }
+        .infoSec:nth-child(2) {
+          animation-delay: 10s;
+        }
+        .infoSec:nth-child(3) {
+          animation-delay: 20s;
+        }
+
+        @keyframes infoLoop {
+          0% {
+            opacity: 1;
+          }
+          33.33% {
+            opacity: 1;
+          }
+          33.34% {
+            opacity: 0;
+          }
+          100% {
+            opacity: 0;
+          }
+        }
+
+        .top4main {
+          width: 80%;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          padding: 0% auto;
+        }
+        .helpstart {
+          display: flex;
+          flex-direction: column;
+        }
+        .helpmain {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+        }
+        .helpcontainer {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          justify-content: center;
+          width: 50%;
+          height: auto;
+          padding: 20px;
+          /* margin: 30px; */
+        }
+        .WSIClust {
+          display: flex;
+          flex-direction: row;
+        }
+        .WSICell {
+          width: 1/3fr;
+          padding: 15px;
+        }
+        .WSIImage {
+          width: 100%;
+          aspect-ratio: 3 / 4;
+          object-fit: cover;
+        }
+        .WSWMain {
+          width: 100%;
+          padding-bottom:50px;
+          display: flex;
+          flex-direction: column-reverse;
+          justify-content: left;
+        }
+        .WSWImg {
+          aspect-ratio: 4 / 3;
+          object-fit: cover;
+          align-self: center;
+          width: 80%;
+          height: fit-content;
+        }
+        .WSW-TEXT {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-self: center;
+          width: 80%;
+        }
+        .WSWToppic {
+          width: auto;
+          padding: 20px 10px;
+        }
+        .FB-Cluster {
+          display: flex;
+          flex-direction: column-reverse;
+          align-items: center;
+        }
+        .FB-Text {
+          background-color: #d14444;
+          padding: 30px 0;
+          width: 80%;
+          transform: unset;
+          z-index: unset;
+        }
+        .FB-Img {
+          aspect-ratio: 4 / 3;
+          object-fit: cover;
+          width: 80%;
+          height: fit-content;
+        }
+      }
+    </style>
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div class="origin">
+      <div class="head"></div>
+      <div class="main">
+        <!-- Main Container Start -->
+        <section id="hero">
+          <!-- Box 01 Hero -->
+          <div class="box1">
+            <div class="herotext">
+              <!-- Links -->
+              <div class="überschrift">Der Frühling beginnt jetzt!</div>
+              <div class="pro-name">
+                Warmer days, brighter blooms, lusher foliage.
+              </div>
+              <div class="herobutton">
+                <div class="heropress">Button 1</div>
+                <div class="heropress">Button 2</div>
+              </div>
+            </div>
+            <div class="heroslider">
+              <!-- Rechts -->
+              <!-- Container 1 -->
+              <div class="container">
+                <div class="herogalery">
+                  <img
+                    class="heroimg"
+                    src="PFLANZEN/the-sill_10IN_White_Orchid_Duo_Gold_Jan_Pot_Eucalyptus_PI.webp"
+                    alt="Weisse Orchideenpflanze in einem Topf"
+                  />
+                </div>
+                <div class="heroimgtitle pro-name">Weisse Orchidee</div>
+                <div class="heroimgsub pro-sub">Blablablabla</div>
+                <div class="heroimgsub2 pro-price">200.-</div>
+              </div>
+              <!-- Container 1 Ende -->
+              <!-- Container 2 -->
+              <div class="container">
+                <div class="herogalery">
+                  <img
+                    class="heroimg"
+                    src="PFLANZEN/The-Sill_Big-and-Bright_Large_Mexia-cream_Variant.webp"
+                    alt="Grosse Mexia Cremefarbig"
+                  />
+                </div>
+                <div class="heroimgtitle pro-name">Grosse Mexia</div>
+                <div class="heroimgsub pro-sub">Blablablabla</div>
+                <div class="heroimgsub2 pro-price">200.-</div>
+              </div>
+              <!-- Container 2 Ende -->
+              <!-- Container 3 -->
+              <div class="container">
+                <div class="herogalery">
+                  <img
+                    class="heroimg"
+                    src="PFLANZEN/the-sill_Extra-Large-Dracaena-Marginata-Braid_Extra-Large_SolidGoods_Mustard_Saucer_Variant.webp"
+                    alt="Grosse Dracaena"
+                  />
+                </div>
+                <div class="heroimgtitle pro-name">Grosse Dracaena</div>
+                <div class="heroimgsub pro-sub">Blablablabla</div>
+                <div class="heroimgsub2 pro-price">200.-</div>
+              </div>
+              <!-- Container 3 Ende -->
+              <!-- Container 4 -->
+              <div class="container">
+                <div class="herogalery">
+                  <img
+                    class="heroimg"
+                    src="PFLANZEN/the-sill_Large-Bird-of-Paradise_Large_Pallas_Cream_planter_with_stand-Dark_Bamboo_variant.webp"
+                    alt="Paradiesvogel Gross"
+                  />
+                </div>
+                <div class="heroimgtitle pro-name">Paradiesvogel</div>
+                <div class="heroimgsub pro-sub">Blablablabla</div>
+                <div class="heroimgsub2 pro-price">200.-</div>
+              </div>
+              <!-- Container 4 Ende -->
+            </div>
+          </div>
+        </section>
+        <!-- Box 01 Hero Ende-->
+        <section id="info">
+          <!-- INFO START -->
+          <div class="info">
+            <div class="infoSec">
+              <div class="infoImg">
+                <img src="ICONS/box.svg" alt="BoxIcon" />
+              </div>
+              <div class="infoTxt fontInfo">
+                Expert Guidance <br />
+                Success starts with choosing the right plants. We'll make sure
+                you do.
+              </div>
+            </div>
+            <div class="infoSec">
+              <div class="infoImg">
+                <img src="ICONS/happy.svg" alt="SmileyIcon" />
+              </div>
+              <div class="infoTxt fontInfo">
+                Expert Guidance <br />
+                Success starts with choosing the right plants. We'll make sure
+                you do.
+              </div>
+            </div>
+            <div class="infoSec">
+              <div class="infoImg">
+                <img src="ICONS/protec.svg" alt="SchildIcon" />
+              </div>
+              <div class="infoTxt fontInfo">
+                Expert Guidance <br />
+                Success starts with choosing the right plants. We'll make sure
+                you do.
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- INFO END -->
+        <section id="top4">
+          <!-- TOP4 START -->
+          <span class="Titel überschrift">Our Most Popular Plants</span>
+          <div class="top4main">
+            <div class="ContainerTop4">
+              <img
+                class="top4img"
+                src="PFLANZEN/the-sill_Medium-Fairy-Castle-Cactus_Medium_Hyde_Cream_Variant.webp"
+                alt="Pflanze 1"
+              />
+              <div class="pro-name">Fairy Castle Kaktus</div>
+              <div class="pro-sub">blabla</div>
+              <div class="pro-price">200.-</div>
+            </div>
+            <div class="ContainerTop4">
+              <div>
+                <img
+                  class="top4img"
+                  src="PFLANZEN/the-sill_Medium-Fiddle-Leaf-Fig_Medium_Isabella_Black_Variant_ee195761-0eb7-4cf2-b14f-778f6bb11a1e.webp"
+                  alt="Pflanze 2"
+                />
+              </div>
+              <div class="pro-name">Fiddle Leaf</div>
+              <div class="pro-sub">blabla</div>
+              <div class="pro-price">200.-</div>
+            </div>
+            <div class="ContainerTop4">
+              <div>
+                <img
+                  class="top4img"
+                  src="PFLANZEN/the-sill_Medium-Ghost-Cactus_Medium_Isabella_Lavender_Variant.webp"
+                  alt="Pflanze 3"
+                />
+              </div>
+              <div class="pro-name">Medium Ghost Kaktus</div>
+              <div class="pro-sub">blabla</div>
+              <div class="pro-price">200.-</div>
+            </div>
+            <div class="ContainerTop4">
+              <div>
+                <img
+                  class="top4img"
+                  src="PFLANZEN/the-sill_Medium-Hoya-Pubilcalyx_Medium_Isabella_Sage_Variant.webp"
+                  alt="Pflanze 4"
+                />
+              </div>
+              <div class="pro-name">Hoya Pubilcalyx</div>
+              <div class="pro-sub">blabla</div>
+              <div class="pro-price">200.-</div>
+            </div>
+          </div>
+        </section>
+        <!-- Top4 End -->
+        <section>
+          <!-- HELP Start -->
+          <div class="helpstart">
+            <div class="help-title">
+              <span class="überschrift mobile-mittig">Frag einen Pflanzenkenner</span><br />
+              <span class="subtext  mobile-mittig">Hilfe nötig?</span><br />
+              <span
+                >Your confidence is our priority. Unsure what plants will work
+                with your light? New to gardening outdoors and need some advice?
+                Reach out, we're here to help.</span
+              >
+            </div>
+            <div class="helpmain">
+              <div class="helpcontainer">
+                <div class="helpimg">
+                  <img
+                    src="ICONS/Chat.svg"
+                    alt="Symbol für eine schriftliche Unterhaltung"
+                  />
+                </div>
+                <div>
+                  <span class="FONT-Frage">Chat</span><br />
+                  <span>Schreib direkt mit einem Pflanzen Experte</span>
+                </div>
+              </div>
+
+              <div class="helpcontainer">
+                <div class="helpimg">
+                  <img
+                    src="ICONS/call.svg"
+                    alt="Telefon Icon. Form von einem Hörer"
+                  />
+                </div>
+                <div>
+                  <span class="FONT-Frage">Anruf</span><br />
+                  <span>Redet mit einem Pflanzen Experte</span>
+                </div>
+              </div>
+
+              <div class="helpcontainer">
+                <div class="helpimg">
+                  <img
+                    src="ICONS/mail.svg"
+                    alt="Email Symbol Form von einem Couvert"
+                  />
+                </div>
+                <div>
+                  <span class="FONT-Frage">Email</span><br />
+                  <span>Sende uns eine Nachricht</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- HELP End -->
+        <section id="Workshop">
+          <!-- WORKSHOP START -->
+          <span class="überschrift  mobile-mittig">Workshop & Pflege</span>
+          <div class="WSIClust">
+
+            <div class="WSICell">
+              <img class="WSIImage"src="STOCK/imageA.webp"alt="Workshop Umtopfen von Pflanzen"/>
+              <span class="pro-name">Olive Tree</span><br />
+              <span class="pro-sub">Olive Tree</span><br />
+              <span class="pro-price">Olive Tree</span>
+            </div>
+
+            <div class="WSICell">
+              <img class="WSIImage"src="STOCK/imageB.webp"alt="Various Green Plants"/>
+              <span class="pro-name">Olive Tree</span><br />
+              <span class="pro-sub">Olive Tree</span><br />
+              <span class="pro-price">Kostenlos</span>
+            </div>
+
+            <div class="WSICell">
+              <img class="WSIImage"src="STOCK/imageC.webp"alt="Image of a Lush Garden"/>
+              <span class="pro-name">Frühlings Umtopfen</span><br />
+              <span class="pro-sub">Olive Tree</span><br />
+              <span class="pro-price">CHF 15</span>
+            </div>
+
+          </div>
+          <div class="WSWMain">
+            <!-- Bottom Side -->
+            <img
+              class="WSWImg"
+              src="STOCK/editorial-block_holiday_zz_blush_grant.jpg"
+              alt=""
+            />
+            <div class="WSW-TEXT">
+              <div class="WSWToppic">
+                <span>Olive Tree</span><br />
+                <span>The go-to tree for elevated interiors</span><br />
+                <span>Weiterlesen --></span>
+              </div>
+              <div class="WSWToppic">
+                <span>Olive Tree</span><br />
+                <span>The go-to tree for elevated interiors</span><br />
+                <span>Weiterlesen --></span>
+              </div>
+              <div class="WSWToppic">
+                <span>Olive Tree</span><br />
+                <span>The go-to tree for elevated interiors</span><br />
+                <span>Weiterlesen --></span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- WORKSHOP END -->
+        <section>
+          <div>
+            <span class="überschrift  mobile-mittig">Was sagen unsere Kunden</span>
+            <div class="FB-Cluster">
+              <div class="FB-Text">
+                <span>
+                  “I have ordered several times and each time I get the
+                  healthiest, prettiest plants very quickly. I have been
+                  extremely satisfied with The Sill.”
+                </span>
+                <br />
+                <br />
+                <span>Melanie , Zürich</span>
+              </div>
+              <div class="FB-Img">
+                <img
+                  class="FB-BG"
+                  src="STOCK/ef39a8080d02cec2356332a55cacd3db03e24312-1500x1233.webp"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="FAQ">
+          <div class="FAQ-Start">
+            <!-- FAQ -->
+            <span class="überschrift">Antwort auf übliche Fragen</span>
+            <div class="FAQ-Main">
+              <div class="FAQ-Center">
+                <div class="FAQ-Title">
+                  <img src="ICONS/Chat.svg" alt="" />
+                  <span>Lieferung & Gebühren</span>
+                </div>
+                <div class="FAQ-Collapsed">
+                  <span>
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+                    sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
+                    ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+                    nonumy eirmod tempor invidunt ut labore et dolore magna
+                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+                    sea takimata sanctus est Lorem ipsum dolor sit amet.
+                  </span>
+                </div>
+              </div>
+              <div class="FAQ-Center">
+                <div class="FAQ-Title">
+                  <img src="ICONS/Chat.svg" alt="" />
+                  <span>Zahlungsmöglichkeiten</span>
+                </div>
+                <div class="FAQ-Collapsed">
+                  <span>
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+                    sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
+                    ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+                    nonumy eirmod tempor invidunt ut labore et dolore magna
+                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+                    sea takimata sanctus est Lorem ipsum dolor sit amet.
+                  </span>
+                </div>
+              </div>
+              <div class="FAQ-Center">
+                <div class="FAQ-Title">
+                  <img src="ICONS/Chat.svg" alt="" />
+                  <span>Rückgabe</span>
+                </div>
+                <div class="FAQ-Collapsed">
+                  <span>
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+                    sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
+                    ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+                    nonumy eirmod tempor invidunt ut labore et dolore magna
+                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+                    sea takimata sanctus est Lorem ipsum dolor sit amet.
+                  </span>
+                </div>
+              </div>
+              <div class="FAQ-Center">
+                <div class="FAQ-Title">
+                  <img src="ICONS/Chat.svg" alt="" />
+                  <span>Pflege</span>
+                </div>
+                <div class="FAQ-Collapsed">
+                  <span>
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+                    sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
+                    ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+                    nonumy eirmod tempor invidunt ut labore et dolore magna
+                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+                    sea takimata sanctus est Lorem ipsum dolor sit amet.
+                  </span>
+                </div>
+              </div>
+
+              <div class="FAQ-Center">
+                <div class="FAQ-Title">
+                  <img src="ICONS/Chat.svg" alt="" />
+                  <span>Zubehör</span>
+                </div>
+                <div class="FAQ-Collapsed">
+                  <span>
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+                    sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
+                    ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+                    nonumy eirmod tempor invidunt ut labore et dolore magna
+                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
+                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
+                    sea takimata sanctus est Lorem ipsum dolor sit amet.
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- FAQ END -->
+      </div>
+      <!-- Main Container End -->
+      <div class="footer">
+        <!-- Footer START -->
+        <section></section>
+      </div>
+      <!-- Footer END -->
+    </div>
+
+    <script>
+      const faqTitles = document.querySelectorAll(".FAQ-Title");
+
+      faqTitles.forEach((title) => {
+        title.addEventListener("click", () => {
+          const content = title.nextElementSibling;
+          content.classList.toggle("open");
+        });
+      });
+    </script>
+  </body>
+</html>
