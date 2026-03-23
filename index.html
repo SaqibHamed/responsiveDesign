@@ -9,26 +9,52 @@
         font-family: Arial, Helvetica, sans-serif;
 
         --fontFamily: Roboto;
-        --font-H1: 2.5rem;
-        --font-H2: 2rem;
-        --font-Ask: 1.5rem;
-        --pricetext-Main: 20px;
-        --pricetext-Sub: 15px;
-        --pricetext-Price: 17px;
+        --font-H1: clamp(2rem, 4vw, 3.2rem);
+        --font-H2: clamp(1.4rem, 2.5vw, 2.1rem);
+        --font-Ask: 1.25rem;
+        --pricetext-Main: 1.1rem;
+        --pricetext-Sub: 0.95rem;
+        --pricetext-Price: 1rem;
+        --text-color: #1f1f1f;
+        --muted-text: #5a5a5a;
+        --section-space: clamp(56px, 8vw, 96px);
+        --content-width: min(1200px, 88vw);
+        --card-radius: 5px;
+        --soft-bg: #f7f4ef;
+        --surface: #ffffff;
+        --line: #e5ddd1;
+        --accent: #d14444;
       }
 
-      /* --------------- DEBUG --------------- */
-
-      /* * {
-  border: 1px solid red;
-} */
-      *{
+      * {
         box-sizing: border-box;
       }
 
-      /* --------------- FONT SETUP --------------- */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background-color: white;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        overflow-x: hidden;
+        color: var(--text-color);
+        line-height: 1.5;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+
       .überschrift {
         font-size: var(--font-H1);
+        line-height: 1.08;
+        letter-spacing: -0.03em;
+        font-weight: 700;
       }
 
       .mobile-mittig {
@@ -40,31 +66,34 @@
 
       .subtext {
         font-size: var(--font-H2);
+        line-height: 1.15;
       }
+
       .pro-name {
         font-size: var(--pricetext-Main);
-        font-weight: 800;
+        font-weight: 700;
+        margin-top: 14px;
       }
+
       .pro-sub {
         font-size: var(--pricetext-Sub);
+        color: var(--muted-text);
+        margin-top: 4px;
+        min-height: 44px;
       }
+
       .pro-price {
         font-size: var(--pricetext-Price);
+        margin-top: 10px;
       }
+
       .fontInfo {
-        font-size: var(--pricetext-Price);
+        font-size: 0.95rem;
       }
+
       .FONT-Frage {
         font-size: var(--font-Ask);
-      }
-
-      /* --------------- Main SETUP --------------- */
-
-      body {
-        background-color: white;
-        width: 100vw;
-        padding: 0px;
-        margin: 0px;
+        font-weight: 700;
       }
 
       .origin {
@@ -78,20 +107,35 @@
         background-color: brown;
       }
 
+      .main {
+        width: 80%;
+        margin: 0 auto;
+      }
+
+      .main section {
+        width: 100%;
+      }
+
+      #hero,
+      #info {
+        width: 100vw;
+        margin-left: 50%;
+        transform: translateX(-50%);
+      }
+
       #hero {
         background-image: url(STOCK/BG-flower.jpg);
         background-repeat: repeat;
-        width: 100%;
         height: auto;
-        object-fit: cover;
       }
 
       .heroslider {
         display: flex;
         flex-direction: row;
-        overflow: scroll;
-        /* width: 50vw; */
-        gap: 10px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        gap: 20px;
+        padding-right: 20px;
       }
 
       .herotext {
@@ -99,24 +143,34 @@
         flex-direction: column;
         justify-content: center;
         width: 55vw;
+        padding-left: 20px;
+        gap: 18px;
       }
 
       .herobutton {
         display: flex;
         flex-direction: row;
-        gap: 10px;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 6px;
       }
 
       .heropress {
-        background-color: blueviolet;
-        padding: 10px;
+        background-color: #f3f3f3;
+        padding: 10px 16px;
+        border-radius: 999px;
+        font-weight: 700;
       }
 
       .heroimg {
-        max-width: 100%;
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+        border-radius: var(--card-radius);
       }
 
       .herogalery {
+        display: flex;
         flex-direction: column;
       }
 
@@ -131,20 +185,27 @@
       }
 
       .container {
-        width: 180px;
-        height: 310px;
-        aspect-ratio: 4 / 3;
-        background-color: bisque;
+        width: 23vw;
+        min-width: 240px;
+        max-width: 280px;
+        height: auto;
+        background-color: var(--surface);
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
+        padding: 0 0 16px 0;
+        border-radius: var(--card-radius);
+        overflow: hidden;
+        flex: 0 0 auto;
       }
 
       .box1 {
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
-        padding: 20px 0px 20px 20px;
+        align-items: center;
+        gap: 32px;
+        padding: 42px 0 42px 20px;
       }
 
       .info {
@@ -153,13 +214,13 @@
         justify-content: center;
         background-color: #f3f3f3;
         gap: 20px;
-        padding: 10px 30px 10px 30px;
+        padding: 18px 30px;
       }
 
       .infoSec {
         display: flex;
         flex-direction: row;
-        gap: 20px;
+        gap: 16px;
         align-items: center;
       }
 
@@ -169,143 +230,243 @@
       }
 
       .infoImg {
-        max-width: 100%;
-        aspect-ratio: 4 / 3;
+        width: 48px;
+        flex-shrink: 0;
       }
 
       .Titel {
-        padding-left: 20px;
-        padding-top: 20px;
-        padding-bottom: 20px;
+        display: block;
+        padding: 20px 0;
+        margin: 0 0 18px;
       }
 
       .top4main {
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: flex-start;
         gap: 20px;
-        padding: 20px 0px 20px 0px;
+        padding: 20px 0 20px 0;
+        width: 100%;
+        margin: 0 auto;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
       }
 
       .ContainerTop4 {
         width: 23vw;
-        background-color: orangered;
+        min-width: 240px;
+        max-width: 280px;
+        background-color: var(--surface);
+        border-radius: var(--card-radius);
+        padding-bottom: 16px;
+        flex: 0 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-self: stretch;
       }
 
       .top4img {
         aspect-ratio: 3 / 4;
         width: 100%;
+        object-fit: cover;
+        display: block;
+        border-radius: var(--card-radius);
       }
+
+      .container .pro-name,
+      .container .pro-sub,
+      .container .pro-price,
+      .container .heroimgtitle,
+      .container .heroimgsub,
+      .container .heroimgsub2,
+      .ContainerTop4 .pro-name,
+      .ContainerTop4 .pro-sub,
+      .ContainerTop4 .pro-price {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .ContainerTop4 > div:first-child {
+        width: 100%;
+      }
+
       .helpstart {
-        padding: 30px;
+        padding: unset;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 30px;
+        gap: 40px;
+        width: 100%;
+        max-width: 100%;
+        margin: var(--section-space) 0;
       }
 
       .help-title {
         flex: 0 0 35%;
+        min-width: 0;
         text-align: left;
       }
 
       .helpmain {
-        flex: 1;
+        flex: 1 1 0;
+        min-width: 0;
         display: flex;
         justify-content: flex-end;
         align-items: center;
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 14px;
       }
+
       .helpcontainer {
         display: flex;
         flex-direction: row;
-        background-color: #ff4e4e;
-        height: 100px;
-        width: 200px;
-        padding: 10px;
+        background-color: #f3f3f3;
+        min-height: 100px;
+        width: 100%;
+        max-width: 600px;
+        flex-direction: row;
+        padding: 18px;
         gap: 15px;
         align-items: center;
+        border-radius: var(--card-radius);
       }
+
       .helpimg {
         width: 50px;
-        align-self: center;
+        flex-shrink: 0;
       }
+
+      #Workshop {
+        padding: 0;
+        width: 100%;
+        margin: 0;
+      }
+
       .WSIClust {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+          justify-content: space-between;
+        gap: 20px;
       }
+
       .WSICell {
-        width: 30%;
-        padding: 15px;
+        width: 100%;
+        max-width: 280px;
+        padding: 15px 0;
       }
+
       .WSIImage {
         width: 100%;
         height: auto;
         aspect-ratio: 3 / 4;
         object-fit: cover;
+        border-radius: var(--card-radius);
       }
+
       .WSWMain {
         width: 100%;
+        max-width: 1200px;
+        margin: 28px auto 0;
         display: flex;
         flex-direction: row;
-        justify-content: left;
+        justify-content: center;
+        align-items: stretch;
+        gap: 30px;
       }
+
       .WSWImg {
         aspect-ratio: 4 / 3;
         object-fit: cover;
-        width: 500px;
+        width: min(500px, 100%);
         height: auto;
+        border-radius: var(--card-radius);
       }
+
       .WSW-TEXT {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding: 30px 0;
+        padding: 10px 0;
+        flex: 1.4;
+        min-width: 0;
       }
+
       .WSWToppic {
         width: auto;
-        padding: 20px 10px;
-        border: #d14444 solid 1px;
-        border-left: 0px;
-        border-right: 0px;
+        padding: 22px 10px;
+        border: var(--line) solid 1px;
+        border-left: 0;
+        border-right: 0;
       }
+
+      .workshop-discover-wrap {
+        padding: 20px 0 10px;
+        display: flex;
+        justify-content: flex-start;
+      }
+
+      .workshop-button-wrap {
+        margin-top: 16px;
+      }
+
+      .feedback-section {
+        padding: 0;
+        width: 100%;
+        margin: 0;
+      }
+
+      .feedback-title {
+        display: block;
+        margin: 0 0 18px;
+      }
+
       .FB-Cluster {
         width: 100%;
         display: grid;
         grid-template-columns: 1fr 2fr 2fr 1fr;
         grid-template-rows: 1fr 1fr 1fr;
+        align-items: stretch;
+        margin-top: 10px;
       }
+
       .FB-Text {
-        background-color: #d14444;
+        background-color: var(--surface);
         z-index: 10;
-        grid-column-start: 2;
-        grid-column-end: 3;
-        grid-row-start: 2;
-        grid-row-end: 3;
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
+        padding: 32px;
+        border-radius: var(--card-radius);
       }
+
       .FB-Img {
-        grid-column-start: 1;
-        grid-column-end: 5;
-        grid-row-start: 1;
-        grid-row-end: 4;
+        grid-column: 1 / 5;
+        grid-row: 1 / 4;
         width: 100%;
         height: 100%;
-        object-fit: contain;
       }
-      .FB-BG{
+
+      .FB-BG {
         width: 100%;
+        height: 100%;
         aspect-ratio: 3 / 1;
         object-fit: cover;
+        border-radius: var(--card-radius);
       }
-      
 
       .FAQ-Start {
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 30px 0;
+        width: 100%;
+        margin: var(--section-space) 0 0;
+        padding: 0;
+      }
+
+      .FAQ-Heading {
+        width: 100%;
+        text-align: left;
+        margin-bottom: 20px;
       }
 
       .FAQ-Title {
@@ -316,7 +477,9 @@
         border-bottom: 1px solid rgb(42, 42, 42);
         gap: 15px;
         cursor: pointer;
+        padding-bottom: 14px;
       }
+
       .FAQ-Center {
         padding: 15px 0;
         width: 100%;
@@ -327,38 +490,62 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        width: 80%;
-        max-width: 750px;
+        width: 100%;
+        max-width: unset;
         height: fit-content;
       }
 
       .FAQ-Collapsed {
         display: none;
-        padding-top: 10px;
+        padding-top: 14px;
+        color: var(--muted-text);
       }
+
       .FAQ-Collapsed.open {
         display: block;
       }
 
-      /* --------------- MOBILE VERSION --------------- */
-
       @media (max-width: 800px) {
+        .main {
+          width: 80%;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        #hero,
+        #info {
+          width: 100%;
+          margin-left: 0;
+          transform: none;
+        }
+
         .mobile-mittig {
           align-items: center;
           justify-content: center;
           display: flex;
           flex-direction: column;
+          text-align: center;
         }
-        .herotext{
-            padding: 50px 0px;
-            gap: 20px;
-            width: 80%;
+
+        .überschrift {
+          font-size: 2rem;
+        }
+
+        .subtext {
+          font-size: 1.5rem;
+        }
+
+        .herotext {
+          padding: 50px 0;
+          gap: 20px;
+          width: 80%;
         }
 
         .box1 {
           flex-direction: column;
           width: 100%;
-          padding: 0;
+          padding: 0 0 30px 0;
+          gap: 26px;
         }
 
         .herotext {
@@ -367,27 +554,45 @@
         }
 
         .heroslider {
-          /* padding: 30px; */
           display: grid;
           grid-template-columns: 1fr 1fr;
-          width: 80%;
+          width: 100%;
           align-self: center;
           gap: 20px;
+          overflow: visible;
+          padding-right: 0;
         }
+
         .container {
           width: 100%;
-          height: unset;
-          gap: 20px;
+          min-width: 0;
+          height: auto;
+          gap: 12px;
         }
 
         #top4 {
           display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
+          flex-direction: column;
+          align-items: center;
         }
 
         .ContainerTop4 {
-          width: unset;
+          width: 100%;
+          min-width: 0;
+          max-width: none;
+          padding: 0 0 16px 0;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .ContainerTop4 > div:first-child {
+          width: 100%;
+        }
+
+        .top4img {
+          width: 100%;
+          display: block;
+          object-fit: cover;
         }
 
         .info {
@@ -403,14 +608,23 @@
           inset: 0;
           opacity: 0;
           animation: infoLoop 30s infinite steps(1);
+          padding: 0 15px;
+        }
+
+        .infoTxt {
+          width: 50%;
+          max-width: none;
+          text-align: center;
         }
 
         .infoSec:nth-child(1) {
           animation-delay: 0s;
         }
+
         .infoSec:nth-child(2) {
           animation-delay: 10s;
         }
+
         .infoSec:nth-child(3) {
           animation-delay: 20s;
         }
@@ -431,86 +645,147 @@
         }
 
         .top4main {
-          width: 80%;
+          width: 100%;
           display: grid;
           grid-template-columns: 1fr 1fr;
-          padding: 0% auto;
+          gap: 20px;
+          padding: 0;
         }
+
+        #Workshop {
+          padding: unset;
+        }
+
         .helpstart {
           display: flex;
           flex-direction: column;
+          align-self: center;
+          width: 100%;
+          margin: var(--section-space) auto;
         }
+
         .helpmain {
           width: 100%;
           display: flex;
           flex-direction: column;
+          align-items: center;
         }
+
         .helpcontainer {
           display: flex;
           flex-direction: column;
           align-items: center;
           text-align: center;
           justify-content: center;
-          width: 50%;
+          width: 100%;
           height: auto;
           padding: 20px;
-          /* margin: 30px; */
         }
+
         .WSIClust {
           display: flex;
-          flex-direction: row;
+          flex-direction: column;
+          align-items: center;
         }
+
         .WSICell {
-          width: 1/3fr;
-          padding: 15px;
+          width: 100%;
+          max-width: none;
+          padding: 15px 0;
         }
+
         .WSIImage {
           width: 100%;
-          aspect-ratio: 3 / 4;
+          aspect-ratio: 3 / 1;
           object-fit: cover;
+          margin: 0;
         }
+
         .WSWMain {
           width: 100%;
-          padding-bottom:50px;
+          padding-bottom: 50px;
           display: flex;
           flex-direction: column-reverse;
           justify-content: left;
+          gap: 20px;
         }
+
         .WSWImg {
           aspect-ratio: 4 / 3;
           object-fit: cover;
           align-self: center;
-          width: 80%;
-          height: fit-content;
+          width: 100%;
+          height: auto;
         }
+
         .WSW-TEXT {
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-self: center;
-          width: 80%;
+          width: 100%;
+          padding: 0;
         }
+
         .WSWToppic {
           width: auto;
           padding: 20px 10px;
         }
+
+        .feedback-section {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: unset;
+          width: 100%;
+          margin-left: 0;
+          margin-right: 0;
+        }
+
         .FB-Cluster {
           display: flex;
           flex-direction: column-reverse;
           align-items: center;
+          width: 100%;
+          gap: 0;
         }
+
         .FB-Text {
-          background-color: #d14444;
-          padding: 30px 0;
+          background-color: var(--surface);
+          padding: 24px 20px;
           width: 80%;
           transform: unset;
           z-index: unset;
         }
+
         .FB-Img {
+          width: 100%;
+          height: auto;
+        }
+
+        .FB-BG {
           aspect-ratio: 4 / 3;
           object-fit: cover;
+          width: 100%;
+          height: auto;
+        }
+
+        .FAQ-Start {
           width: 80%;
-          height: fit-content;
+          margin: var(--section-space) auto 0;
+          padding: 0;
+        }
+
+        .FAQ-Main {
+          width: 100%;
+        }
+
+        .FAQ-Heading {
+          width: 100%;
+        }
+
+        .workshop-discover-wrap {
+          justify-content: center;
         }
       }
     </style>
@@ -521,15 +796,12 @@
     <div class="origin">
       <div class="head"></div>
       <div class="main">
-        <!-- Main Container Start -->
         <section id="hero">
-          <!-- Box 01 Hero -->
           <div class="box1">
             <div class="herotext">
-              <!-- Links -->
               <div class="überschrift">Der Frühling beginnt jetzt!</div>
               <div class="pro-name">
-                Warmer days, brighter blooms, lusher foliage.
+                Warme Tage, frische Blüten und sattes Grün für dein Zuhause.
               </div>
               <div class="herobutton">
                 <div class="heropress">Button 1</div>
@@ -537,8 +809,6 @@
               </div>
             </div>
             <div class="heroslider">
-              <!-- Rechts -->
-              <!-- Container 1 -->
               <div class="container">
                 <div class="herogalery">
                   <img
@@ -548,11 +818,11 @@
                   />
                 </div>
                 <div class="heroimgtitle pro-name">Weisse Orchidee</div>
-                <div class="heroimgsub pro-sub">Blablablabla</div>
+                <div class="heroimgsub pro-sub">
+                  Zeitlos, elegant und pflegeleicht.
+                </div>
                 <div class="heroimgsub2 pro-price">200.-</div>
               </div>
-              <!-- Container 1 Ende -->
-              <!-- Container 2 -->
               <div class="container">
                 <div class="herogalery">
                   <img
@@ -562,11 +832,11 @@
                   />
                 </div>
                 <div class="heroimgtitle pro-name">Grosse Mexia</div>
-                <div class="heroimgsub pro-sub">Blablablabla</div>
+                <div class="heroimgsub pro-sub">
+                  Ein sanfter Blickfang für helle Räume.
+                </div>
                 <div class="heroimgsub2 pro-price">200.-</div>
               </div>
-              <!-- Container 2 Ende -->
-              <!-- Container 3 -->
               <div class="container">
                 <div class="herogalery">
                   <img
@@ -576,11 +846,11 @@
                   />
                 </div>
                 <div class="heroimgtitle pro-name">Grosse Dracaena</div>
-                <div class="heroimgsub pro-sub">Blablablabla</div>
+                <div class="heroimgsub pro-sub">
+                  Markant im Wuchs und unkompliziert im Alltag.
+                </div>
                 <div class="heroimgsub2 pro-price">200.-</div>
               </div>
-              <!-- Container 3 Ende -->
-              <!-- Container 4 -->
               <div class="container">
                 <div class="herogalery">
                   <img
@@ -590,16 +860,16 @@
                   />
                 </div>
                 <div class="heroimgtitle pro-name">Paradiesvogel</div>
-                <div class="heroimgsub pro-sub">Blablablabla</div>
+                <div class="heroimgsub pro-sub">
+                  Tropisches Statement mit starker Präsenz.
+                </div>
                 <div class="heroimgsub2 pro-price">200.-</div>
               </div>
-              <!-- Container 4 Ende -->
             </div>
           </div>
         </section>
-        <!-- Box 01 Hero Ende-->
+
         <section id="info">
-          <!-- INFO START -->
           <div class="info">
             <div class="infoSec">
               <div class="infoImg">
@@ -633,9 +903,8 @@
             </div>
           </div>
         </section>
-        <!-- INFO END -->
+
         <section id="top4">
-          <!-- TOP4 START -->
           <span class="Titel überschrift">Our Most Popular Plants</span>
           <div class="top4main">
             <div class="ContainerTop4">
@@ -645,7 +914,9 @@
                 alt="Pflanze 1"
               />
               <div class="pro-name">Fairy Castle Kaktus</div>
-              <div class="pro-sub">blabla</div>
+              <div class="pro-sub">
+                Beliebt für Form, Struktur und Pflegeleichtigkeit.
+              </div>
               <div class="pro-price">200.-</div>
             </div>
             <div class="ContainerTop4">
@@ -657,7 +928,9 @@
                 />
               </div>
               <div class="pro-name">Fiddle Leaf</div>
-              <div class="pro-sub">blabla</div>
+              <div class="pro-sub">
+                Ein Klassiker für ruhige, grüne Akzente.
+              </div>
               <div class="pro-price">200.-</div>
             </div>
             <div class="ContainerTop4">
@@ -669,7 +942,9 @@
                 />
               </div>
               <div class="pro-name">Medium Ghost Kaktus</div>
-              <div class="pro-sub">blabla</div>
+              <div class="pro-sub">
+                Skulptural, modern und ideal für helle Plätze.
+              </div>
               <div class="pro-price">200.-</div>
             </div>
             <div class="ContainerTop4">
@@ -681,22 +956,25 @@
                 />
               </div>
               <div class="pro-name">Hoya Pubilcalyx</div>
-              <div class="pro-sub">blabla</div>
+              <div class="pro-sub">
+                Feine Blätter und ein entspannter, natürlicher Look.
+              </div>
               <div class="pro-price">200.-</div>
             </div>
           </div>
         </section>
-        <!-- Top4 End -->
+
         <section>
-          <!-- HELP Start -->
           <div class="helpstart">
             <div class="help-title">
-              <span class="überschrift mobile-mittig">Frag einen Pflanzenkenner</span><br />
-              <span class="subtext  mobile-mittig">Hilfe nötig?</span><br />
+              <span class="überschrift mobile-mittig"
+                >Frag einen Pflanzenkenner</span
+              ><br />
+              <span class="subtext mobile-mittig">Hilfe nötig?</span><br />
               <span
-                >Your confidence is our priority. Unsure what plants will work
-                with your light? New to gardening outdoors and need some advice?
-                Reach out, we're here to help.</span
+                >Dein gutes Gefühl zählt. Du bist unsicher, welche Pflanzen zu
+                deinem Licht passen oder brauchst Unterstützung bei Pflege und
+                Auswahl? Wir helfen dir schnell und persönlich weiter.</span
               >
             </div>
             <div class="helpmain">
@@ -709,7 +987,7 @@
                 </div>
                 <div>
                   <span class="FONT-Frage">Chat</span><br />
-                  <span>Schreib direkt mit einem Pflanzen Experte</span>
+                  <span>Schreib direkt mit einem Pflanzenexperten</span>
                 </div>
               </div>
 
@@ -722,7 +1000,7 @@
                 </div>
                 <div>
                   <span class="FONT-Frage">Anruf</span><br />
-                  <span>Redet mit einem Pflanzen Experte</span>
+                  <span>Sprich direkt mit einem Pflanzenexperten</span>
                 </div>
               </div>
 
@@ -735,42 +1013,72 @@
                 </div>
                 <div>
                   <span class="FONT-Frage">Email</span><br />
-                  <span>Sende uns eine Nachricht</span>
+                  <span>Sende uns bequem deine Fragen per E-Mail</span>
                 </div>
               </div>
             </div>
           </div>
         </section>
-        <!-- HELP End -->
-        <section id="Workshop">
-          <!-- WORKSHOP START -->
-          <span class="überschrift  mobile-mittig">Workshop & Pflege</span>
-          <div class="WSIClust">
 
+        <section id="Workshop">
+          <span class="überschrift mobile-mittig">Workshop & Pflege</span>
+          <div class="WSIClust">
             <div class="WSICell">
-              <img class="WSIImage"src="STOCK/imageA.webp"alt="Workshop Umtopfen von Pflanzen"/>
-              <span class="pro-name">Olive Tree</span><br />
-              <span class="pro-sub">Olive Tree</span><br />
-              <span class="pro-price">Olive Tree</span>
+              <img
+                class="WSIImage"
+                src="STOCK/imageA.webp"
+                alt="Workshop Umtopfen von Pflanzen"
+              />
+              <span class="pro-name">Umtopfen im Frühling</span><br />
+              <span class="pro-sub"
+                >Praktische Tipps für gesundes Wachstum</span
+              ><br />
+              <span class="pro-price">Vor Ort Workshop</span>
             </div>
 
             <div class="WSICell">
-              <img class="WSIImage"src="STOCK/imageB.webp"alt="Various Green Plants"/>
-              <span class="pro-name">Olive Tree</span><br />
-              <span class="pro-sub">Olive Tree</span><br />
+              <img
+                class="WSIImage"
+                src="STOCK/imageB.webp"
+                alt="Various Green Plants"
+              />
+              <span class="pro-name">Pflegegrundlagen</span><br />
+              <span class="pro-sub"
+                >Die wichtigsten Basics für starke Zimmerpflanzen</span
+              ><br />
               <span class="pro-price">Kostenlos</span>
             </div>
 
             <div class="WSICell">
-              <img class="WSIImage"src="STOCK/imageC.webp"alt="Image of a Lush Garden"/>
-              <span class="pro-name">Frühlings Umtopfen</span><br />
-              <span class="pro-sub">Olive Tree</span><br />
+              <img
+                class="WSIImage"
+                src="STOCK/imageC.webp"
+                alt="Image of a Lush Garden"
+              />
+              <span class="pro-name">Frühlings-Umtopfen</span><br />
+              <span class="pro-sub"
+                >Schritt für Schritt zu mehr Platz und frischer Erde</span
+              ><br />
               <span class="pro-price">CHF 15</span>
             </div>
 
+            <div class="WSICell">
+              <img
+                class="WSIImage"
+                src="STOCK/imageB.webp"
+                alt="Pflege Workshop für Zimmerpflanzen"
+              />
+              <span class="pro-name">Zimmerpflanzen pflegen</span><br />
+              <span class="pro-sub"
+                >Mehr Sicherheit bei Wasser, Licht und Standort</span
+              ><br />
+              <span class="pro-price">CHF 20</span>
+            </div>
+          </div>
+          <div class="workshop-discover-wrap">
+            <div class="heropress">Weitere Workshops entdecken</div>
           </div>
           <div class="WSWMain">
-            <!-- Bottom Side -->
             <img
               class="WSWImg"
               src="STOCK/editorial-block_holiday_zz_blush_grant.jpg"
@@ -778,27 +1086,38 @@
             />
             <div class="WSW-TEXT">
               <div class="WSWToppic">
-                <span>Olive Tree</span><br />
-                <span>The go-to tree for elevated interiors</span><br />
-                <span>Weiterlesen --></span>
+                <span>Zimmerpflanzen richtig platzieren</span><br />
+                <span
+                  >So findest du den passenden Standort für gesundes
+                  Wachstum</span
+                ><br />
+                <span>→</span>
               </div>
               <div class="WSWToppic">
-                <span>Olive Tree</span><br />
-                <span>The go-to tree for elevated interiors</span><br />
-                <span>Weiterlesen --></span>
+                <span>5 Pflegefehler vermeiden</span><br />
+                <span
+                  >Die häufigsten Ursachen für gelbe Blätter und schwaches
+                  Wachstum</span
+                ><br />
+                <span>→</span>
               </div>
               <div class="WSWToppic">
-                <span>Olive Tree</span><br />
-                <span>The go-to tree for elevated interiors</span><br />
-                <span>Weiterlesen --></span>
+                <span>Welche Pflanze passt zu dir?</span><br />
+                <span
+                  >Einfach erklärt für helle, halbschattige und schattige
+                  Räume</span
+                ><br />
+                <span>→</span>
               </div>
             </div>
           </div>
         </section>
-        <!-- WORKSHOP END -->
+
         <section>
-          <div>
-            <span class="überschrift  mobile-mittig">Was sagen unsere Kunden</span>
+          <div class="feedback-section">
+            <span class="Titel überschrift mobile-mittig feedback-title"
+              >Was sagen unsere Kunden</span
+            >
             <div class="FB-Cluster">
               <div class="FB-Text">
                 <span>
@@ -808,7 +1127,7 @@
                 </span>
                 <br />
                 <br />
-                <span>Melanie , Zürich</span>
+                <span>Melanie, Zürich</span>
               </div>
               <div class="FB-Img">
                 <img
@@ -820,10 +1139,12 @@
             </div>
           </div>
         </section>
+
         <section id="FAQ">
           <div class="FAQ-Start">
-            <!-- FAQ -->
-            <span class="überschrift">Antwort auf übliche Fragen</span>
+            <span class="überschrift FAQ-Heading"
+              >Antwort auf übliche Fragen</span
+            >
             <div class="FAQ-Main">
               <div class="FAQ-Center">
                 <div class="FAQ-Title">
@@ -929,14 +1250,11 @@
             </div>
           </div>
         </section>
-        <!-- FAQ END -->
       </div>
-      <!-- Main Container End -->
+
       <div class="footer">
-        <!-- Footer START -->
         <section></section>
       </div>
-      <!-- Footer END -->
     </div>
 
     <script>
