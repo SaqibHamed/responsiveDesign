@@ -1,8 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="de-CH">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="512x512" href="ICONS/Logo-C-Favi.png" />
     <style>
       :root {
         background-color: black;
@@ -24,6 +25,7 @@
         --surface: #ffffff;
         --line: #e5ddd1;
         --accent: #d14444;
+        --scroll-shadow: rgba(32, 64, 42, 0.16);
       }
 
       * {
@@ -32,6 +34,11 @@
 
       html {
         scroll-behavior: smooth;
+      }
+
+      section[id],
+      .nav-target {
+        scroll-margin-top: 110px;
       }
 
       body {
@@ -50,69 +57,313 @@
         height: auto;
       }
 
-      .überschrift {
+      .heading-xl {
         font-size: var(--font-H1);
         line-height: 1.08;
         letter-spacing: -0.03em;
         font-weight: 700;
       }
 
-      .mobile-mittig {
+      .mobile-center {
         align-items: unset;
         justify-content: unset;
         display: unset;
         flex-direction: unset;
       }
 
-      .subtext {
+      .heading-sub {
         font-size: var(--font-H2);
         line-height: 1.15;
       }
 
-      .pro-name {
+      .product-name {
         font-size: var(--pricetext-Main);
         font-weight: 700;
         margin-top: 14px;
       }
 
-      .pro-sub {
+      .product-sub {
         font-size: var(--pricetext-Sub);
         color: var(--muted-text);
         margin-top: 4px;
         min-height: 44px;
       }
 
-      .pro-price {
+      .product-price {
         font-size: var(--pricetext-Price);
         margin-top: 10px;
       }
 
-      .fontInfo {
+      .info-note {
         font-size: 0.95rem;
       }
 
-      .FONT-Frage {
+      .support-label {
         font-size: var(--font-Ask);
         font-weight: 700;
       }
 
-      .origin {
+      .page {
         width: 100%;
         display: flex;
         flex-direction: column;
       }
 
-      .head {
-        height: 50px;
-        background-color: brown;
+      .site-bar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        width: 100%;
+        background: linear-gradient(135deg, #3d6b45, #567c4d);
+        color: #f8f6ef;
+        box-shadow: 0 10px 25px rgba(31, 54, 35, 0.18);
       }
 
-      .main {
-        width: 80%;
+      .site-header {
+        width: min(1200px, 92vw);
+        min-height: 78px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        color: inherit;
+        text-decoration: none;
+        flex-shrink: 0;
+      }
+
+      .brand-logo {
+        height: 40px;
+        width: auto;
+      }
+
+      .footer-brand {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
+      .footer-logo {
+        height: 42px;
+        width: auto;
+      }
+
+      .desktop-nav {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex: 1 1 auto;
+        justify-content: center;
+      }
+
+      .nav-link {
+        color: inherit;
+        text-decoration: none;
+        font-weight: 600;
+        padding: 10px 14px;
+        border-radius: 999px;
+        transition: background-color 0.2s ease, transform 0.2s ease;
+      }
+
+      .nav-link:hover,
+      .nav-link:focus-visible {
+        background-color: rgba(248, 246, 239, 0.16);
+        transform: translateY(-1px);
+      }
+
+      .product-card:focus-visible,
+      .support-card:focus-visible,
+      .workshop-card:focus-visible,
+      .faq-toggle:focus-visible,
+      .pill-button:focus-visible,
+      .editorial-item:focus-visible {
+        outline: 3px solid #7aa46d;
+        outline-offset: 4px;
+      }
+
+      .header-cta {
+        border: 0;
+      }
+
+      .header-tools {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .tool-group {
+        position: relative;
+      }
+
+      .tool-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 44px;
+        min-height: 44px;
+        padding: 10px 12px;
+        border-radius: 999px;
+        color: inherit;
+        text-decoration: none;
+        font-weight: 700;
+        background-color: rgba(248, 246, 239, 0.12);
+        border: 1px solid rgba(248, 246, 239, 0.12);
+        transition: background-color 0.2s ease, transform 0.2s ease;
+      }
+
+      .tool-badge {
+        position: absolute;
+        top: -5px;
+        right: -3px;
+        min-width: 18px;
+        height: 18px;
+        border-radius: 999px;
+        padding: 0 5px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f8f6ef;
+        color: #2f5a36;
+        font-size: 0.7rem;
+        font-weight: 700;
+      }
+
+      .tool-link:hover,
+      .tool-link:focus-visible {
+        background-color: rgba(248, 246, 239, 0.2);
+        transform: translateY(-1px);
+      }
+
+      .tool-label {
+        font-size: 0.82rem;
+        white-space: nowrap;
+      }
+
+      .tool-icon {
+        width: 20px;
+        height: 20px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .menu-toggle {
+        display: none;
+        width: 52px;
+        height: 52px;
+        border: 0;
+        border-radius: 14px;
+        background-color: rgba(248, 246, 239, 0.14);
+        color: inherit;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color 0.18s ease, transform 0.18s ease;
+      }
+
+      .menu-toggle:hover,
+      .menu-toggle:focus-visible {
+        background-color: rgba(248, 246, 239, 0.22);
+        transform: scale(1.03);
+      }
+
+      .menu-toggle span {
+        position: relative;
+        display: block;
+        width: 22px;
+        height: 2px;
+        background-color: currentColor;
+        transition: transform 0.25s ease, opacity 0.25s ease;
+      }
+
+      .menu-toggle span::before,
+      .menu-toggle span::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 22px;
+        height: 2px;
+        background-color: currentColor;
+        transition: transform 0.25s ease;
+      }
+
+      .menu-toggle span::before {
+        top: -7px;
+      }
+
+      .menu-toggle span::after {
+        top: 7px;
+      }
+
+      .menu-toggle.is-open span {
+        background-color: transparent;
+      }
+
+      .menu-toggle.is-open span::before {
+        transform: translateY(7px) rotate(45deg);
+      }
+
+      .menu-toggle.is-open span::after {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      .mobile-nav {
+        display: flex;
+        width: min(1200px, 92vw);
+        margin: 0 auto;
+        padding: 0;
+        flex-direction: column;
+        gap: 10px;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transform: translateY(-8px);
+        pointer-events: none;
+        transition: max-height 0.22s ease, opacity 0.18s ease,
+          transform 0.18s ease, padding 0.18s ease;
+      }
+
+      .mobile-nav.open {
+        max-height: 420px;
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+        padding: 0 0 16px;
+      }
+
+      .mobile-nav .nav-link {
+        background-color: rgba(248, 246, 239, 0.12);
+        padding: 14px 16px;
+      }
+
+      .mobile-tools {
+        display: none;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .mobile-tools .tool-link {
+        width: 100%;
+        border-radius: 18px;
+      }
+
+      .mobile-tools .tool-label {
+        font-size: 0.78rem;
+      }
+
+      .page-main {
+        width: 90%;
         margin: 0 auto;
       }
 
-      .main section {
+      .page-main section {
         width: 100%;
       }
 
@@ -136,9 +387,25 @@
         overflow-y: hidden;
         gap: 20px;
         padding-right: 20px;
+        padding-bottom: 12px;
+        background-image: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.92),
+            rgba(255, 255, 255, 0)
+          ),
+          linear-gradient(
+            to left,
+            rgba(255, 255, 255, 0.92),
+            rgba(255, 255, 255, 0)
+          );
+        background-position: left center, right center;
+        background-repeat: no-repeat;
+        background-size: 38px 100%, 38px 100%;
+        box-shadow: inset 14px 0 18px -18px var(--scroll-shadow),
+          inset -14px 0 18px -18px var(--scroll-shadow);
       }
 
-      .herotext {
+      .hero-copy {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -147,7 +414,7 @@
         gap: 18px;
       }
 
-      .herobutton {
+      .hero-actions {
         display: flex;
         flex-direction: row;
         gap: 12px;
@@ -155,28 +422,116 @@
         margin-top: 6px;
       }
 
-      .heropress {
+      .pill-button {
+        color: inherit;
+        text-decoration: none;
         background-color: #f3f3f3;
         padding: 10px 16px;
         border-radius: 999px;
         font-weight: 700;
+        transition: background-color 0.22s ease, transform 0.22s ease,
+          box-shadow 0.22s ease;
       }
 
-      .heroimg {
+      .product-card-image {
         width: 100%;
         aspect-ratio: 4 / 5;
         object-fit: cover;
         border-radius: var(--card-radius);
+        transition: transform 0.28s ease;
       }
 
-      .herogalery {
+      .product-card-media {
         display: flex;
         flex-direction: column;
+        overflow: hidden;
+        border-radius: var(--card-radius) var(--card-radius) 0 0;
       }
 
       .footer {
-        height: 300px;
-        background-color: yellow;
+        margin-top: var(--section-space);
+        background: linear-gradient(180deg, #ededeb 0%, #d9d9d4 100%);
+        color: #2f332f;
+        padding: 48px 0 28px;
+      }
+
+      .footer-wrap {
+        width: min(1200px, 88vw);
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 28px;
+      }
+
+      .footer-column {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .footer-title {
+        font-size: 1rem;
+        font-weight: 700;
+        margin: 0;
+      }
+
+      .footer-link,
+      .footer-copy {
+        color: rgba(47, 51, 47, 0.82);
+        text-decoration: none;
+        font-size: 0.95rem;
+      }
+
+      .footer-link:hover,
+      .footer-link:focus-visible {
+        color: #2f332f;
+      }
+
+      .footer-copy {
+        margin: 0;
+      }
+
+      .footer-signup {
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 16px;
+        padding: 18px;
+      }
+
+      .footer-form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 12px;
+      }
+
+      .footer-input {
+        width: 100%;
+        border: 1px solid rgba(47, 51, 47, 0.18);
+        border-radius: 999px;
+        padding: 12px 16px;
+        font: inherit;
+        color: #2f332f;
+        background-color: rgba(255, 255, 255, 0.86);
+      }
+
+      .footer-button {
+        border: 0;
+        border-radius: 999px;
+        padding: 12px 16px;
+        background-color: #3d6b45;
+        color: #f8f6ef;
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .footer-bottom {
+        width: min(1200px, 88vw);
+        margin: 26px auto 0;
+        padding-top: 18px;
+        border-top: 1px solid rgba(47, 51, 47, 0.16);
+        font-size: 0.86rem;
+        color: rgba(47, 51, 47, 0.72);
       }
 
       .top {
@@ -184,7 +539,8 @@
         display: flex;
       }
 
-      .container {
+      .product-card {
+        position: relative;
         width: 23vw;
         min-width: 240px;
         max-width: 280px;
@@ -195,8 +551,9 @@
         justify-content: flex-start;
         padding: 0 0 16px 0;
         border-radius: var(--card-radius);
-        overflow: hidden;
+        border: 1px solid #e5e5e0;
         flex: 0 0 auto;
+        transition: border-color 0.22s ease, background-color 0.22s ease;
       }
 
       .box1 {
@@ -217,24 +574,24 @@
         padding: 18px 30px;
       }
 
-      .infoSec {
+      .info-item {
         display: flex;
         flex-direction: row;
         gap: 16px;
         align-items: center;
       }
 
-      .infoTxt {
+      .info-text {
         width: 20vw;
         font-size: small;
       }
 
-      .infoImg {
+      .info-icon {
         width: 48px;
         flex-shrink: 0;
       }
 
-      .Titel {
+      .section-title {
         display: block;
         padding: 20px 0;
         margin: 0 0 18px;
@@ -251,47 +608,371 @@
         flex-wrap: nowrap;
         overflow-x: auto;
         overflow-y: hidden;
+        padding-bottom: 12px;
+        background-image: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.96),
+            rgba(255, 255, 255, 0)
+          ),
+          linear-gradient(
+            to left,
+            rgba(255, 255, 255, 0.96),
+            rgba(255, 255, 255, 0)
+          );
+        background-position: left center, right center;
+        background-repeat: no-repeat;
+        background-size: 32px 100%, 32px 100%;
+        box-shadow: inset 14px 0 18px -18px var(--scroll-shadow),
+          inset -14px 0 18px -18px var(--scroll-shadow);
       }
 
-      .ContainerTop4 {
-        width: 23vw;
-        min-width: 240px;
-        max-width: 280px;
-        background-color: var(--surface);
-        border-radius: var(--card-radius);
-        padding-bottom: 16px;
-        flex: 0 0 auto;
-        display: flex;
-        flex-direction: column;
-        align-self: stretch;
+      .heroslider::-webkit-scrollbar,
+      .top4main::-webkit-scrollbar {
+        height: 8px;
       }
 
-      .top4img {
-        aspect-ratio: 3 / 4;
-        width: 100%;
-        object-fit: cover;
-        display: block;
-        border-radius: var(--card-radius);
+      .heroslider::-webkit-scrollbar-track,
+      .top4main::-webkit-scrollbar-track {
+        background-color: rgba(61, 107, 69, 0.08);
+        border-radius: 999px;
       }
 
-      .container .pro-name,
-      .container .pro-sub,
-      .container .pro-price,
-      .container .heroimgtitle,
-      .container .heroimgsub,
-      .container .heroimgsub2,
-      .ContainerTop4 .pro-name,
-      .ContainerTop4 .pro-sub,
-      .ContainerTop4 .pro-price {
+      .heroslider::-webkit-scrollbar-thumb,
+      .top4main::-webkit-scrollbar-thumb {
+        background-color: rgba(61, 107, 69, 0.28);
+        border-radius: 999px;
+      }
+
+      .product-card .product-name,
+      .product-card .product-sub,
+      .product-card .product-price {
         padding-left: 14px;
         padding-right: 14px;
       }
 
-      .ContainerTop4 > div:first-child {
-        width: 100%;
+      .favorite-button {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        width: 42px;
+        height: 42px;
+        border: 0;
+        border-radius: 999px;
+        background-color: rgba(255, 255, 255, 0.92);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 10px 20px rgba(32, 64, 42, 0.12);
+        transition: transform 0.2s ease, background-color 0.2s ease;
       }
 
-      .helpstart {
+      .favorite-button:hover,
+      .favorite-button:focus-visible {
+        transform: scale(1.05);
+        background-color: #f8efe9;
+      }
+
+      .favorite-button svg {
+        width: 18px;
+        height: 18px;
+        fill: none;
+        stroke: #3d6b45;
+        stroke-width: 1.8;
+      }
+
+      .favorite-button.is-active {
+        background-color: #f6dfd7;
+      }
+
+      .favorite-button.is-active svg {
+        fill: #d14444;
+        stroke: #d14444;
+      }
+
+      .gallery-cta-wrap {
+        display: flex;
+        justify-content: center;
+        padding-top: 12px;
+      }
+
+      .gallery-cta {
+        background-color: #3d6b45;
+        color: #f8f6ef;
+      }
+
+      .gallery-cta:hover,
+      .gallery-cta:focus-visible {
+        background-color: #355d3c;
+      }
+
+      .overlay {
+        position: fixed;
+        inset: 0;
+        background-color: rgba(20, 30, 21, 0.45);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease;
+        z-index: 80;
+      }
+
+      .overlay.open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .account-modal {
+        position: fixed;
+        top: 100px;
+        right: max(4vw, calc((100vw - 1200px) / 2));
+        width: min(360px, 92vw);
+        background-color: #ffffff;
+        color: #1f1f1f;
+        border-radius: 18px;
+        box-shadow: 0 30px 60px rgba(20, 30, 21, 0.22);
+        padding: 22px;
+        z-index: 90;
+        opacity: 0;
+        transform: translateY(-10px);
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+
+      .account-modal.open,
+      .cart-drawer.open {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      .panel-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+
+      .panel-title {
+        margin: 0;
+        font-size: 1.15rem;
+      }
+
+      .panel-close {
+        border: 0;
+        background: rgba(61, 107, 69, 0.1);
+        color: #2f5a36;
+        width: 36px;
+        height: 36px;
+        border-radius: 999px;
+        cursor: pointer;
+      }
+
+      .account-options {
+        display: grid;
+        gap: 12px;
+      }
+
+      .account-card {
+        border: 1px solid rgba(61, 107, 69, 0.12);
+        border-radius: 16px;
+        padding: 16px;
+        background-color: #f8fbf6;
+      }
+
+      .account-card h3,
+      .cart-item-name {
+        margin: 0 0 6px;
+        font-size: 1rem;
+      }
+
+      .account-card p,
+      .cart-copy,
+      .cart-item-sub {
+        margin: 0;
+        color: #5a5a5a;
+        font-size: 0.92rem;
+      }
+
+      .account-card .heropress {
+        margin-top: 12px;
+        display: inline-flex;
+      }
+
+      .cart-drawer {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: min(420px, 100vw);
+        height: 100vh;
+        background-color: #ffffff;
+        color: #1f1f1f;
+        box-shadow: -20px 0 40px rgba(20, 30, 21, 0.18);
+        padding: 22px;
+        z-index: 90;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        opacity: 0;
+        transform: translateX(30px);
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+
+      .cart-items {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .cart-item {
+        display: grid;
+        grid-template-columns: 72px 1fr auto;
+        gap: 12px;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(61, 107, 69, 0.12);
+      }
+
+      .cart-thumb {
+        width: 72px;
+        height: 84px;
+        object-fit: cover;
+        border-radius: 12px;
+      }
+
+      .cart-price {
+        font-weight: 700;
+      }
+
+      .cart-summary {
+        margin-top: auto;
+        border-top: 1px solid rgba(61, 107, 69, 0.12);
+        padding-top: 16px;
+        display: grid;
+        gap: 10px;
+      }
+
+      .cart-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .cart-actions {
+        display: grid;
+        gap: 10px;
+      }
+
+      .chat-widget {
+        position: fixed;
+        left: 24px;
+        bottom: 24px;
+        z-index: 85;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .chat-popup {
+        width: min(360px, calc(100vw - 32px));
+        background-color: #ffffff;
+        color: #1f1f1f;
+        border-radius: 20px;
+        box-shadow: 0 24px 50px rgba(20, 30, 21, 0.18);
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(12px);
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+
+      .chat-popup.open {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      .chat-head {
+        background: linear-gradient(135deg, #3d6b45, #567c4d);
+        color: #f8f6ef;
+        padding: 16px 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .chat-head strong,
+      .chat-head p {
+        margin: 0;
+      }
+
+      .chat-head p {
+        font-size: 0.82rem;
+        color: rgba(248, 246, 239, 0.82);
+      }
+
+      .chat-body {
+        padding: 16px;
+        display: grid;
+        gap: 12px;
+        background-color: #f7f9f4;
+      }
+
+      .chat-bubble {
+        max-width: 86%;
+        padding: 12px 14px;
+        border-radius: 16px;
+        font-size: 0.93rem;
+        line-height: 1.45;
+      }
+
+      .chat-bubble.support {
+        background-color: #ffffff;
+        border-top-left-radius: 6px;
+      }
+
+      .chat-bubble.user {
+        justify-self: end;
+        background-color: #dfead8;
+        border-top-right-radius: 6px;
+      }
+
+      .chat-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .chat-launcher {
+        border: 0;
+        border-radius: 999px;
+        background-color: #3d6b45;
+        color: #f8f6ef;
+        padding: 14px 18px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 0 16px 30px rgba(20, 30, 21, 0.2);
+        cursor: pointer;
+      }
+
+      .chat-launcher svg {
+        width: 18px;
+        height: 18px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 2;
+      }
+
+      .ContainerTop4 > div:first-child {
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .support-layout {
         padding: unset;
         display: flex;
         justify-content: space-between;
@@ -302,13 +983,13 @@
         margin: var(--section-space) 0;
       }
 
-      .help-title {
+      .support-intro {
         flex: 0 0 35%;
         min-width: 0;
         text-align: left;
       }
 
-      .helpmain {
+      .support-options {
         flex: 1 1 0;
         min-width: 0;
         display: flex;
@@ -318,7 +999,7 @@
         gap: 14px;
       }
 
-      .helpcontainer {
+      .support-card {
         display: flex;
         flex-direction: row;
         background-color: #f3f3f3;
@@ -330,9 +1011,11 @@
         gap: 15px;
         align-items: center;
         border-radius: var(--card-radius);
+        transition: transform 0.22s ease, background-color 0.22s ease,
+          box-shadow 0.22s ease;
       }
 
-      .helpimg {
+      .support-icon {
         width: 50px;
         flex-shrink: 0;
       }
@@ -343,28 +1026,59 @@
         margin: 0;
       }
 
-      .WSIClust {
+      .workshop-grid {
         display: flex;
         flex-direction: row;
           justify-content: space-between;
         gap: 20px;
       }
 
-      .WSICell {
+      .workshop-card {
+        border: 1px solid #e5e5e0;
+        border-radius: var(--card-radius);
         width: 100%;
         max-width: 280px;
         padding: 15px 0;
+        overflow: hidden;
+        transition: border-color 0.22s ease;
       }
 
-      .WSIImage {
+      .workshop-card-media {
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .workshop-card-image {
         width: 100%;
         height: auto;
         aspect-ratio: 3 / 4;
         object-fit: cover;
-        border-radius: var(--card-radius);
+        transition: transform 0.28s ease;
       }
 
-      .WSWMain {
+      .workshop-card .product-name,
+      .workshop-card .product-sub,
+      .workshop-card .product-price {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .workshop-card-copy {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding: 14px 14px 0;
+      }
+
+      .workshop-card-copy .product-name,
+      .workshop-card-copy .product-sub,
+      .workshop-card-copy .product-price {
+        padding-left: 0;
+        padding-right: 0;
+        margin-top: 0;
+      }
+
+      .editorial-layout {
         width: 100%;
         max-width: 1200px;
         margin: 28px auto 0;
@@ -375,7 +1089,7 @@
         gap: 30px;
       }
 
-      .WSWImg {
+      .editorial-image {
         aspect-ratio: 4 / 3;
         object-fit: cover;
         width: min(500px, 100%);
@@ -383,7 +1097,7 @@
         border-radius: var(--card-radius);
       }
 
-      .WSW-TEXT {
+      .editorial-list {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -392,15 +1106,18 @@
         min-width: 0;
       }
 
-      .WSWToppic {
+      .editorial-item {
         width: auto;
         padding: 22px 10px;
         border: var(--line) solid 1px;
         border-left: 0;
         border-right: 0;
+        cursor: pointer;
+        transition: background-color 0.22s ease, padding-left 0.22s ease,
+          border-color 0.22s ease;
       }
 
-      .workshop-discover-wrap {
+      .workshop-actions {
         padding: 20px 0 10px;
         display: flex;
         justify-content: flex-start;
@@ -411,17 +1128,17 @@
       }
 
       .feedback-section {
-        padding: 0;
+        padding: 36px;
         width: 100%;
         margin: 0;
       }
 
-      .feedback-title {
+      .testimonial-title {
         display: block;
         margin: 0 0 18px;
       }
 
-      .FB-Cluster {
+      .testimonial-layout {
         width: 100%;
         display: grid;
         grid-template-columns: 1fr 2fr 2fr 1fr;
@@ -430,23 +1147,24 @@
         margin-top: 10px;
       }
 
-      .FB-Text {
+      .testimonial-card {
         background-color: var(--surface);
         z-index: 10;
         grid-column: 2 / 3;
         grid-row: 2 / 3;
         padding: 32px;
         border-radius: var(--card-radius);
+        box-shadow: 0 18px 36px rgba(32, 64, 42, 0.1);
       }
 
-      .FB-Img {
+      .testimonial-media {
         grid-column: 1 / 5;
         grid-row: 1 / 4;
         width: 100%;
         height: 100%;
       }
 
-      .FB-BG {
+      .testimonial-image {
         width: 100%;
         height: 100%;
         aspect-ratio: 3 / 1;
@@ -454,7 +1172,7 @@
         border-radius: var(--card-radius);
       }
 
-      .FAQ-Start {
+      .faq-section {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -463,13 +1181,13 @@
         padding: 0;
       }
 
-      .FAQ-Heading {
+      .faq-heading {
         width: 100%;
         text-align: left;
         margin-bottom: 20px;
       }
 
-      .FAQ-Title {
+      .faq-toggle {
         display: flex;
         flex-direction: row;
         justify-content: left;
@@ -478,14 +1196,27 @@
         gap: 15px;
         cursor: pointer;
         padding-bottom: 14px;
+        transition: color 0.2s ease, border-color 0.2s ease,
+          padding-left 0.2s ease;
       }
 
-      .FAQ-Center {
+      .faq-toggle img {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+        transition: transform 0.2s ease;
+      }
+
+      .faq-toggle[aria-expanded="true"] img {
+        transform: rotate(180deg);
+      }
+
+      .faq-item {
         padding: 15px 0;
         width: 100%;
       }
 
-      .FAQ-Main {
+      .faq-list {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -495,18 +1226,113 @@
         height: fit-content;
       }
 
-      .FAQ-Collapsed {
+      .faq-panel {
         display: none;
         padding-top: 14px;
         color: var(--muted-text);
       }
 
-      .FAQ-Collapsed.open {
+      .faq-panel.open {
         display: block;
       }
 
+      .product-card:hover {
+        border-color: #cfcfc8;
+      }
+
+      .product-card:hover .product-card-image {
+        transform: scale(1.06);
+      }
+
+      .pill-button:hover {
+        background-color: #e6ecde;
+        transform: translateY(-1px);
+        box-shadow: 0 10px 18px rgba(32, 64, 42, 0.1);
+      }
+
+      .support-card:hover {
+        background-color: #edf3e7;
+        transform: translateY(-4px);
+        box-shadow: 0 14px 24px rgba(32, 64, 42, 0.1);
+      }
+
+      .workshop-card:hover {
+        border-color: #cfcfc8;
+      }
+
+      .workshop-card:hover .workshop-card-image {
+        transform: scale(1.06);
+      }
+
+      .editorial-item:hover {
+        background-color: rgba(61, 107, 69, 0.06);
+        border-color: #c9d8c2;
+        padding-left: 18px;
+      }
+
+      .faq-toggle:hover {
+        color: #3d6b45;
+        border-color: #3d6b45;
+        padding-left: 8px;
+      }
+
       @media (max-width: 800px) {
-        .main {
+        .site-header {
+          min-height: 72px;
+          width: 90%;
+        }
+
+        .brand-logo {
+          height: 34px;
+        }
+
+        .footer-logo {
+          height: 38px;
+        }
+
+        .desktop-nav {
+          display: none;
+        }
+
+        .header-tools {
+          display: none;
+        }
+
+        .menu-toggle {
+          display: inline-flex;
+        }
+
+        .mobile-nav {
+          width: 90%;
+        }
+
+        .mobile-tools {
+          display: grid;
+        }
+
+        .account-modal {
+          left: 50%;
+          right: auto;
+          top: 88px;
+          transform: translate(-50%, -10px);
+        }
+
+        .account-modal.open {
+          transform: translate(-50%, 0);
+        }
+
+        .chat-widget {
+          left: 16px;
+          right: 16px;
+          bottom: 16px;
+          align-items: stretch;
+        }
+
+        .chat-popup {
+          width: 100%;
+        }
+
+        .page-main {
           width: 80%;
           margin-left: auto;
           margin-right: auto;
@@ -519,7 +1345,7 @@
           transform: none;
         }
 
-        .mobile-mittig {
+        .mobile-center {
           align-items: center;
           justify-content: center;
           display: flex;
@@ -527,28 +1353,28 @@
           text-align: center;
         }
 
-        .überschrift {
+        .heading-xl {
           font-size: 2rem;
         }
 
-        .subtext {
+        .heading-sub {
           font-size: 1.5rem;
         }
 
-        .herotext {
+        .hero-copy {
           padding: 50px 0;
           gap: 20px;
           width: 80%;
         }
 
-        .box1 {
+        .hero-layout {
           flex-direction: column;
           width: 100%;
           padding: 0 0 30px 0;
           gap: 26px;
         }
 
-        .herotext {
+        .hero-copy {
           padding-bottom: 30px;
           align-self: center;
         }
@@ -563,7 +1389,7 @@
           padding-right: 0;
         }
 
-        .container {
+        .product-card {
           width: 100%;
           min-width: 0;
           height: auto;
@@ -576,7 +1402,7 @@
           align-items: center;
         }
 
-        .ContainerTop4 {
+        .product-card {
           width: 100%;
           min-width: 0;
           max-width: none;
@@ -585,11 +1411,7 @@
           flex-direction: column;
         }
 
-        .ContainerTop4 > div:first-child {
-          width: 100%;
-        }
-
-        .top4img {
+        .product-card-image {
           width: 100%;
           display: block;
           object-fit: cover;
@@ -601,7 +1423,7 @@
           overflow: hidden;
         }
 
-        .infoSec {
+        .info-item {
           position: absolute;
           display: flex;
           justify-content: center;
@@ -611,21 +1433,21 @@
           padding: 0 15px;
         }
 
-        .infoTxt {
+        .info-text {
           width: 50%;
           max-width: none;
           text-align: center;
         }
 
-        .infoSec:nth-child(1) {
+        .info-item:nth-child(1) {
           animation-delay: 0s;
         }
 
-        .infoSec:nth-child(2) {
+        .info-item:nth-child(2) {
           animation-delay: 10s;
         }
 
-        .infoSec:nth-child(3) {
+        .info-item:nth-child(3) {
           animation-delay: 20s;
         }
 
@@ -656,7 +1478,7 @@
           padding: unset;
         }
 
-        .helpstart {
+        .support-layout {
           display: flex;
           flex-direction: column;
           align-self: center;
@@ -664,14 +1486,14 @@
           margin: var(--section-space) auto;
         }
 
-        .helpmain {
+        .support-options {
           width: 100%;
           display: flex;
           flex-direction: column;
           align-items: center;
         }
 
-        .helpcontainer {
+        .support-card {
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -682,26 +1504,26 @@
           padding: 20px;
         }
 
-        .WSIClust {
+        .workshop-grid {
           display: flex;
           flex-direction: column;
           align-items: center;
         }
 
-        .WSICell {
+        .workshop-card {
           width: 100%;
           max-width: none;
           padding: 15px 0;
         }
 
-        .WSIImage {
+        .workshop-card-image {
           width: 100%;
           aspect-ratio: 3 / 1;
           object-fit: cover;
           margin: 0;
         }
 
-        .WSWMain {
+        .editorial-layout {
           width: 100%;
           padding-bottom: 50px;
           display: flex;
@@ -710,7 +1532,7 @@
           gap: 20px;
         }
 
-        .WSWImg {
+        .editorial-image {
           aspect-ratio: 4 / 3;
           object-fit: cover;
           align-self: center;
@@ -718,7 +1540,7 @@
           height: auto;
         }
 
-        .WSW-TEXT {
+        .editorial-list {
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -727,7 +1549,7 @@
           padding: 0;
         }
 
-        .WSWToppic {
+        .editorial-item {
           width: auto;
           padding: 20px 10px;
         }
@@ -736,13 +1558,13 @@
           display: flex;
           flex-direction: column;
           align-items: center;
-          padding: unset;
+          padding: 24px 20px;
           width: 100%;
           margin-left: 0;
           margin-right: 0;
         }
 
-        .FB-Cluster {
+        .testimonial-layout {
           display: flex;
           flex-direction: column-reverse;
           align-items: center;
@@ -750,7 +1572,7 @@
           gap: 0;
         }
 
-        .FB-Text {
+        .testimonial-card {
           background-color: var(--surface);
           padding: 24px 20px;
           width: 80%;
@@ -758,43 +1580,133 @@
           z-index: unset;
         }
 
-        .FB-Img {
+        .testimonial-media {
           width: 100%;
           height: auto;
         }
 
-        .FB-BG {
+        .testimonial-image {
           aspect-ratio: 4 / 3;
           object-fit: cover;
           width: 100%;
           height: auto;
         }
 
-        .FAQ-Start {
-          width: 80%;
+        .faq-section {
+          width: 100%;
           margin: var(--section-space) auto 0;
           padding: 0;
         }
 
-        .FAQ-Main {
+        .faq-list {
           width: 100%;
         }
 
-        .FAQ-Heading {
+        .faq-heading {
           width: 100%;
         }
 
         .workshop-discover-wrap {
           justify-content: center;
         }
+
+        .footer-wrap {
+          width: 80%;
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+
+        .footer-bottom {
+          width: 80%;
+        }
       }
     </style>
-    <title>Document</title>
+    <title>Home Garden</title>
   </head>
 
   <body>
     <div class="origin">
-      <div class="head"></div>
+      <div class="head">
+        <header class="site-header">
+          <a class="brand" href="#hero" aria-label="Zur Startseite">
+            <img
+              class="brand-logo"
+              src="ICONS/Logo-W-HZ.svg"
+              alt="Home Garden"
+            />
+          </a>
+          <nav class="desktop-nav" aria-label="Hauptnavigation">
+            <a class="nav-link header-cta" href="#main-target">Start</a>
+            <a class="nav-link" href="#beliebt-target">Beliebt</a>
+            <a class="nav-link" href="#beratung-target">Beratung</a>
+            <a class="nav-link" href="#workshop-target">Workshops</a>
+          </nav>
+          <div class="header-tools" aria-label="Shop-Aktionen">
+            <div class="tool-group">
+              <button class="tool-link" type="button" aria-label="Favoriten">
+              <svg class="tool-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 20.5 4.8 13.8a4.8 4.8 0 0 1 6.8-6.8L12 7.4l.4-.4a4.8 4.8 0 0 1 6.8 6.8z" />
+              </svg>
+              </button>
+              <span class="tool-badge" data-favorites-count>0</span>
+            </div>
+            <button class="tool-link" type="button" aria-label="Konto" data-open-panel="account">
+              <svg class="tool-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M19 20a7 7 0 0 0-14 0" />
+                <circle cx="12" cy="8" r="4" />
+              </svg>
+            </button>
+            <div class="tool-group">
+              <button class="tool-link" type="button" aria-label="Warenkorb" data-open-panel="cart">
+              <svg class="tool-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="9" cy="19" r="1.5" />
+                <circle cx="18" cy="19" r="1.5" />
+                <path d="M3 4h2l2.2 10.2a1 1 0 0 0 1 .8h8.9a1 1 0 0 0 1-.8L20 7H6.2" />
+              </svg>
+              </button>
+              <span class="tool-badge">2</span>
+            </div>
+          </div>
+          <button
+            class="menu-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="mobile-nav"
+            aria-label="Menü öffnen"
+          >
+            <span></span>
+          </button>
+        </header>
+        <nav class="mobile-nav" id="mobile-nav" aria-label="Mobiles Menü">
+          <a class="nav-link header-cta" href="#main-target">Start</a>
+          <a class="nav-link" href="#beliebt-target">Beliebte Pflanzen</a>
+          <a class="nav-link" href="#beratung-target">Beratung</a>
+          <a class="nav-link" href="#workshop-target">Workshops & Pflege</a>
+          <div class="mobile-tools" aria-label="Shop-Aktionen mobil">
+            <button class="tool-link" type="button" aria-label="Favoriten">
+              <svg class="tool-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 20.5 4.8 13.8a4.8 4.8 0 0 1 6.8-6.8L12 7.4l.4-.4a4.8 4.8 0 0 1 6.8 6.8z" />
+              </svg>
+              <span class="tool-label">Favoriten</span>
+            </button>
+            <button class="tool-link" type="button" aria-label="Konto" data-open-panel="account">
+              <svg class="tool-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M19 20a7 7 0 0 0-14 0" />
+                <circle cx="12" cy="8" r="4" />
+              </svg>
+              <span class="tool-label">Konto</span>
+            </button>
+            <button class="tool-link" type="button" aria-label="Warenkorb" data-open-panel="cart">
+              <svg class="tool-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="9" cy="19" r="1.5" />
+                <circle cx="18" cy="19" r="1.5" />
+                <path d="M3 4h2l2.2 10.2a1 1 0 0 0 1 .8h8.9a1 1 0 0 0 1-.8L20 7H6.2" />
+              </svg>
+              <span class="tool-label">Warenkorb</span>
+            </button>
+          </div>
+        </nav>
+      </div>
       <div class="main">
         <section id="hero">
           <div class="box1">
@@ -804,12 +1716,17 @@
                 Warme Tage, frische Blüten und sattes Grün für dein Zuhause.
               </div>
               <div class="herobutton">
-                <div class="heropress">Button 1</div>
-                <div class="heropress">Button 2</div>
+                <a class="heropress" href="#top4">Zu den Bestsellern</a>
+                <a class="heropress" href="#Workshop">Workshops entdecken</a>
               </div>
             </div>
             <div class="heroslider">
-              <div class="container">
+              <div class="container nav-target" id="main-target" tabindex="0">
+                <button class="favorite-button" type="button" aria-label="Weisse Orchidee zu Favoriten hinzufügen">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 20.5 4.8 13.8a4.8 4.8 0 0 1 6.8-6.8L12 7.4l.4-.4a4.8 4.8 0 0 1 6.8 6.8z" />
+                  </svg>
+                </button>
                 <div class="herogalery">
                   <img
                     class="heroimg"
@@ -823,12 +1740,17 @@
                 </div>
                 <div class="heroimgsub2 pro-price">200.-</div>
               </div>
-              <div class="container">
+              <div class="container" tabindex="0">
+                <button class="favorite-button" type="button" aria-label="Grosse Mexia zu Favoriten hinzufügen">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 20.5 4.8 13.8a4.8 4.8 0 0 1 6.8-6.8L12 7.4l.4-.4a4.8 4.8 0 0 1 6.8 6.8z" />
+                  </svg>
+                </button>
                 <div class="herogalery">
                   <img
                     class="heroimg"
                     src="PFLANZEN/The-Sill_Big-and-Bright_Large_Mexia-cream_Variant.webp"
-                    alt="Grosse Mexia Cremefarbig"
+                    alt="Grosse Mexia in cremefarbenem Topf"
                   />
                 </div>
                 <div class="heroimgtitle pro-name">Grosse Mexia</div>
@@ -837,12 +1759,17 @@
                 </div>
                 <div class="heroimgsub2 pro-price">200.-</div>
               </div>
-              <div class="container">
+              <div class="container" tabindex="0">
+                <button class="favorite-button" type="button" aria-label="Grosse Dracaena zu Favoriten hinzufügen">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 20.5 4.8 13.8a4.8 4.8 0 0 1 6.8-6.8L12 7.4l.4-.4a4.8 4.8 0 0 1 6.8 6.8z" />
+                  </svg>
+                </button>
                 <div class="herogalery">
                   <img
                     class="heroimg"
                     src="PFLANZEN/the-sill_Extra-Large-Dracaena-Marginata-Braid_Extra-Large_SolidGoods_Mustard_Saucer_Variant.webp"
-                    alt="Grosse Dracaena"
+                    alt="Grosse Dracaena in senffarbenem Topf"
                   />
                 </div>
                 <div class="heroimgtitle pro-name">Grosse Dracaena</div>
@@ -851,12 +1778,17 @@
                 </div>
                 <div class="heroimgsub2 pro-price">200.-</div>
               </div>
-              <div class="container">
+              <div class="container" tabindex="0">
+                <button class="favorite-button" type="button" aria-label="Paradiesvogel zu Favoriten hinzufügen">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 20.5 4.8 13.8a4.8 4.8 0 0 1 6.8-6.8L12 7.4l.4-.4a4.8 4.8 0 0 1 6.8 6.8z" />
+                  </svg>
+                </button>
                 <div class="herogalery">
                   <img
                     class="heroimg"
                     src="PFLANZEN/the-sill_Large-Bird-of-Paradise_Large_Pallas_Cream_planter_with_stand-Dark_Bamboo_variant.webp"
-                    alt="Paradiesvogel Gross"
+                    alt="Grosser Paradiesvogel in hellem Topf mit Holzgestell"
                   />
                 </div>
                 <div class="heroimgtitle pro-name">Paradiesvogel</div>
@@ -873,58 +1805,70 @@
           <div class="info">
             <div class="infoSec">
               <div class="infoImg">
-                <img src="ICONS/box.svg" alt="BoxIcon" />
+                <img src="ICONS/box.svg" alt="Liefersymbol" />
               </div>
               <div class="infoTxt fontInfo">
-                Expert Guidance <br />
-                Success starts with choosing the right plants. We'll make sure
-                you do.
+                Persönliche Beratung <br />
+                Wir helfen dir bei Auswahl, Standort und Pflege für dein Home
+                Garden Zuhause.
               </div>
             </div>
             <div class="infoSec">
               <div class="infoImg">
-                <img src="ICONS/happy.svg" alt="SmileyIcon" />
+                <img src="ICONS/happy.svg" alt="Zufriedenheitssymbol" />
               </div>
               <div class="infoTxt fontInfo">
-                Expert Guidance <br />
-                Success starts with choosing the right plants. We'll make sure
-                you do.
+                Sichere Lieferung <br />
+                Deine Bestellung kommt sorgfältig verpackt und geschützt bei
+                dir an.
               </div>
             </div>
             <div class="infoSec">
               <div class="infoImg">
-                <img src="ICONS/protec.svg" alt="SchildIcon" />
+                <img src="ICONS/protec.svg" alt="Schutzsymbol" />
               </div>
               <div class="infoTxt fontInfo">
-                Expert Guidance <br />
-                Success starts with choosing the right plants. We'll make sure
-                you do.
+                Gesunde Pflanzen <br />
+                Jede Pflanze wird vor dem Versand geprüft und mit Sorgfalt
+                ausgewählt.
               </div>
             </div>
           </div>
         </section>
 
         <section id="top4">
-          <span class="Titel überschrift">Our Most Popular Plants</span>
+          <span class="Titel überschrift">Unsere beliebtesten Pflanzen</span>
           <div class="top4main">
-            <div class="ContainerTop4">
-              <img
-                class="top4img"
-                src="PFLANZEN/the-sill_Medium-Fairy-Castle-Cactus_Medium_Hyde_Cream_Variant.webp"
-                alt="Pflanze 1"
-              />
+            <div class="ContainerTop4 nav-target" id="beliebt-target" tabindex="0">
+              <button class="favorite-button" type="button" aria-label="Fairy Castle Kaktus zu Favoriten hinzufügen">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 20.5 4.8 13.8a4.8 4.8 0 0 1 6.8-6.8L12 7.4l.4-.4a4.8 4.8 0 0 1 6.8 6.8z" />
+                </svg>
+              </button>
+              <div class="top4img-wrap">
+                <img
+                  class="top4img"
+                  src="PFLANZEN/the-sill_Medium-Fairy-Castle-Cactus_Medium_Hyde_Cream_Variant.webp"
+                  alt="Fairy Castle Kaktus in hellem Topf"
+                />
+              </div>
               <div class="pro-name">Fairy Castle Kaktus</div>
               <div class="pro-sub">
                 Beliebt für Form, Struktur und Pflegeleichtigkeit.
               </div>
               <div class="pro-price">200.-</div>
             </div>
-            <div class="ContainerTop4">
-              <div>
+            <div class="ContainerTop4" tabindex="0">
+              <button class="favorite-button" type="button" aria-label="Fiddle Leaf zu Favoriten hinzufügen">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 20.5 4.8 13.8a4.8 4.8 0 0 1 6.8-6.8L12 7.4l.4-.4a4.8 4.8 0 0 1 6.8 6.8z" />
+                </svg>
+              </button>
+              <div class="top4img-wrap">
                 <img
                   class="top4img"
                   src="PFLANZEN/the-sill_Medium-Fiddle-Leaf-Fig_Medium_Isabella_Black_Variant_ee195761-0eb7-4cf2-b14f-778f6bb11a1e.webp"
-                  alt="Pflanze 2"
+                  alt="Fiddle Leaf in schwarzem Topf"
                 />
               </div>
               <div class="pro-name">Fiddle Leaf</div>
@@ -933,12 +1877,17 @@
               </div>
               <div class="pro-price">200.-</div>
             </div>
-            <div class="ContainerTop4">
-              <div>
+            <div class="ContainerTop4" tabindex="0">
+              <button class="favorite-button" type="button" aria-label="Medium Ghost Kaktus zu Favoriten hinzufügen">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 20.5 4.8 13.8a4.8 4.8 0 0 1 6.8-6.8L12 7.4l.4-.4a4.8 4.8 0 0 1 6.8 6.8z" />
+                </svg>
+              </button>
+              <div class="top4img-wrap">
                 <img
                   class="top4img"
                   src="PFLANZEN/the-sill_Medium-Ghost-Cactus_Medium_Isabella_Lavender_Variant.webp"
-                  alt="Pflanze 3"
+                  alt="Ghost Kaktus in lavendelfarbenem Topf"
                 />
               </div>
               <div class="pro-name">Medium Ghost Kaktus</div>
@@ -947,12 +1896,17 @@
               </div>
               <div class="pro-price">200.-</div>
             </div>
-            <div class="ContainerTop4">
-              <div>
+            <div class="ContainerTop4" tabindex="0">
+              <button class="favorite-button" type="button" aria-label="Hoya Pubilcalyx zu Favoriten hinzufügen">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 20.5 4.8 13.8a4.8 4.8 0 0 1 6.8-6.8L12 7.4l.4-.4a4.8 4.8 0 0 1 6.8 6.8z" />
+                </svg>
+              </button>
+              <div class="top4img-wrap">
                 <img
                   class="top4img"
                   src="PFLANZEN/the-sill_Medium-Hoya-Pubilcalyx_Medium_Isabella_Sage_Variant.webp"
-                  alt="Pflanze 4"
+                  alt="Hoya Pubilcalyx in salbeifarbenem Topf"
                 />
               </div>
               <div class="pro-name">Hoya Pubilcalyx</div>
@@ -962,9 +1916,12 @@
               <div class="pro-price">200.-</div>
             </div>
           </div>
+          <div class="gallery-cta-wrap">
+            <a class="heropress gallery-cta" href="#main-target">Zur vollständigen Pflanzengalerie</a>
+          </div>
         </section>
 
-        <section>
+        <section id="beratung">
           <div class="helpstart">
             <div class="help-title">
               <span class="überschrift mobile-mittig"
@@ -978,7 +1935,7 @@
               >
             </div>
             <div class="helpmain">
-              <div class="helpcontainer">
+              <div class="helpcontainer nav-target" id="beratung-target" tabindex="0">
                 <div class="helpimg">
                   <img
                     src="ICONS/Chat.svg"
@@ -991,11 +1948,11 @@
                 </div>
               </div>
 
-              <div class="helpcontainer">
+              <div class="helpcontainer" tabindex="0">
                 <div class="helpimg">
                   <img
                     src="ICONS/call.svg"
-                    alt="Telefon Icon. Form von einem Hörer"
+                    alt="Telefonsymbol in Form eines Hörers"
                   />
                 </div>
                 <div>
@@ -1004,15 +1961,15 @@
                 </div>
               </div>
 
-              <div class="helpcontainer">
+              <div class="helpcontainer" tabindex="0">
                 <div class="helpimg">
                   <img
                     src="ICONS/mail.svg"
-                    alt="Email Symbol Form von einem Couvert"
+                    alt="E-Mail-Symbol in Form eines Couvert"
                   />
                 </div>
                 <div>
-                  <span class="FONT-Frage">Email</span><br />
+                  <span class="FONT-Frage">E-Mail</span><br />
                   <span>Sende uns bequem deine Fragen per E-Mail</span>
                 </div>
               </div>
@@ -1021,71 +1978,88 @@
         </section>
 
         <section id="Workshop">
-          <span class="überschrift mobile-mittig">Workshop & Pflege</span>
+          <span class="Titel überschrift mobile-mittig">Workshop & Pflege</span>
           <div class="WSIClust">
-            <div class="WSICell">
-              <img
-                class="WSIImage"
-                src="STOCK/imageA.webp"
-                alt="Workshop Umtopfen von Pflanzen"
-              />
-              <span class="pro-name">Umtopfen im Frühling</span><br />
-              <span class="pro-sub"
-                >Praktische Tipps für gesundes Wachstum</span
-              ><br />
-              <span class="pro-price">Vor Ort Workshop</span>
+            <div class="WSICell nav-target" id="workshop-target" tabindex="0">
+              <div class="WSIImageWrap">
+                <img
+                  class="WSIImage"
+                  src="STOCK/imageA.webp"
+                  alt="Workshop Umtopfen von Pflanzen"
+                />
+              </div>
+              <div class="WSICopy">
+                <span class="pro-name">Umtopfen im Frühling</span>
+                <span class="pro-sub"
+                  >Praktische Tipps für gesundes Wachstum</span
+                >
+                <span class="pro-price">Vor Ort Workshop</span>
+              </div>
             </div>
 
-            <div class="WSICell">
-              <img
-                class="WSIImage"
-                src="STOCK/imageB.webp"
-                alt="Various Green Plants"
-              />
-              <span class="pro-name">Pflegegrundlagen</span><br />
-              <span class="pro-sub"
-                >Die wichtigsten Basics für starke Zimmerpflanzen</span
-              ><br />
-              <span class="pro-price">Kostenlos</span>
+            <div class="WSICell" tabindex="0">
+              <div class="WSIImageWrap">
+                <img
+                  class="WSIImage"
+                  src="STOCK/imageB.webp"
+                  alt="Verschiedene grüne Zimmerpflanzen"
+                />
+              </div>
+              <div class="WSICopy">
+                <span class="pro-name">Pflegegrundlagen</span>
+                <span class="pro-sub"
+                  >Die wichtigsten Basics für starke Zimmerpflanzen</span
+                >
+                <span class="pro-price">Kostenlos</span>
+              </div>
             </div>
 
-            <div class="WSICell">
-              <img
-                class="WSIImage"
-                src="STOCK/imageC.webp"
-                alt="Image of a Lush Garden"
-              />
-              <span class="pro-name">Frühlings-Umtopfen</span><br />
-              <span class="pro-sub"
-                >Schritt für Schritt zu mehr Platz und frischer Erde</span
-              ><br />
-              <span class="pro-price">CHF 15</span>
+            <div class="WSICell" tabindex="0">
+              <div class="WSIImageWrap">
+                <img
+                  class="WSIImage"
+                  src="STOCK/imageC.webp"
+                  alt="Üppiger grüner Garten"
+                />
+              </div>
+              <div class="WSICopy">
+                <span class="pro-name">Frühlings-Umtopfen</span>
+                <span class="pro-sub"
+                  >Schritt für Schritt zu mehr Platz und frischer Erde</span
+                >
+                <span class="pro-price">CHF 15</span>
+              </div>
             </div>
 
-            <div class="WSICell">
-              <img
-                class="WSIImage"
-                src="STOCK/imageB.webp"
-                alt="Pflege Workshop für Zimmerpflanzen"
-              />
-              <span class="pro-name">Zimmerpflanzen pflegen</span><br />
-              <span class="pro-sub"
-                >Mehr Sicherheit bei Wasser, Licht und Standort</span
-              ><br />
-              <span class="pro-price">CHF 20</span>
+            <div class="WSICell" tabindex="0">
+              <div class="WSIImageWrap">
+                <img
+                  class="WSIImage"
+                  src="STOCK/imageB.webp"
+                  alt="Pflegeworkshop für Zimmerpflanzen"
+                />
+              </div>
+              <div class="WSICopy">
+                <span class="pro-name">Zimmerpflanzen pflegen</span>
+                <span class="pro-sub"
+                  >Mehr Sicherheit bei Wasser, Licht und Standort</span
+                >
+                <span class="pro-price">CHF 20</span>
+              </div>
             </div>
           </div>
           <div class="workshop-discover-wrap">
-            <div class="heropress">Weitere Workshops entdecken</div>
+            <a class="heropress" href="#workshop-more" tabindex="0"
+              >Weitere Workshops entdecken</a>
           </div>
           <div class="WSWMain">
             <img
               class="WSWImg"
               src="STOCK/editorial-block_holiday_zz_blush_grant.jpg"
-              alt=""
+              alt="Wohnszene mit dekorierten Zimmerpflanzen und heller Einrichtung"
             />
             <div class="WSW-TEXT">
-              <div class="WSWToppic">
+              <div class="WSWToppic nav-target" id="workshop-more" tabindex="0">
                 <span>Zimmerpflanzen richtig platzieren</span><br />
                 <span
                   >So findest du den passenden Standort für gesundes
@@ -1093,7 +2067,7 @@
                 ><br />
                 <span>→</span>
               </div>
-              <div class="WSWToppic">
+              <div class="WSWToppic" tabindex="0">
                 <span>5 Pflegefehler vermeiden</span><br />
                 <span
                   >Die häufigsten Ursachen für gelbe Blätter und schwaches
@@ -1101,7 +2075,7 @@
                 ><br />
                 <span>→</span>
               </div>
-              <div class="WSWToppic">
+              <div class="WSWToppic" tabindex="0">
                 <span>Welche Pflanze passt zu dir?</span><br />
                 <span
                   >Einfach erklärt für helle, halbschattige und schattige
@@ -1113,7 +2087,7 @@
           </div>
         </section>
 
-        <section>
+        <section id="feedback">
           <div class="feedback-section">
             <span class="Titel überschrift mobile-mittig feedback-title"
               >Was sagen unsere Kunden</span
@@ -1121,9 +2095,9 @@
             <div class="FB-Cluster">
               <div class="FB-Text">
                 <span>
-                  “I have ordered several times and each time I get the
-                  healthiest, prettiest plants very quickly. I have been
-                  extremely satisfied with The Sill.”
+                  „Ich habe schon mehrmals bei Home Garden bestellt und jedes
+                  Mal kamen die Pflanzen schnell, gesund und wunderschön bei mir
+                  an. Ich bin sehr zufrieden mit dem Service.“
                 </span>
                 <br />
                 <br />
@@ -1133,7 +2107,7 @@
                 <img
                   class="FB-BG"
                   src="STOCK/ef39a8080d02cec2356332a55cacd3db03e24312-1500x1233.webp"
-                  alt=""
+                  alt="Kundin mit Zimmerpflanzen in einer hellen Wohnumgebung"
                 />
               </div>
             </div>
@@ -1143,107 +2117,79 @@
         <section id="FAQ">
           <div class="FAQ-Start">
             <span class="überschrift FAQ-Heading"
-              >Antwort auf übliche Fragen</span
+              >Antworten auf häufige Fragen</span
             >
             <div class="FAQ-Main">
               <div class="FAQ-Center">
-                <div class="FAQ-Title">
-                  <img src="ICONS/Chat.svg" alt="" />
+                <div
+                  class="FAQ-Title nav-target"
+                  id="faq-target"
+                  tabindex="0"
+                  role="button"
+                  aria-expanded="false"
+                >
+                  <img src="ICONS/arrow.svg" alt="Pfeil zum Auf- und Zuklappen" />
                   <span>Lieferung & Gebühren</span>
                 </div>
                 <div class="FAQ-Collapsed">
                   <span>
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                    sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
-                    ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                    nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                    sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    Wir liefern innerhalb der Schweiz in der Regel innerhalb von
+                    2 bis 4 Werktagen. Die Versandkosten werden im Checkout
+                    transparent angezeigt. Ab einem bestimmten Bestellwert ist
+                    die Lieferung kostenlos.
                   </span>
                 </div>
               </div>
               <div class="FAQ-Center">
-                <div class="FAQ-Title">
-                  <img src="ICONS/Chat.svg" alt="" />
+                <div class="FAQ-Title" tabindex="0" role="button" aria-expanded="false">
+                  <img src="ICONS/arrow.svg" alt="Pfeil zum Auf- und Zuklappen" />
                   <span>Zahlungsmöglichkeiten</span>
                 </div>
                 <div class="FAQ-Collapsed">
                   <span>
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                    sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
-                    ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                    nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                    sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    Du kannst bequem mit Karte, TWINT und weiteren gängigen
+                    Zahlungsmitteln bezahlen. Alle verfügbaren Optionen werden
+                    dir vor dem Abschluss der Bestellung angezeigt.
                   </span>
                 </div>
               </div>
               <div class="FAQ-Center">
-                <div class="FAQ-Title">
-                  <img src="ICONS/Chat.svg" alt="" />
+                <div class="FAQ-Title" tabindex="0" role="button" aria-expanded="false">
+                  <img src="ICONS/arrow.svg" alt="Pfeil zum Auf- und Zuklappen" />
                   <span>Rückgabe</span>
                 </div>
                 <div class="FAQ-Collapsed">
                   <span>
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                    sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
-                    ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                    nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                    sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    Falls eine Pflanze beschädigt bei dir ankommt, melde dich
+                    bitte rasch bei unserem Support. Gemeinsam finden wir eine
+                    passende Lösung, zum Beispiel Ersatz oder Gutschrift.
                   </span>
                 </div>
               </div>
               <div class="FAQ-Center">
-                <div class="FAQ-Title">
-                  <img src="ICONS/Chat.svg" alt="" />
+                <div class="FAQ-Title" tabindex="0" role="button" aria-expanded="false">
+                  <img src="ICONS/arrow.svg" alt="Pfeil zum Auf- und Zuklappen" />
                   <span>Pflege</span>
                 </div>
                 <div class="FAQ-Collapsed">
                   <span>
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                    sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
-                    ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                    nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                    sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    Die wichtigsten Faktoren sind Licht, Wasser und ein
+                    passender Standort. In unseren Pflegehinweisen findest du
+                    einfache Tipps für gesunde Zimmerpflanzen im Alltag.
                   </span>
                 </div>
               </div>
 
               <div class="FAQ-Center">
-                <div class="FAQ-Title">
-                  <img src="ICONS/Chat.svg" alt="" />
+                <div class="FAQ-Title" tabindex="0" role="button" aria-expanded="false">
+                  <img src="ICONS/arrow.svg" alt="Pfeil zum Auf- und Zuklappen" />
                   <span>Zubehör</span>
                 </div>
                 <div class="FAQ-Collapsed">
                   <span>
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                    sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
-                    ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                    nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                    justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                    sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    Bei uns findest du Töpfe, Erde und praktisches Zubehör für
+                    die Pflanzenpflege. So kannst du deine Bestellung passend
+                    ergänzen und direkt zuhause loslegen.
                   </span>
                 </div>
               </div>
@@ -1253,17 +2199,263 @@
       </div>
 
       <div class="footer">
-        <section></section>
+        <section class="footer-wrap">
+          <div class="footer-column">
+            <a class="footer-brand" href="#hero" aria-label="Home Garden Startseite">
+              <img
+                class="footer-logo"
+                src="ICONS/Logo-C-HZ.svg"
+                alt="Home Garden"
+              />
+            </a>
+            <h2 class="footer-title">Kundenbetreuung</h2>
+            <a class="footer-link" href="#">Lieferung</a>
+            <a class="footer-link" href="#">Rückgabe</a>
+            <a class="footer-link" href="#">Geschenkkarte</a>
+            <a class="footer-link" href="#">Mail abmelden</a>
+          </div>
+          <div class="footer-column">
+            <h2 class="footer-title">Über uns</h2>
+            <a class="footer-link" href="#">Über Home Garden</a>
+            <a class="footer-link" href="#">Karriere</a>
+            <a class="footer-link" href="#">Datenschutz</a>
+          </div>
+          <div class="footer-column">
+            <h2 class="footer-title">Sozial</h2>
+            <a class="footer-link" href="#">Pflanzen-Enzyklopädie</a>
+            <a class="footer-link" href="#">Pflegetipps</a>
+            <a class="footer-link" href="#">Einen Freund empfehlen</a>
+            <a class="footer-link" href="#">Instagram</a>
+          </div>
+          <div class="footer-column">
+            <h2 class="footer-title">Nachhaltigkeit</h2>
+            <p class="footer-copy">
+              Unsere Philosophie setzt auf langlebige Pflanzen, faire
+              Partnerschaften und bewusste Auswahl für ein grüneres Zuhause.
+            </p>
+          </div>
+          <div class="footer-column footer-signup">
+            <h2 class="footer-title">Mitgliedschaft</h2>
+            <p class="footer-copy">
+              Mitglied werden mit dem E-Mail-Abo und 10 CHF Rabatt auf den
+              ersten Einkauf sichern.
+            </p>
+            <form class="footer-form">
+              <input
+                class="footer-input"
+                type="email"
+                placeholder="E-Mail-Adresse"
+                aria-label="E-Mail-Adresse"
+              />
+              <button class="footer-button" type="button">Mitglied werden</button>
+            </form>
+          </div>
+        </section>
+        <div class="footer-bottom">Home Garden Shop-Demo</div>
       </div>
     </div>
 
+    <div class="overlay" data-overlay></div>
+
+    <aside class="account-modal" data-panel="account" aria-hidden="true">
+      <div class="panel-head">
+        <h2 class="panel-title">Mein Konto</h2>
+        <button class="panel-close" type="button" aria-label="Konto-Fenster schliessen" data-close-panel>×</button>
+      </div>
+      <div class="account-options">
+        <div class="account-card">
+          <h3>Einloggen</h3>
+          <p>Greife auf Favoriten, Adressen und frühere Bestellungen zu.</p>
+          <button class="heropress" type="button">Jetzt einloggen</button>
+        </div>
+        <div class="account-card">
+          <h3>Bestellstatus prüfen</h3>
+          <p>Verfolge eine Gastbestellung schnell mit Bestellnummer und E-Mail-Adresse.</p>
+          <button class="heropress" type="button">Gastbestellung prüfen</button>
+        </div>
+        <div class="account-card">
+          <h3>Konto erstellen</h3>
+          <p>Erstelle ein Home Garden Konto für schnelleren Checkout und exklusive Vorteile.</p>
+          <button class="heropress" type="button">Konto erstellen</button>
+        </div>
+      </div>
+    </aside>
+
+    <aside class="cart-drawer" data-panel="cart" aria-hidden="true">
+      <div class="panel-head">
+        <h2 class="panel-title">Warenkorb</h2>
+        <button class="panel-close" type="button" aria-label="Warenkorb schliessen" data-close-panel>×</button>
+      </div>
+      <p class="cart-copy">Hier siehst du deine ausgewählten Pflanzen und den aktuellen Gesamtpreis.</p>
+      <div class="cart-items">
+        <div class="cart-item">
+          <img class="cart-thumb" src="PFLANZEN/the-sill_10IN_White_Orchid_Duo_Gold_Jan_Pot_Eucalyptus_PI.webp" alt="Weisse Orchidee im Warenkorb" />
+          <div>
+            <p class="cart-item-name">Weisse Orchidee</p>
+            <p class="cart-item-sub">1 Stück · Keramiktopf</p>
+          </div>
+          <div class="cart-price">CHF 200</div>
+        </div>
+        <div class="cart-item">
+          <img class="cart-thumb" src="PFLANZEN/the-sill_Medium-Hoya-Pubilcalyx_Medium_Isabella_Sage_Variant.webp" alt="Hoya Pubilcalyx im Warenkorb" />
+          <div>
+            <p class="cart-item-name">Hoya Pubilcalyx</p>
+            <p class="cart-item-sub">1 Stück · Geschenkoption</p>
+          </div>
+          <div class="cart-price">CHF 200</div>
+        </div>
+      </div>
+      <div class="cart-summary">
+        <div class="cart-row">
+          <span>Zwischensumme</span>
+          <strong>CHF 400</strong>
+        </div>
+        <div class="cart-row">
+          <span>Versand</span>
+          <span>Kostenlos</span>
+        </div>
+        <div class="cart-actions">
+          <button class="heropress gallery-cta" type="button">Zum Warenkorb</button>
+          <button class="heropress" type="button">Bezahlen</button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="chat-widget">
+      <div class="chat-popup" data-chat-popup aria-hidden="true">
+        <div class="chat-head">
+          <div>
+            <strong>Home Garden Chat</strong>
+            <p>Antwortet meist in wenigen Minuten</p>
+          </div>
+          <button class="panel-close" type="button" aria-label="Chat schliessen" data-close-chat>×</button>
+        </div>
+        <div class="chat-body">
+          <div class="chat-bubble support">
+            Hallo, ich bin Nora aus der Pflanzenberatung. Wie kann ich dir heute helfen?
+          </div>
+          <div class="chat-bubble user">
+            Ich suche eine pflegeleichte Pflanze für mein Wohnzimmer.
+          </div>
+          <div class="chat-bubble support">
+            Gern. Schau dir die Weisse Orchidee oder die Hoya Pubilcalyx an. Beide passen gut zu einem hellen Standort.
+          </div>
+          <div class="chat-actions">
+            <button class="heropress" type="button">Frage senden</button>
+            <button class="heropress" type="button">Beratung starten</button>
+          </div>
+        </div>
+      </div>
+      <button class="chat-launcher" type="button" aria-label="Chat öffnen" data-open-chat>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v7A2.5 2.5 0 0 1 17.5 16H10l-4 4v-4H6.5A2.5 2.5 0 0 1 4 13.5z" />
+        </svg>
+        Chat starten
+      </button>
+    </div>
+
     <script>
+      const menuToggle = document.querySelector(".menu-toggle");
+      const mobileNav = document.querySelector(".mobile-nav");
+      const mobileNavLinks = document.querySelectorAll(".mobile-nav .nav-link");
       const faqTitles = document.querySelectorAll(".FAQ-Title");
+      const favoriteButtons = document.querySelectorAll(".favorite-button");
+      const favoritesCount = document.querySelector("[data-favorites-count]");
+      const overlay = document.querySelector("[data-overlay]");
+      const openPanelButtons = document.querySelectorAll("[data-open-panel]");
+      const closePanelButtons = document.querySelectorAll("[data-close-panel]");
+      const panels = document.querySelectorAll("[data-panel]");
+      const chatPopup = document.querySelector("[data-chat-popup]");
+      const openChatButton = document.querySelector("[data-open-chat]");
+      const closeChatButton = document.querySelector("[data-close-chat]");
+
+      function closePanels() {
+        panels.forEach((panel) => {
+          panel.classList.remove("open");
+          panel.setAttribute("aria-hidden", "true");
+        });
+        overlay?.classList.remove("open");
+      }
+
+      function openPanel(name) {
+        closePanels();
+        const panel = document.querySelector(`[data-panel="${name}"]`);
+        if (!panel) return;
+        panel.classList.add("open");
+        panel.setAttribute("aria-hidden", "false");
+        overlay?.classList.add("open");
+      }
+
+      function toggleFaq(title) {
+        const content = title.nextElementSibling;
+        const isOpen = content.classList.toggle("open");
+        title.setAttribute("aria-expanded", String(isOpen));
+      }
+
+      if (menuToggle && mobileNav) {
+        menuToggle.addEventListener("click", () => {
+          const isOpen = mobileNav.classList.toggle("open");
+          menuToggle.classList.toggle("is-open", isOpen);
+          menuToggle.setAttribute("aria-expanded", String(isOpen));
+        });
+
+        mobileNavLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            mobileNav.classList.remove("open");
+            menuToggle.classList.remove("is-open");
+            menuToggle.setAttribute("aria-expanded", "false");
+          });
+        });
+      }
+
+      favoriteButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          button.classList.toggle("is-active");
+          const activeFavorites = document.querySelectorAll(".favorite-button.is-active").length;
+          if (favoritesCount) favoritesCount.textContent = String(activeFavorites);
+        });
+      });
+
+      openPanelButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const panelName = button.getAttribute("data-open-panel");
+          if (panelName) openPanel(panelName);
+        });
+      });
+
+      closePanelButtons.forEach((button) => {
+        button.addEventListener("click", closePanels);
+      });
+
+      overlay?.addEventListener("click", closePanels);
+
+      function closeChat() {
+        chatPopup?.classList.remove("open");
+        chatPopup?.setAttribute("aria-hidden", "true");
+      }
+
+      openChatButton?.addEventListener("click", () => {
+        const willOpen = !chatPopup?.classList.contains("open");
+        if (willOpen) {
+          chatPopup?.classList.add("open");
+          chatPopup?.setAttribute("aria-hidden", "false");
+        } else {
+          closeChat();
+        }
+      });
+
+      closeChatButton?.addEventListener("click", closeChat);
 
       faqTitles.forEach((title) => {
         title.addEventListener("click", () => {
-          const content = title.nextElementSibling;
-          content.classList.toggle("open");
+          toggleFaq(title);
+        });
+
+        title.addEventListener("keydown", (event) => {
+          if (event.code === "Space" || event.key === " ") {
+            event.preventDefault();
+            toggleFaq(title);
+          }
         });
       });
     </script>
