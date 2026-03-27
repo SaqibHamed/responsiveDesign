@@ -92,6 +92,9 @@
       .product-price {
         font-size: var(--pricetext-Price);
         margin-top: 10px;
+        display: block;
+        width: 100%;
+        text-align: right;
       }
 
       .info-note {
@@ -174,6 +177,11 @@
       .nav-link:focus-visible {
         background-color: rgba(248, 246, 239, 0.16);
         transform: translateY(-1px);
+      }
+
+      .nav-link-secondary {
+        border: 1px solid rgba(248, 246, 239, 0.3);
+        background-color: rgba(248, 246, 239, 0.08);
       }
 
       .product-card:focus-visible,
@@ -360,6 +368,7 @@
 
       .page-main {
         width: 90%;
+        max-width: 1215px;
         margin: 0 auto;
       }
 
@@ -368,7 +377,8 @@
       }
 
       #hero,
-      #info {
+      #services {
+        background-color: #f3f3f3;
         width: 100vw;
         margin-left: 50%;
         transform: translateX(-50%);
@@ -386,31 +396,57 @@
         overflow-x: auto;
         overflow-y: hidden;
         gap: 20px;
-        padding-right: 20px;
         padding-bottom: 12px;
-        background-image: linear-gradient(
-            to right,
-            rgba(255, 255, 255, 0.92),
-            rgba(255, 255, 255, 0)
-          ),
-          linear-gradient(
-            to left,
-            rgba(255, 255, 255, 0.92),
-            rgba(255, 255, 255, 0)
-          );
-        background-position: left center, right center;
-        background-repeat: no-repeat;
-        background-size: 38px 100%, 38px 100%;
-        box-shadow: inset 14px 0 18px -18px var(--scroll-shadow),
-          inset -14px 0 18px -18px var(--scroll-shadow);
+        position: relative;
+      }
+
+      .slider-viewport {
+        position: relative;
+        width: 100%;
+        min-width: 0;
+        overflow: hidden;
+      }
+
+      .slider-viewport::before,
+      .slider-viewport::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 56px;
+        height: 100%;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.18s ease;
+        z-index: 3;
+      }
+
+      .slider-viewport::before {
+        left: 0;
+        background: linear-gradient(
+          to right,
+          rgba(34, 68, 43, 0.24),
+          rgba(34, 68, 43, 0)
+        );
+        box-shadow: inset 34px 0 28px -22px rgba(36, 72, 43, 0.48);
+      }
+
+      .slider-viewport::after {
+        right: 0;
+        background: linear-gradient(
+          to left,
+          rgba(34, 68, 43, 0.24),
+          rgba(34, 68, 43, 0)
+        );
+        box-shadow: inset -34px 0 28px -22px rgba(36, 72, 43, 0.48);
       }
 
       .hero-copy {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        width: 55vw;
-        padding-left: 20px;
+        flex: 0 1 34%;
+        min-width: 280px;
+        padding-left: clamp(16px, 2vw, 24px);
         gap: 18px;
       }
 
@@ -422,15 +458,51 @@
         margin-top: 6px;
       }
 
+      .hero-actions .pill-button-primary {
+        background-color: #2f5a36;
+        color: #f8f6ef;
+        box-shadow: 0 12px 24px rgba(32, 64, 42, 0.16);
+      }
+
+      .hero-actions .pill-button-primary:hover,
+      .hero-actions .pill-button-primary:focus-visible {
+        background-color: #24482b;
+      }
+
+      .pill-button-primary {
+        background-color: #2f5a36;
+        color: #f8f6ef;
+        box-shadow: 0 12px 24px rgba(32, 64, 42, 0.16);
+      }
+
+      .pill-button-primary:hover,
+      .pill-button-primary:focus-visible {
+        background-color: #24482b;
+      }
+
       .pill-button {
-        color: inherit;
+        color: #24482b;
         text-decoration: none;
-        background-color: #f3f3f3;
+        background-color: rgba(248, 246, 239, 0.96);
         padding: 10px 16px;
         border-radius: 999px;
         font-weight: 700;
         transition: background-color 0.22s ease, transform 0.22s ease,
           box-shadow 0.22s ease;
+      }
+
+      .pill-button.pill-button-primary,
+      .footer-button.pill-button-primary {
+        background-color: #2f5a36;
+        color: #f8f6ef;
+        box-shadow: 0 12px 24px rgba(32, 64, 42, 0.16);
+      }
+
+      .pill-button.pill-button-primary:hover,
+      .pill-button.pill-button-primary:focus-visible,
+      .footer-button.pill-button-primary:hover,
+      .footer-button.pill-button-primary:focus-visible {
+        background-color: #24482b;
       }
 
       .product-card-image {
@@ -523,6 +595,15 @@
         font: inherit;
         font-weight: 700;
         cursor: pointer;
+        box-shadow: 0 12px 24px rgba(32, 64, 42, 0.16);
+        transition: background-color 0.22s ease, transform 0.22s ease,
+          box-shadow 0.22s ease;
+      }
+
+      .footer-button:hover,
+      .footer-button:focus-visible {
+        background-color: #24482b;
+        transform: translateY(-1px);
       }
 
       .footer-bottom {
@@ -532,11 +613,6 @@
         border-top: 1px solid rgba(47, 51, 47, 0.16);
         font-size: 0.86rem;
         color: rgba(47, 51, 47, 0.72);
-      }
-
-      .top {
-        height: 715px;
-        display: flex;
       }
 
       .product-card {
@@ -556,22 +632,88 @@
         transition: border-color 0.22s ease, background-color 0.22s ease;
       }
 
-      .box1 {
+      .hero-layout {
         display: flex;
         flex-direction: row;
-        justify-content: space-evenly;
+        justify-content: space-between;
         align-items: center;
         gap: 32px;
-        padding: 42px 0 42px 20px;
+        width: min(1215px, 100%);
+        margin: 0 auto;
+        padding: 42px 0;
+      }
+
+      .slider-shell {
+        display: grid;
+        grid-template-rows: auto minmax(0, auto);
+        gap: 14px;
+        flex: 1 1 0;
+        min-width: 0;
+        width: min(820px, 100%);
+        align-self: stretch;
+        height: auto;
+      }
+
+      .slider-controls {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+      }
+
+      .slider-controls.is-hidden {
+        display: none;
+      }
+
+      .section-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .slider-button {
+        width: 44px;
+        height: 44px;
+        border: 1px solid rgba(47, 90, 54, 0.18);
+        border-radius: 999px;
+        background-color: rgba(255, 255, 255, 0.94);
+        color: #2f5a36;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color 0.2s ease, transform 0.2s ease,
+          border-color 0.2s ease;
+      }
+
+      .slider-button:hover,
+      .slider-button:focus-visible {
+        background-color: #f1f6ee;
+        border-color: rgba(47, 90, 54, 0.32);
+        transform: translateY(-1px);
+      }
+
+      .slider-button svg {
+        width: 18px;
+        height: 18px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 2;
+      }
+
+      .heroslider {
+        flex: 1 1 0;
+        min-width: 0;
       }
 
       .info {
         display: flex;
         flex-direction: row;
         justify-content: center;
-        background-color: #f3f3f3;
         gap: 20px;
         padding: 18px 30px;
+        width: min(1215px, 100%);
+        margin: 0 auto;
       }
 
       .info-item {
@@ -582,8 +724,10 @@
       }
 
       .info-text {
-        width: 20vw;
+        max-width: 20rem;
         font-size: small;
+        padding-top: 10px;
+        padding-bottom: 10px;
       }
 
       .info-icon {
@@ -609,21 +753,15 @@
         overflow-x: auto;
         overflow-y: hidden;
         padding-bottom: 12px;
-        background-image: linear-gradient(
-            to right,
-            rgba(255, 255, 255, 0.96),
-            rgba(255, 255, 255, 0)
-          ),
-          linear-gradient(
-            to left,
-            rgba(255, 255, 255, 0.96),
-            rgba(255, 255, 255, 0)
-          );
-        background-position: left center, right center;
-        background-repeat: no-repeat;
-        background-size: 32px 100%, 32px 100%;
-        box-shadow: inset 14px 0 18px -18px var(--scroll-shadow),
-          inset -14px 0 18px -18px var(--scroll-shadow);
+        position: relative;
+      }
+
+      .slider-viewport.has-left-overflow::before {
+        opacity: 1;
+      }
+
+      .slider-viewport.has-right-overflow::after {
+        opacity: 1;
       }
 
       .heroslider::-webkit-scrollbar,
@@ -654,6 +792,7 @@
         position: absolute;
         top: 12px;
         right: 12px;
+        z-index: 2;
         width: 42px;
         height: 42px;
         border: 0;
@@ -690,20 +829,44 @@
         stroke: #d14444;
       }
 
+      .cart-card-button {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        z-index: 2;
+        width: 42px;
+        height: 42px;
+        border: 0;
+        border-radius: 999px;
+        background-color: rgba(255, 255, 255, 0.92);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 10px 20px rgba(32, 64, 42, 0.12);
+        transition: transform 0.2s ease, background-color 0.2s ease;
+      }
+
+      .cart-card-button:hover,
+      .cart-card-button:focus-visible {
+        transform: scale(1.05);
+        background-color: #edf3e7;
+      }
+
+      .cart-card-button svg {
+        width: 18px;
+        height: 18px;
+        fill: none;
+        stroke: #3d6b45;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
       .gallery-cta-wrap {
         display: flex;
         justify-content: center;
         padding-top: 12px;
-      }
-
-      .gallery-cta {
-        background-color: #3d6b45;
-        color: #f8f6ef;
-      }
-
-      .gallery-cta:hover,
-      .gallery-cta:focus-visible {
-        background-color: #355d3c;
       }
 
       .overlay {
@@ -719,6 +882,69 @@
       .overlay.open {
         opacity: 1;
         pointer-events: auto;
+      }
+
+      .loading-screen {
+        position: fixed;
+        inset: 0;
+        z-index: 120;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(180deg, #2f5a36 0%, #264b2d 100%);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.22s ease, visibility 0.22s ease;
+      }
+
+      .loading-screen.open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+
+      .loading-screen-inner {
+        display: grid;
+        justify-items: center;
+      }
+
+      .loading-screen-mark {
+        position: relative;
+        width: clamp(112px, 12vw, 148px);
+        height: clamp(112px, 12vw, 148px);
+        display: grid;
+        place-items: center;
+      }
+
+      .loading-screen-ring {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        animation: loaderSpin 1s linear infinite;
+      }
+
+      .loading-screen-ring circle {
+        fill: none;
+        stroke: rgba(248, 246, 239, 0.25);
+        stroke-width: 6;
+        stroke-linecap: round;
+        stroke-dasharray: 110 220;
+        stroke-dashoffset: 0;
+      }
+
+      .loading-screen-logo {
+        width: 58%;
+        height: auto;
+      }
+
+      @keyframes loaderSpin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
       }
 
       .account-modal {
@@ -794,7 +1020,7 @@
         font-size: 0.92rem;
       }
 
-      .account-card .heropress {
+      .account-card .pill-button {
         margin-top: 12px;
         display: inline-flex;
       }
@@ -873,6 +1099,7 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 12px;
+        pointer-events: none;
       }
 
       .chat-popup {
@@ -955,8 +1182,10 @@
         display: inline-flex;
         align-items: center;
         gap: 10px;
+        align-self: flex-start;
         box-shadow: 0 16px 30px rgba(20, 30, 21, 0.2);
         cursor: pointer;
+        pointer-events: auto;
       }
 
       .chat-launcher svg {
@@ -965,11 +1194,6 @@
         stroke: currentColor;
         fill: none;
         stroke-width: 2;
-      }
-
-      .ContainerTop4 > div:first-child {
-        width: 100%;
-        overflow: hidden;
       }
 
       .support-layout {
@@ -1020,7 +1244,7 @@
         flex-shrink: 0;
       }
 
-      #Workshop {
+      #workshops {
         padding: 0;
         width: 100%;
         margin: 0;
@@ -1038,7 +1262,7 @@
         border-radius: var(--card-radius);
         width: 100%;
         max-width: 280px;
-        padding: 15px 0;
+        padding: 0 0 15px;
         overflow: hidden;
         transition: border-color 0.22s ease;
       }
@@ -1123,12 +1347,8 @@
         justify-content: flex-start;
       }
 
-      .workshop-button-wrap {
-        margin-top: 16px;
-      }
-
       .feedback-section {
-        padding: 36px;
+        padding: 36px 0 0;
         width: 100%;
         margin: 0;
       }
@@ -1245,7 +1465,7 @@
       }
 
       .pill-button:hover {
-        background-color: #e6ecde;
+        background-color: #ffffff;
         transform: translateY(-1px);
         box-shadow: 0 10px 18px rgba(32, 64, 42, 0.1);
       }
@@ -1274,6 +1494,50 @@
         color: #3d6b45;
         border-color: #3d6b45;
         padding-left: 8px;
+      }
+
+      @media (min-width: 801px) {
+        .hero-layout {
+          flex-direction: row;
+          align-items: stretch;
+          justify-content: space-between;
+          gap: 40px;
+          width: min(1215px, calc(100% - 32px));
+          padding: 42px 0;
+        }
+
+        .hero-copy {
+          flex: 0 0 min(360px, 32%);
+          width: auto;
+          min-width: 300px;
+          padding: 0 0 0 clamp(16px, 2vw, 24px);
+          align-self: stretch;
+        }
+
+        .slider-shell {
+          flex: 1 1 auto;
+          width: auto;
+          max-width: 820px;
+          min-width: 0;
+          align-self: stretch;
+        }
+
+        .slider-controls {
+          display: flex;
+          justify-content: flex-end;
+        }
+
+        .heroslider {
+          display: flex;
+          width: 100%;
+          min-width: 0;
+        }
+
+        .section-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
       }
 
       @media (max-width: 800px) {
@@ -1325,11 +1589,23 @@
           left: 16px;
           right: 16px;
           bottom: 16px;
-          align-items: stretch;
+          align-items: flex-start;
         }
 
         .chat-popup {
           width: 100%;
+        }
+
+        .chat-launcher {
+          width: 56px;
+          height: 56px;
+          padding: 0;
+          justify-content: center;
+          gap: 0;
+        }
+
+        .chat-launcher .chat-launcher-label {
+          display: none;
         }
 
         .page-main {
@@ -1338,11 +1614,16 @@
           margin-right: auto;
         }
 
-        #hero,
-        #info {
-          width: 100%;
-          margin-left: 0;
-          transform: none;
+        #services {
+          width: 100vw;
+          margin-left: 50%;
+          transform: translateX(-50%);
+        }
+
+        #hero {
+          width: 100vw;
+          margin-left: 50%;
+          transform: translateX(-50%);
         }
 
         .mobile-center {
@@ -1369,9 +1650,18 @@
 
         .hero-layout {
           flex-direction: column;
-          width: 100%;
+          width: 80%;
+          margin: 0 auto;
           padding: 0 0 30px 0;
           gap: 26px;
+        }
+
+        .slider-controls {
+          display: none;
+        }
+
+        .section-header {
+          display: block;
         }
 
         .hero-copy {
@@ -1386,7 +1676,11 @@
           align-self: center;
           gap: 20px;
           overflow: visible;
-          padding-right: 0;
+        }
+
+        .slider-viewport::before,
+        .slider-viewport::after {
+          display: none;
         }
 
         .product-card {
@@ -1396,7 +1690,7 @@
           gap: 12px;
         }
 
-        #top4 {
+        #plants {
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -1421,6 +1715,7 @@
           position: relative;
           height: 90px;
           overflow: hidden;
+          width: 100%;
         }
 
         .info-item {
@@ -1437,6 +1732,8 @@
           width: 50%;
           max-width: none;
           text-align: center;
+          padding-top: 10px;
+          padding-bottom: 10px;
         }
 
         .info-item:nth-child(1) {
@@ -1474,7 +1771,7 @@
           padding: 0;
         }
 
-        #Workshop {
+        #workshops {
           padding: unset;
         }
 
@@ -1513,7 +1810,7 @@
         .workshop-card {
           width: 100%;
           max-width: none;
-          padding: 15px 0;
+          padding: 0 0 15px;
         }
 
         .workshop-card-image {
@@ -1558,7 +1855,7 @@
           display: flex;
           flex-direction: column;
           align-items: center;
-          padding: 24px 20px;
+          padding: 24px 0 0;
           width: 100%;
           margin-left: 0;
           margin-right: 0;
@@ -1575,7 +1872,7 @@
         .testimonial-card {
           background-color: var(--surface);
           padding: 24px 20px;
-          width: 80%;
+          width: 100%;
           transform: unset;
           z-index: unset;
         }
@@ -1606,7 +1903,7 @@
           width: 100%;
         }
 
-        .workshop-discover-wrap {
+        .workshop-actions {
           justify-content: center;
         }
 
@@ -1625,8 +1922,8 @@
   </head>
 
   <body>
-    <div class="origin">
-      <div class="head">
+    <div class="page">
+      <div class="site-bar">
         <header class="site-header">
           <a class="brand" href="#hero" aria-label="Zur Startseite">
             <img
@@ -1636,10 +1933,11 @@
             />
           </a>
           <nav class="desktop-nav" aria-label="Hauptnavigation">
-            <a class="nav-link header-cta" href="#main-target">Start</a>
-            <a class="nav-link" href="#beliebt-target">Beliebt</a>
-            <a class="nav-link" href="#beratung-target">Beratung</a>
-            <a class="nav-link" href="#workshop-target">Workshops</a>
+            <a class="nav-link header-cta" href="#home-target">Start</a>
+            <a class="nav-link" href="#plants-target">Beliebt</a>
+            <a class="nav-link" href="#advice-target">Beratung</a>
+            <a class="nav-link" href="#workshops-target">Workshops</a>
+            <a class="nav-link nav-link-secondary" href="#" data-fake-load>Blog</a>
           </nav>
           <div class="header-tools" aria-label="Shop-Aktionen">
             <div class="tool-group">
@@ -1650,21 +1948,21 @@
               </button>
               <span class="tool-badge" data-favorites-count>0</span>
             </div>
-            <button class="tool-link" type="button" aria-label="Konto" data-open-panel="account">
+            <button class="tool-link" type="button" aria-label="Konto öffnen" data-open-panel="account">
               <svg class="tool-icon" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M19 20a7 7 0 0 0-14 0" />
                 <circle cx="12" cy="8" r="4" />
               </svg>
             </button>
             <div class="tool-group">
-              <button class="tool-link" type="button" aria-label="Warenkorb" data-open-panel="cart">
+              <button class="tool-link" type="button" aria-label="Warenkorb öffnen" data-open-panel="cart">
               <svg class="tool-icon" viewBox="0 0 24 24" aria-hidden="true">
                 <circle cx="9" cy="19" r="1.5" />
                 <circle cx="18" cy="19" r="1.5" />
                 <path d="M3 4h2l2.2 10.2a1 1 0 0 0 1 .8h8.9a1 1 0 0 0 1-.8L20 7H6.2" />
               </svg>
               </button>
-              <span class="tool-badge">2</span>
+              <span class="tool-badge" data-cart-count>2</span>
             </div>
           </div>
           <button
@@ -1678,10 +1976,11 @@
           </button>
         </header>
         <nav class="mobile-nav" id="mobile-nav" aria-label="Mobiles Menü">
-          <a class="nav-link header-cta" href="#main-target">Start</a>
-          <a class="nav-link" href="#beliebt-target">Beliebte Pflanzen</a>
-          <a class="nav-link" href="#beratung-target">Beratung</a>
-          <a class="nav-link" href="#workshop-target">Workshops & Pflege</a>
+          <a class="nav-link header-cta" href="#home-target">Start</a>
+          <a class="nav-link" href="#plants-target">Beliebte Pflanzen</a>
+          <a class="nav-link" href="#advice-target">Beratung</a>
+          <a class="nav-link" href="#workshops-target">Workshops & Pflege</a>
+          <a class="nav-link nav-link-secondary" href="#" data-fake-load>Blog</a>
           <div class="mobile-tools" aria-label="Shop-Aktionen mobil">
             <button class="tool-link" type="button" aria-label="Favoriten">
               <svg class="tool-icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -1689,14 +1988,14 @@
               </svg>
               <span class="tool-label">Favoriten</span>
             </button>
-            <button class="tool-link" type="button" aria-label="Konto" data-open-panel="account">
+            <button class="tool-link" type="button" aria-label="Konto öffnen" data-open-panel="account">
               <svg class="tool-icon" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M19 20a7 7 0 0 0-14 0" />
                 <circle cx="12" cy="8" r="4" />
               </svg>
               <span class="tool-label">Konto</span>
             </button>
-            <button class="tool-link" type="button" aria-label="Warenkorb" data-open-panel="cart">
+            <button class="tool-link" type="button" aria-label="Warenkorb öffnen" data-open-panel="cart">
               <svg class="tool-icon" viewBox="0 0 24 24" aria-hidden="true">
                 <circle cx="9" cy="19" r="1.5" />
                 <circle cx="18" cy="19" r="1.5" />
@@ -1707,127 +2006,179 @@
           </div>
         </nav>
       </div>
-      <div class="main">
+      <div class="page-main">
         <section id="hero">
-          <div class="box1">
-            <div class="herotext">
-              <div class="überschrift">Der Frühling beginnt jetzt!</div>
-              <div class="pro-name">
+          <div class="hero-layout">
+            <div class="hero-copy">
+              <div class="heading-xl">Der Frühling beginnt jetzt!</div>
+              <div class="product-name">
                 Warme Tage, frische Blüten und sattes Grün für dein Zuhause.
               </div>
-              <div class="herobutton">
-                <a class="heropress" href="#top4">Zu den Bestsellern</a>
-                <a class="heropress" href="#Workshop">Workshops entdecken</a>
+              <div class="hero-actions">
+                <a class="pill-button pill-button-primary" href="#" data-fake-load>Pflanzengalerie ansehen</a>
+                <a class="pill-button pill-button-primary" href="#" data-fake-load>Zubehör durchstöbern</a>
               </div>
             </div>
-            <div class="heroslider">
-              <div class="container nav-target" id="main-target" tabindex="0">
-                <button class="favorite-button" type="button" aria-label="Weisse Orchidee zu Favoriten hinzufügen">
+            <div class="slider-shell">
+              <div class="slider-controls" aria-label="Hero Produkte steuern">
+                <button class="slider-button" type="button" data-scroll-target="hero-slider" data-scroll-direction="prev" aria-label="Hero Produkte nach links scrollen">
                   <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M12 20.5 4.8 13.8a4.8 4.8 0 0 1 6.8-6.8L12 7.4l.4-.4a4.8 4.8 0 0 1 6.8 6.8z" />
+                    <path d="M15 6 9 12l6 6" />
                   </svg>
                 </button>
-                <div class="herogalery">
-                  <img
-                    class="heroimg"
-                    src="PFLANZEN/the-sill_10IN_White_Orchid_Duo_Gold_Jan_Pot_Eucalyptus_PI.webp"
-                    alt="Weisse Orchideenpflanze in einem Topf"
-                  />
-                </div>
-                <div class="heroimgtitle pro-name">Weisse Orchidee</div>
-                <div class="heroimgsub pro-sub">
-                  Zeitlos, elegant und pflegeleicht.
-                </div>
-                <div class="heroimgsub2 pro-price">200.-</div>
+                <button class="slider-button" type="button" data-scroll-target="hero-slider" data-scroll-direction="next" aria-label="Hero Produkte nach rechts scrollen">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="m9 6 6 6-6 6" />
+                  </svg>
+                </button>
               </div>
-              <div class="container" tabindex="0">
-                <button class="favorite-button" type="button" aria-label="Grosse Mexia zu Favoriten hinzufügen">
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M12 20.5 4.8 13.8a4.8 4.8 0 0 1 6.8-6.8L12 7.4l.4-.4a4.8 4.8 0 0 1 6.8 6.8z" />
-                  </svg>
-                </button>
-                <div class="herogalery">
-                  <img
-                    class="heroimg"
-                    src="PFLANZEN/The-Sill_Big-and-Bright_Large_Mexia-cream_Variant.webp"
-                    alt="Grosse Mexia in cremefarbenem Topf"
-                  />
+              <div class="slider-viewport">
+                <div class="heroslider" id="hero-slider">
+                  <div class="product-card nav-target" id="home-target" tabindex="0">
+                  <button class="cart-card-button" type="button" aria-label="Weisse Orchidee in den Warenkorb legen" data-add-to-cart>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <circle cx="9" cy="19" r="1.5" />
+                      <circle cx="18" cy="19" r="1.5" />
+                      <path d="M3 4h2l2.2 10.2a1 1 0 0 0 1 .8h8.9a1 1 0 0 0 1-.8L20 7H6.2" />
+                      <path d="M12 9v6" />
+                      <path d="M9 12h6" />
+                    </svg>
+                  </button>
+                  <button class="favorite-button" type="button" aria-label="Weisse Orchidee zu Favoriten hinzufügen" aria-pressed="false">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 20.5 4.8 13.8a4.8 4.8 0 0 1 6.8-6.8L12 7.4l.4-.4a4.8 4.8 0 0 1 6.8 6.8z" />
+                    </svg>
+                  </button>
+                  <div class="product-card-media">
+                    <img
+                      class="product-card-image"
+                      src="PFLANZEN/the-sill_10IN_White_Orchid_Duo_Gold_Jan_Pot_Eucalyptus_PI.webp"
+                      alt="Weisse Orchideenpflanze in einem Topf"
+                    />
+                  </div>
+                  <div class="product-name">Weisse Orchidee</div>
+                  <div class="product-sub">
+                    Zeitlos, elegant und pflegeleicht.
+                  </div>
+                  <div class="product-price">200.-</div>
                 </div>
-                <div class="heroimgtitle pro-name">Grosse Mexia</div>
-                <div class="heroimgsub pro-sub">
-                  Ein sanfter Blickfang für helle Räume.
+                  <div class="product-card" tabindex="0">
+                  <button class="cart-card-button" type="button" aria-label="Grosse Mexia in den Warenkorb legen" data-add-to-cart>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <circle cx="9" cy="19" r="1.5" />
+                      <circle cx="18" cy="19" r="1.5" />
+                      <path d="M3 4h2l2.2 10.2a1 1 0 0 0 1 .8h8.9a1 1 0 0 0 1-.8L20 7H6.2" />
+                      <path d="M12 9v6" />
+                      <path d="M9 12h6" />
+                    </svg>
+                  </button>
+                  <button class="favorite-button" type="button" aria-label="Grosse Mexia zu Favoriten hinzufügen" aria-pressed="false">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 20.5 4.8 13.8a4.8 4.8 0 0 1 6.8-6.8L12 7.4l.4-.4a4.8 4.8 0 0 1 6.8 6.8z" />
+                    </svg>
+                  </button>
+                  <div class="product-card-media">
+                    <img
+                      class="product-card-image"
+                      src="PFLANZEN/The-Sill_Big-and-Bright_Large_Mexia-cream_Variant.webp"
+                      alt="Grosse Mexia in cremefarbenem Topf"
+                    />
+                  </div>
+                  <div class="product-name">Grosse Mexia</div>
+                  <div class="product-sub">
+                    Ein sanfter Blickfang für helle Räume.
+                  </div>
+                  <div class="product-price">200.-</div>
                 </div>
-                <div class="heroimgsub2 pro-price">200.-</div>
-              </div>
-              <div class="container" tabindex="0">
-                <button class="favorite-button" type="button" aria-label="Grosse Dracaena zu Favoriten hinzufügen">
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M12 20.5 4.8 13.8a4.8 4.8 0 0 1 6.8-6.8L12 7.4l.4-.4a4.8 4.8 0 0 1 6.8 6.8z" />
-                  </svg>
-                </button>
-                <div class="herogalery">
-                  <img
-                    class="heroimg"
-                    src="PFLANZEN/the-sill_Extra-Large-Dracaena-Marginata-Braid_Extra-Large_SolidGoods_Mustard_Saucer_Variant.webp"
-                    alt="Grosse Dracaena in senffarbenem Topf"
-                  />
+                  <div class="product-card" tabindex="0">
+                  <button class="cart-card-button" type="button" aria-label="Grosse Dracaena in den Warenkorb legen" data-add-to-cart>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <circle cx="9" cy="19" r="1.5" />
+                      <circle cx="18" cy="19" r="1.5" />
+                      <path d="M3 4h2l2.2 10.2a1 1 0 0 0 1 .8h8.9a1 1 0 0 0 1-.8L20 7H6.2" />
+                      <path d="M12 9v6" />
+                      <path d="M9 12h6" />
+                    </svg>
+                  </button>
+                  <button class="favorite-button" type="button" aria-label="Grosse Dracaena zu Favoriten hinzufügen" aria-pressed="false">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 20.5 4.8 13.8a4.8 4.8 0 0 1 6.8-6.8L12 7.4l.4-.4a4.8 4.8 0 0 1 6.8 6.8z" />
+                    </svg>
+                  </button>
+                  <div class="product-card-media">
+                    <img
+                      class="product-card-image"
+                      src="PFLANZEN/the-sill_Extra-Large-Dracaena-Marginata-Braid_Extra-Large_SolidGoods_Mustard_Saucer_Variant.webp"
+                      alt="Grosse Dracaena in senffarbenem Topf"
+                    />
+                  </div>
+                  <div class="product-name">Grosse Dracaena</div>
+                  <div class="product-sub">
+                    Markant im Wuchs und unkompliziert im Alltag.
+                  </div>
+                  <div class="product-price">200.-</div>
                 </div>
-                <div class="heroimgtitle pro-name">Grosse Dracaena</div>
-                <div class="heroimgsub pro-sub">
-                  Markant im Wuchs und unkompliziert im Alltag.
+                  <div class="product-card" tabindex="0">
+                  <button class="cart-card-button" type="button" aria-label="Paradiesvogel in den Warenkorb legen" data-add-to-cart>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <circle cx="9" cy="19" r="1.5" />
+                      <circle cx="18" cy="19" r="1.5" />
+                      <path d="M3 4h2l2.2 10.2a1 1 0 0 0 1 .8h8.9a1 1 0 0 0 1-.8L20 7H6.2" />
+                      <path d="M12 9v6" />
+                      <path d="M9 12h6" />
+                    </svg>
+                  </button>
+                  <button class="favorite-button" type="button" aria-label="Paradiesvogel zu Favoriten hinzufügen" aria-pressed="false">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 20.5 4.8 13.8a4.8 4.8 0 0 1 6.8-6.8L12 7.4l.4-.4a4.8 4.8 0 0 1 6.8 6.8z" />
+                    </svg>
+                  </button>
+                  <div class="product-card-media">
+                    <img
+                      class="product-card-image"
+                      src="PFLANZEN/the-sill_Large-Bird-of-Paradise_Large_Pallas_Cream_planter_with_stand-Dark_Bamboo_variant.webp"
+                      alt="Grosser Paradiesvogel in hellem Topf mit Holzgestell"
+                    />
+                  </div>
+                  <div class="product-name">Paradiesvogel</div>
+                  <div class="product-sub">
+                    Tropisches Statement mit starker Präsenz.
+                  </div>
+                  <div class="product-price">200.-</div>
+                  </div>
                 </div>
-                <div class="heroimgsub2 pro-price">200.-</div>
-              </div>
-              <div class="container" tabindex="0">
-                <button class="favorite-button" type="button" aria-label="Paradiesvogel zu Favoriten hinzufügen">
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M12 20.5 4.8 13.8a4.8 4.8 0 0 1 6.8-6.8L12 7.4l.4-.4a4.8 4.8 0 0 1 6.8 6.8z" />
-                  </svg>
-                </button>
-                <div class="herogalery">
-                  <img
-                    class="heroimg"
-                    src="PFLANZEN/the-sill_Large-Bird-of-Paradise_Large_Pallas_Cream_planter_with_stand-Dark_Bamboo_variant.webp"
-                    alt="Grosser Paradiesvogel in hellem Topf mit Holzgestell"
-                  />
-                </div>
-                <div class="heroimgtitle pro-name">Paradiesvogel</div>
-                <div class="heroimgsub pro-sub">
-                  Tropisches Statement mit starker Präsenz.
-                </div>
-                <div class="heroimgsub2 pro-price">200.-</div>
               </div>
             </div>
           </div>
         </section>
 
-        <section id="info">
+        <section id="services">
           <div class="info">
-            <div class="infoSec">
-              <div class="infoImg">
+            <div class="info-item">
+              <div class="info-icon">
                 <img src="ICONS/box.svg" alt="Liefersymbol" />
               </div>
-              <div class="infoTxt fontInfo">
+              <div class="info-text info-note">
                 Persönliche Beratung <br />
                 Wir helfen dir bei Auswahl, Standort und Pflege für dein Home
                 Garden Zuhause.
               </div>
             </div>
-            <div class="infoSec">
-              <div class="infoImg">
+            <div class="info-item">
+              <div class="info-icon">
                 <img src="ICONS/happy.svg" alt="Zufriedenheitssymbol" />
               </div>
-              <div class="infoTxt fontInfo">
+              <div class="info-text info-note">
                 Sichere Lieferung <br />
                 Deine Bestellung kommt sorgfältig verpackt und geschützt bei
                 dir an.
               </div>
             </div>
-            <div class="infoSec">
-              <div class="infoImg">
+            <div class="info-item">
+              <div class="info-icon">
                 <img src="ICONS/protec.svg" alt="Schutzsymbol" />
               </div>
-              <div class="infoTxt fontInfo">
+              <div class="info-text info-note">
                 Gesunde Pflanzen <br />
                 Jede Pflanze wird vor dem Versand geprüft und mit Sorgfalt
                 ausgewählt.
@@ -1836,140 +2187,192 @@
           </div>
         </section>
 
-        <section id="top4">
-          <span class="Titel überschrift">Unsere beliebtesten Pflanzen</span>
-          <div class="top4main">
-            <div class="ContainerTop4 nav-target" id="beliebt-target" tabindex="0">
-              <button class="favorite-button" type="button" aria-label="Fairy Castle Kaktus zu Favoriten hinzufügen">
+        <section id="plants">
+          <div class="section-header">
+            <span class="section-title heading-xl">Unsere beliebtesten Pflanzen</span>
+            <div class="slider-controls" aria-label="Pflanzengalerie steuern">
+              <button class="slider-button" type="button" data-scroll-target="plants-slider" data-scroll-direction="prev" aria-label="Pflanzengalerie nach links scrollen">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M15 6 9 12l6 6" />
+                </svg>
+              </button>
+              <button class="slider-button" type="button" data-scroll-target="plants-slider" data-scroll-direction="next" aria-label="Pflanzengalerie nach rechts scrollen">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m9 6 6 6-6 6" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="slider-viewport">
+            <div class="top4main" id="plants-slider">
+              <div class="product-card nav-target" id="plants-target" tabindex="0">
+              <button class="cart-card-button" type="button" aria-label="Fairy Castle Kaktus in den Warenkorb legen" data-add-to-cart>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="9" cy="19" r="1.5" />
+                  <circle cx="18" cy="19" r="1.5" />
+                  <path d="M3 4h2l2.2 10.2a1 1 0 0 0 1 .8h8.9a1 1 0 0 0 1-.8L20 7H6.2" />
+                  <path d="M12 9v6" />
+                  <path d="M9 12h6" />
+                </svg>
+              </button>
+              <button class="favorite-button" type="button" aria-label="Fairy Castle Kaktus zu Favoriten hinzufügen" aria-pressed="false">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M12 20.5 4.8 13.8a4.8 4.8 0 0 1 6.8-6.8L12 7.4l.4-.4a4.8 4.8 0 0 1 6.8 6.8z" />
                 </svg>
               </button>
-              <div class="top4img-wrap">
+              <div class="product-card-media">
                 <img
-                  class="top4img"
+                  class="product-card-image"
                   src="PFLANZEN/the-sill_Medium-Fairy-Castle-Cactus_Medium_Hyde_Cream_Variant.webp"
                   alt="Fairy Castle Kaktus in hellem Topf"
                 />
               </div>
-              <div class="pro-name">Fairy Castle Kaktus</div>
-              <div class="pro-sub">
+              <div class="product-name">Fairy Castle Kaktus</div>
+              <div class="product-sub">
                 Beliebt für Form, Struktur und Pflegeleichtigkeit.
               </div>
-              <div class="pro-price">200.-</div>
+              <div class="product-price">200.-</div>
             </div>
-            <div class="ContainerTop4" tabindex="0">
-              <button class="favorite-button" type="button" aria-label="Fiddle Leaf zu Favoriten hinzufügen">
+              <div class="product-card" tabindex="0">
+              <button class="cart-card-button" type="button" aria-label="Fiddle Leaf in den Warenkorb legen" data-add-to-cart>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="9" cy="19" r="1.5" />
+                  <circle cx="18" cy="19" r="1.5" />
+                  <path d="M3 4h2l2.2 10.2a1 1 0 0 0 1 .8h8.9a1 1 0 0 0 1-.8L20 7H6.2" />
+                  <path d="M12 9v6" />
+                  <path d="M9 12h6" />
+                </svg>
+              </button>
+              <button class="favorite-button" type="button" aria-label="Fiddle Leaf zu Favoriten hinzufügen" aria-pressed="false">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M12 20.5 4.8 13.8a4.8 4.8 0 0 1 6.8-6.8L12 7.4l.4-.4a4.8 4.8 0 0 1 6.8 6.8z" />
                 </svg>
               </button>
-              <div class="top4img-wrap">
+              <div class="product-card-media">
                 <img
-                  class="top4img"
+                  class="product-card-image"
                   src="PFLANZEN/the-sill_Medium-Fiddle-Leaf-Fig_Medium_Isabella_Black_Variant_ee195761-0eb7-4cf2-b14f-778f6bb11a1e.webp"
                   alt="Fiddle Leaf in schwarzem Topf"
                 />
               </div>
-              <div class="pro-name">Fiddle Leaf</div>
-              <div class="pro-sub">
+              <div class="product-name">Fiddle Leaf</div>
+              <div class="product-sub">
                 Ein Klassiker für ruhige, grüne Akzente.
               </div>
-              <div class="pro-price">200.-</div>
+              <div class="product-price">200.-</div>
             </div>
-            <div class="ContainerTop4" tabindex="0">
-              <button class="favorite-button" type="button" aria-label="Medium Ghost Kaktus zu Favoriten hinzufügen">
+              <div class="product-card" tabindex="0">
+              <button class="cart-card-button" type="button" aria-label="Medium Ghost Kaktus in den Warenkorb legen" data-add-to-cart>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="9" cy="19" r="1.5" />
+                  <circle cx="18" cy="19" r="1.5" />
+                  <path d="M3 4h2l2.2 10.2a1 1 0 0 0 1 .8h8.9a1 1 0 0 0 1-.8L20 7H6.2" />
+                  <path d="M12 9v6" />
+                  <path d="M9 12h6" />
+                </svg>
+              </button>
+              <button class="favorite-button" type="button" aria-label="Medium Ghost Kaktus zu Favoriten hinzufügen" aria-pressed="false">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M12 20.5 4.8 13.8a4.8 4.8 0 0 1 6.8-6.8L12 7.4l.4-.4a4.8 4.8 0 0 1 6.8 6.8z" />
                 </svg>
               </button>
-              <div class="top4img-wrap">
+              <div class="product-card-media">
                 <img
-                  class="top4img"
+                  class="product-card-image"
                   src="PFLANZEN/the-sill_Medium-Ghost-Cactus_Medium_Isabella_Lavender_Variant.webp"
                   alt="Ghost Kaktus in lavendelfarbenem Topf"
                 />
               </div>
-              <div class="pro-name">Medium Ghost Kaktus</div>
-              <div class="pro-sub">
+              <div class="product-name">Medium Ghost Kaktus</div>
+              <div class="product-sub">
                 Skulptural, modern und ideal für helle Plätze.
               </div>
-              <div class="pro-price">200.-</div>
+              <div class="product-price">200.-</div>
             </div>
-            <div class="ContainerTop4" tabindex="0">
-              <button class="favorite-button" type="button" aria-label="Hoya Pubilcalyx zu Favoriten hinzufügen">
+              <div class="product-card" tabindex="0">
+              <button class="cart-card-button" type="button" aria-label="Hoya Pubilcalyx in den Warenkorb legen" data-add-to-cart>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="9" cy="19" r="1.5" />
+                  <circle cx="18" cy="19" r="1.5" />
+                  <path d="M3 4h2l2.2 10.2a1 1 0 0 0 1 .8h8.9a1 1 0 0 0 1-.8L20 7H6.2" />
+                  <path d="M12 9v6" />
+                  <path d="M9 12h6" />
+                </svg>
+              </button>
+              <button class="favorite-button" type="button" aria-label="Hoya Pubilcalyx zu Favoriten hinzufügen" aria-pressed="false">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M12 20.5 4.8 13.8a4.8 4.8 0 0 1 6.8-6.8L12 7.4l.4-.4a4.8 4.8 0 0 1 6.8 6.8z" />
                 </svg>
               </button>
-              <div class="top4img-wrap">
+              <div class="product-card-media">
                 <img
-                  class="top4img"
+                  class="product-card-image"
                   src="PFLANZEN/the-sill_Medium-Hoya-Pubilcalyx_Medium_Isabella_Sage_Variant.webp"
                   alt="Hoya Pubilcalyx in salbeifarbenem Topf"
                 />
               </div>
-              <div class="pro-name">Hoya Pubilcalyx</div>
-              <div class="pro-sub">
+              <div class="product-name">Hoya Pubilcalyx</div>
+              <div class="product-sub">
                 Feine Blätter und ein entspannter, natürlicher Look.
               </div>
-              <div class="pro-price">200.-</div>
+              <div class="product-price">200.-</div>
+              </div>
             </div>
           </div>
           <div class="gallery-cta-wrap">
-            <a class="heropress gallery-cta" href="#main-target">Zur vollständigen Pflanzengalerie</a>
+            <a class="pill-button pill-button-primary" href="#" data-fake-load>Zur vollständigen Pflanzengalerie</a>
           </div>
         </section>
 
-        <section id="beratung">
-          <div class="helpstart">
-            <div class="help-title">
-              <span class="überschrift mobile-mittig"
+        <section id="advice">
+          <div class="support-layout">
+            <div class="support-intro">
+              <span class="heading-xl mobile-center"
                 >Frag einen Pflanzenkenner</span
               ><br />
-              <span class="subtext mobile-mittig">Hilfe nötig?</span><br />
+              <span class="heading-sub mobile-center">Hilfe nötig?</span><br />
               <span
                 >Dein gutes Gefühl zählt. Du bist unsicher, welche Pflanzen zu
                 deinem Licht passen oder brauchst Unterstützung bei Pflege und
                 Auswahl? Wir helfen dir schnell und persönlich weiter.</span
               >
             </div>
-            <div class="helpmain">
-              <div class="helpcontainer nav-target" id="beratung-target" tabindex="0">
-                <div class="helpimg">
+            <div class="support-options">
+              <div class="support-card nav-target" id="advice-target" tabindex="0">
+                <div class="support-icon">
                   <img
                     src="ICONS/Chat.svg"
                     alt="Symbol für eine schriftliche Unterhaltung"
                   />
                 </div>
                 <div>
-                  <span class="FONT-Frage">Chat</span><br />
+                  <span class="support-label">Chat</span><br />
                   <span>Schreib direkt mit einem Pflanzenexperten</span>
                 </div>
               </div>
 
-              <div class="helpcontainer" tabindex="0">
-                <div class="helpimg">
+              <div class="support-card" tabindex="0">
+                <div class="support-icon">
                   <img
                     src="ICONS/call.svg"
                     alt="Telefonsymbol in Form eines Hörers"
                   />
                 </div>
                 <div>
-                  <span class="FONT-Frage">Anruf</span><br />
+                  <span class="support-label">Anruf</span><br />
                   <span>Sprich direkt mit einem Pflanzenexperten</span>
                 </div>
               </div>
 
-              <div class="helpcontainer" tabindex="0">
-                <div class="helpimg">
+              <div class="support-card" tabindex="0">
+                <div class="support-icon">
                   <img
                     src="ICONS/mail.svg"
                     alt="E-Mail-Symbol in Form eines Couvert"
                   />
                 </div>
                 <div>
-                  <span class="FONT-Frage">E-Mail</span><br />
+                  <span class="support-label">E-Mail</span><br />
                   <span>Sende uns bequem deine Fragen per E-Mail</span>
                 </div>
               </div>
@@ -1977,89 +2380,89 @@
           </div>
         </section>
 
-        <section id="Workshop">
-          <span class="Titel überschrift mobile-mittig">Workshop & Pflege</span>
-          <div class="WSIClust">
-            <div class="WSICell nav-target" id="workshop-target" tabindex="0">
-              <div class="WSIImageWrap">
+        <section id="workshops">
+          <span class="section-title heading-xl mobile-center">Workshop & Pflege</span>
+          <div class="workshop-grid">
+            <div class="workshop-card nav-target" id="workshops-target" tabindex="0">
+              <div class="workshop-card-media">
                 <img
-                  class="WSIImage"
+                  class="workshop-card-image"
                   src="STOCK/imageA.webp"
                   alt="Workshop Umtopfen von Pflanzen"
                 />
               </div>
-              <div class="WSICopy">
-                <span class="pro-name">Umtopfen im Frühling</span>
-                <span class="pro-sub"
+              <div class="workshop-card-copy">
+                <span class="product-name">Umtopfen im Frühling</span>
+                <span class="product-sub"
                   >Praktische Tipps für gesundes Wachstum</span
                 >
-                <span class="pro-price">Vor Ort Workshop</span>
+                <span class="product-price">Vor Ort Workshop</span>
               </div>
             </div>
 
-            <div class="WSICell" tabindex="0">
-              <div class="WSIImageWrap">
+            <div class="workshop-card" tabindex="0">
+              <div class="workshop-card-media">
                 <img
-                  class="WSIImage"
+                  class="workshop-card-image"
                   src="STOCK/imageB.webp"
                   alt="Verschiedene grüne Zimmerpflanzen"
                 />
               </div>
-              <div class="WSICopy">
-                <span class="pro-name">Pflegegrundlagen</span>
-                <span class="pro-sub"
+              <div class="workshop-card-copy">
+                <span class="product-name">Pflegegrundlagen</span>
+                <span class="product-sub"
                   >Die wichtigsten Basics für starke Zimmerpflanzen</span
                 >
-                <span class="pro-price">Kostenlos</span>
+                <span class="product-price">Kostenlos</span>
               </div>
             </div>
 
-            <div class="WSICell" tabindex="0">
-              <div class="WSIImageWrap">
+            <div class="workshop-card" tabindex="0">
+              <div class="workshop-card-media">
                 <img
-                  class="WSIImage"
+                  class="workshop-card-image"
                   src="STOCK/imageC.webp"
                   alt="Üppiger grüner Garten"
                 />
               </div>
-              <div class="WSICopy">
-                <span class="pro-name">Frühlings-Umtopfen</span>
-                <span class="pro-sub"
+              <div class="workshop-card-copy">
+                <span class="product-name">Frühlings-Umtopfen</span>
+                <span class="product-sub"
                   >Schritt für Schritt zu mehr Platz und frischer Erde</span
                 >
-                <span class="pro-price">CHF 15</span>
+                <span class="product-price">CHF 15</span>
               </div>
             </div>
 
-            <div class="WSICell" tabindex="0">
-              <div class="WSIImageWrap">
+            <div class="workshop-card" tabindex="0">
+              <div class="workshop-card-media">
                 <img
-                  class="WSIImage"
+                  class="workshop-card-image"
                   src="STOCK/imageB.webp"
                   alt="Pflegeworkshop für Zimmerpflanzen"
                 />
               </div>
-              <div class="WSICopy">
-                <span class="pro-name">Zimmerpflanzen pflegen</span>
-                <span class="pro-sub"
+              <div class="workshop-card-copy">
+                <span class="product-name">Zimmerpflanzen pflegen</span>
+                <span class="product-sub"
                   >Mehr Sicherheit bei Wasser, Licht und Standort</span
                 >
-                <span class="pro-price">CHF 20</span>
+                <span class="product-price">CHF 20</span>
               </div>
             </div>
           </div>
-          <div class="workshop-discover-wrap">
-            <a class="heropress" href="#workshop-more" tabindex="0"
+          <div class="workshop-actions">
+            <a class="pill-button pill-button-primary" href="#" tabindex="0" data-fake-load
               >Weitere Workshops entdecken</a>
           </div>
-          <div class="WSWMain">
+          <div class="editorial-layout">
             <img
-              class="WSWImg"
+              class="editorial-image"
               src="STOCK/editorial-block_holiday_zz_blush_grant.jpg"
               alt="Wohnszene mit dekorierten Zimmerpflanzen und heller Einrichtung"
             />
-            <div class="WSW-TEXT">
-              <div class="WSWToppic nav-target" id="workshop-more" tabindex="0">
+            <div class="editorial-list">
+              <div class="editorial-item nav-target" id="workshops-editorial" tabindex="0">
                 <span>Zimmerpflanzen richtig platzieren</span><br />
                 <span
                   >So findest du den passenden Standort für gesundes
@@ -2067,7 +2470,7 @@
                 ><br />
                 <span>→</span>
               </div>
-              <div class="WSWToppic" tabindex="0">
+              <div class="editorial-item" tabindex="0">
                 <span>5 Pflegefehler vermeiden</span><br />
                 <span
                   >Die häufigsten Ursachen für gelbe Blätter und schwaches
@@ -2075,7 +2478,7 @@
                 ><br />
                 <span>→</span>
               </div>
-              <div class="WSWToppic" tabindex="0">
+              <div class="editorial-item" tabindex="0">
                 <span>Welche Pflanze passt zu dir?</span><br />
                 <span
                   >Einfach erklärt für helle, halbschattige und schattige
@@ -2089,11 +2492,11 @@
 
         <section id="feedback">
           <div class="feedback-section">
-            <span class="Titel überschrift mobile-mittig feedback-title"
+            <span class="section-title heading-xl mobile-center testimonial-title"
               >Was sagen unsere Kunden</span
             >
-            <div class="FB-Cluster">
-              <div class="FB-Text">
+            <div class="testimonial-layout">
+              <div class="testimonial-card">
                 <span>
                   „Ich habe schon mehrmals bei Home Garden bestellt und jedes
                   Mal kamen die Pflanzen schnell, gesund und wunderschön bei mir
@@ -2103,9 +2506,9 @@
                 <br />
                 <span>Melanie, Zürich</span>
               </div>
-              <div class="FB-Img">
+              <div class="testimonial-media">
                 <img
-                  class="FB-BG"
+                  class="testimonial-image"
                   src="STOCK/ef39a8080d02cec2356332a55cacd3db03e24312-1500x1233.webp"
                   alt="Kundin mit Zimmerpflanzen in einer hellen Wohnumgebung"
                 />
@@ -2114,24 +2517,26 @@
           </div>
         </section>
 
-        <section id="FAQ">
-          <div class="FAQ-Start">
-            <span class="überschrift FAQ-Heading"
+        <section id="faq">
+          <div class="faq-section">
+            <span class="heading-xl faq-heading"
               >Antworten auf häufige Fragen</span
             >
-            <div class="FAQ-Main">
-              <div class="FAQ-Center">
+            <div class="faq-list">
+              <div class="faq-item">
                 <div
-                  class="FAQ-Title nav-target"
+                  class="faq-toggle nav-target"
                   id="faq-target"
                   tabindex="0"
                   role="button"
                   aria-expanded="false"
+                  aria-controls="faq-panel-delivery"
+                  aria-label="Lieferung und Gebühren aufklappen"
                 >
                   <img src="ICONS/arrow.svg" alt="Pfeil zum Auf- und Zuklappen" />
                   <span>Lieferung & Gebühren</span>
                 </div>
-                <div class="FAQ-Collapsed">
+                <div class="faq-panel" id="faq-panel-delivery">
                   <span>
                     Wir liefern innerhalb der Schweiz in der Regel innerhalb von
                     2 bis 4 Werktagen. Die Versandkosten werden im Checkout
@@ -2140,12 +2545,12 @@
                   </span>
                 </div>
               </div>
-              <div class="FAQ-Center">
-                <div class="FAQ-Title" tabindex="0" role="button" aria-expanded="false">
+              <div class="faq-item">
+                <div class="faq-toggle" tabindex="0" role="button" aria-expanded="false" aria-controls="faq-panel-payment" aria-label="Zahlungsmöglichkeiten aufklappen">
                   <img src="ICONS/arrow.svg" alt="Pfeil zum Auf- und Zuklappen" />
                   <span>Zahlungsmöglichkeiten</span>
                 </div>
-                <div class="FAQ-Collapsed">
+                <div class="faq-panel" id="faq-panel-payment">
                   <span>
                     Du kannst bequem mit Karte, TWINT und weiteren gängigen
                     Zahlungsmitteln bezahlen. Alle verfügbaren Optionen werden
@@ -2153,12 +2558,12 @@
                   </span>
                 </div>
               </div>
-              <div class="FAQ-Center">
-                <div class="FAQ-Title" tabindex="0" role="button" aria-expanded="false">
+              <div class="faq-item">
+                <div class="faq-toggle" tabindex="0" role="button" aria-expanded="false" aria-controls="faq-panel-return" aria-label="Rückgabe aufklappen">
                   <img src="ICONS/arrow.svg" alt="Pfeil zum Auf- und Zuklappen" />
                   <span>Rückgabe</span>
                 </div>
-                <div class="FAQ-Collapsed">
+                <div class="faq-panel" id="faq-panel-return">
                   <span>
                     Falls eine Pflanze beschädigt bei dir ankommt, melde dich
                     bitte rasch bei unserem Support. Gemeinsam finden wir eine
@@ -2166,12 +2571,12 @@
                   </span>
                 </div>
               </div>
-              <div class="FAQ-Center">
-                <div class="FAQ-Title" tabindex="0" role="button" aria-expanded="false">
+              <div class="faq-item">
+                <div class="faq-toggle" tabindex="0" role="button" aria-expanded="false" aria-controls="faq-panel-care" aria-label="Pflege aufklappen">
                   <img src="ICONS/arrow.svg" alt="Pfeil zum Auf- und Zuklappen" />
                   <span>Pflege</span>
                 </div>
-                <div class="FAQ-Collapsed">
+                <div class="faq-panel" id="faq-panel-care">
                   <span>
                     Die wichtigsten Faktoren sind Licht, Wasser und ein
                     passender Standort. In unseren Pflegehinweisen findest du
@@ -2180,12 +2585,12 @@
                 </div>
               </div>
 
-              <div class="FAQ-Center">
-                <div class="FAQ-Title" tabindex="0" role="button" aria-expanded="false">
+              <div class="faq-item">
+                <div class="faq-toggle" tabindex="0" role="button" aria-expanded="false" aria-controls="faq-panel-accessories" aria-label="Zubehör aufklappen">
                   <img src="ICONS/arrow.svg" alt="Pfeil zum Auf- und Zuklappen" />
                   <span>Zubehör</span>
                 </div>
-                <div class="FAQ-Collapsed">
+                <div class="faq-panel" id="faq-panel-accessories">
                   <span>
                     Bei uns findest du Töpfe, Erde und praktisches Zubehör für
                     die Pflanzenpflege. So kannst du deine Bestellung passend
@@ -2198,7 +2603,7 @@
         </section>
       </div>
 
-      <div class="footer">
+      <div class="footer" id="footer">
         <section class="footer-wrap">
           <div class="footer-column">
             <a class="footer-brand" href="#hero" aria-label="Home Garden Startseite">
@@ -2247,7 +2652,7 @@
                 placeholder="E-Mail-Adresse"
                 aria-label="E-Mail-Adresse"
               />
-              <button class="footer-button" type="button">Mitglied werden</button>
+              <button class="footer-button pill-button-primary" type="button">Mitglied werden</button>
             </form>
           </div>
         </section>
@@ -2257,33 +2662,48 @@
 
     <div class="overlay" data-overlay></div>
 
-    <aside class="account-modal" data-panel="account" aria-hidden="true">
+    <div class="loading-screen" data-loading-screen aria-hidden="true">
+      <div class="loading-screen-inner" aria-label="Ladevorgang">
+        <div class="loading-screen-mark" aria-hidden="true">
+          <svg class="loading-screen-ring" viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="48"></circle>
+          </svg>
+          <img
+            class="loading-screen-logo"
+            src="ICONS/Logo-W-ICO.svg"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+
+    <aside class="account-modal" data-panel="account" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="account-panel-title">
       <div class="panel-head">
-        <h2 class="panel-title">Mein Konto</h2>
+        <h2 class="panel-title" id="account-panel-title">Mein Konto</h2>
         <button class="panel-close" type="button" aria-label="Konto-Fenster schliessen" data-close-panel>×</button>
       </div>
       <div class="account-options">
         <div class="account-card">
           <h3>Einloggen</h3>
           <p>Greife auf Favoriten, Adressen und frühere Bestellungen zu.</p>
-          <button class="heropress" type="button">Jetzt einloggen</button>
+          <button class="pill-button" type="button">Jetzt einloggen</button>
         </div>
         <div class="account-card">
           <h3>Bestellstatus prüfen</h3>
           <p>Verfolge eine Gastbestellung schnell mit Bestellnummer und E-Mail-Adresse.</p>
-          <button class="heropress" type="button">Gastbestellung prüfen</button>
+          <button class="pill-button" type="button">Gastbestellung prüfen</button>
         </div>
         <div class="account-card">
           <h3>Konto erstellen</h3>
           <p>Erstelle ein Home Garden Konto für schnelleren Checkout und exklusive Vorteile.</p>
-          <button class="heropress" type="button">Konto erstellen</button>
+          <button class="pill-button" type="button">Konto erstellen</button>
         </div>
       </div>
     </aside>
 
-    <aside class="cart-drawer" data-panel="cart" aria-hidden="true">
+    <aside class="cart-drawer" data-panel="cart" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="cart-panel-title">
       <div class="panel-head">
-        <h2 class="panel-title">Warenkorb</h2>
+        <h2 class="panel-title" id="cart-panel-title">Warenkorb</h2>
         <button class="panel-close" type="button" aria-label="Warenkorb schliessen" data-close-panel>×</button>
       </div>
       <p class="cart-copy">Hier siehst du deine ausgewählten Pflanzen und den aktuellen Gesamtpreis.</p>
@@ -2315,17 +2735,17 @@
           <span>Kostenlos</span>
         </div>
         <div class="cart-actions">
-          <button class="heropress gallery-cta" type="button">Zum Warenkorb</button>
-          <button class="heropress" type="button">Bezahlen</button>
+          <button class="pill-button gallery-cta" type="button">Zum Warenkorb</button>
+          <button class="pill-button" type="button">Bezahlen</button>
         </div>
       </div>
     </aside>
 
-    <div class="chat-widget">
-      <div class="chat-popup" data-chat-popup aria-hidden="true">
+    <div class="chat-widget" aria-label="Chat-Bereich">
+      <div class="chat-popup" data-chat-popup aria-hidden="true" role="dialog" aria-modal="false" aria-labelledby="chat-title">
         <div class="chat-head">
           <div>
-            <strong>Home Garden Chat</strong>
+            <strong id="chat-title">Home Garden Chat</strong>
             <p>Antwortet meist in wenigen Minuten</p>
           </div>
           <button class="panel-close" type="button" aria-label="Chat schliessen" data-close-chat>×</button>
@@ -2341,8 +2761,8 @@
             Gern. Schau dir die Weisse Orchidee oder die Hoya Pubilcalyx an. Beide passen gut zu einem hellen Standort.
           </div>
           <div class="chat-actions">
-            <button class="heropress" type="button">Frage senden</button>
-            <button class="heropress" type="button">Beratung starten</button>
+            <button class="pill-button" type="button">Frage senden</button>
+            <button class="pill-button" type="button">Beratung starten</button>
           </div>
         </div>
       </div>
@@ -2350,7 +2770,7 @@
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v7A2.5 2.5 0 0 1 17.5 16H10l-4 4v-4H6.5A2.5 2.5 0 0 1 4 13.5z" />
         </svg>
-        Chat starten
+        <span class="chat-launcher-label">Chat starten</span>
       </button>
     </div>
 
@@ -2358,9 +2778,11 @@
       const menuToggle = document.querySelector(".menu-toggle");
       const mobileNav = document.querySelector(".mobile-nav");
       const mobileNavLinks = document.querySelectorAll(".mobile-nav .nav-link");
-      const faqTitles = document.querySelectorAll(".FAQ-Title");
+      const faqTitles = document.querySelectorAll(".faq-toggle");
       const favoriteButtons = document.querySelectorAll(".favorite-button");
+      const cartCardButtons = document.querySelectorAll("[data-add-to-cart]");
       const favoritesCount = document.querySelector("[data-favorites-count]");
+      const cartCount = document.querySelector("[data-cart-count]");
       const overlay = document.querySelector("[data-overlay]");
       const openPanelButtons = document.querySelectorAll("[data-open-panel]");
       const closePanelButtons = document.querySelectorAll("[data-close-panel]");
@@ -2368,6 +2790,10 @@
       const chatPopup = document.querySelector("[data-chat-popup]");
       const openChatButton = document.querySelector("[data-open-chat]");
       const closeChatButton = document.querySelector("[data-close-chat]");
+      const sliderButtons = document.querySelectorAll("[data-scroll-target]");
+      const fakeLoadLinks = document.querySelectorAll("[data-fake-load]");
+      const loadingScreen = document.querySelector("[data-loading-screen]");
+      let loadingTimeoutId;
 
       function closePanels() {
         panels.forEach((panel) => {
@@ -2390,6 +2816,13 @@
         const content = title.nextElementSibling;
         const isOpen = content.classList.toggle("open");
         title.setAttribute("aria-expanded", String(isOpen));
+        const label = title.querySelector("span")?.textContent?.trim();
+        if (label) {
+          title.setAttribute(
+            "aria-label",
+            `${label} ${isOpen ? "zuklappen" : "aufklappen"}`
+          );
+        }
       }
 
       if (menuToggle && mobileNav) {
@@ -2411,8 +2844,20 @@
       favoriteButtons.forEach((button) => {
         button.addEventListener("click", () => {
           button.classList.toggle("is-active");
+          button.setAttribute(
+            "aria-pressed",
+            String(button.classList.contains("is-active"))
+          );
           const activeFavorites = document.querySelectorAll(".favorite-button.is-active").length;
           if (favoritesCount) favoritesCount.textContent = String(activeFavorites);
+        });
+      });
+
+      cartCardButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const currentCount = Number(cartCount?.textContent || "0");
+          if (cartCount) cartCount.textContent = String(currentCount + 1);
+          openPanel("cart");
         });
       });
 
@@ -2428,6 +2873,86 @@
       });
 
       overlay?.addEventListener("click", closePanels);
+
+      function showLoadingAndNavigate(targetHref) {
+        if (!loadingScreen) {
+          if (targetHref && targetHref !== "#") {
+            window.location.href = targetHref;
+          }
+          return;
+        }
+
+        if (!targetHref || targetHref === "#") {
+          loadingScreen.classList.add("open");
+          loadingScreen.setAttribute("aria-hidden", "false");
+          document.body.style.overflow = "hidden";
+
+          window.clearTimeout(loadingTimeoutId);
+          loadingTimeoutId = window.setTimeout(() => {
+            loadingScreen.classList.remove("open");
+            loadingScreen.setAttribute("aria-hidden", "true");
+            document.body.style.overflow = "";
+          }, 900);
+          return;
+        }
+
+        loadingScreen.classList.add("open");
+        loadingScreen.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+
+        window.clearTimeout(loadingTimeoutId);
+        loadingTimeoutId = window.setTimeout(() => {
+          loadingScreen.classList.remove("open");
+          loadingScreen.setAttribute("aria-hidden", "true");
+          document.body.style.overflow = "";
+
+          if (targetHref.startsWith("#")) {
+            const target = document.querySelector(targetHref);
+            if (target) {
+              target.scrollIntoView({ behavior: "smooth", block: "start" });
+              history.replaceState(null, "", targetHref);
+              return;
+            }
+          }
+
+          window.location.href = targetHref;
+        }, 900);
+      }
+
+      function updateSliderState(slider) {
+        if (!slider) return;
+
+        const maxScrollLeft = Math.max(0, slider.scrollWidth - slider.clientWidth);
+        const hasOverflow = maxScrollLeft > 4;
+        const hasLeftOverflow = hasOverflow && slider.scrollLeft > 4;
+        const hasRightOverflow = hasOverflow && slider.scrollLeft < maxScrollLeft - 4;
+        const viewport = slider.parentElement?.classList.contains("slider-viewport")
+          ? slider.parentElement
+          : null;
+
+        viewport?.classList.toggle("has-left-overflow", hasLeftOverflow);
+        viewport?.classList.toggle("has-right-overflow", hasRightOverflow);
+
+        document
+          .querySelectorAll(`[data-scroll-target="${slider.id}"]`)
+          .forEach((button) => {
+            const controls = button.closest(".slider-controls");
+            if (!controls) return;
+            controls.classList.toggle("is-hidden", !hasOverflow);
+          });
+      }
+
+      function syncSliderControls() {
+        const sliderIds = new Set(
+          Array.from(sliderButtons)
+            .map((button) => button.getAttribute("data-scroll-target"))
+            .filter(Boolean)
+        );
+
+        sliderIds.forEach((sliderId) => {
+          updateSliderState(document.getElementById(sliderId));
+        });
+      }
 
       function closeChat() {
         chatPopup?.classList.remove("open");
@@ -2445,6 +2970,52 @@
       });
 
       closeChatButton?.addEventListener("click", closeChat);
+
+      sliderButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const targetId = button.getAttribute("data-scroll-target");
+          const direction = button.getAttribute("data-scroll-direction");
+          const slider = targetId ? document.getElementById(targetId) : null;
+          if (!slider) return;
+          const amount = Math.max(260, Math.round(slider.clientWidth * 0.55));
+          slider.scrollBy({
+            left: direction === "prev" ? -amount : amount,
+            behavior: "smooth",
+          });
+        });
+      });
+
+      const sliderIds = new Set(
+        Array.from(sliderButtons)
+          .map((button) => button.getAttribute("data-scroll-target"))
+          .filter(Boolean)
+      );
+
+      sliderIds.forEach((sliderId) => {
+        const slider = document.getElementById(sliderId);
+        slider?.addEventListener("scroll", () => updateSliderState(slider), {
+          passive: true,
+        });
+      });
+
+      syncSliderControls();
+      window.addEventListener("resize", syncSliderControls);
+
+      fakeLoadLinks.forEach((link) => {
+        link.addEventListener("click", (event) => {
+          const href = link.getAttribute("href");
+          if (!href) return;
+          event.preventDefault();
+
+          if (mobileNav?.classList.contains("open")) {
+            mobileNav.classList.remove("open");
+            menuToggle?.classList.remove("is-open");
+            menuToggle?.setAttribute("aria-expanded", "false");
+          }
+
+          showLoadingAndNavigate(href);
+        });
+      });
 
       faqTitles.forEach((title) => {
         title.addEventListener("click", () => {
